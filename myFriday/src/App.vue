@@ -13,10 +13,8 @@ export default {
 </script>
 
 <style>
-<<<<<<< HEAD
-/*#app {*/
-=======
->>>>>>> 15435357e10958ca24e79c54a1b6aedcaec5d65d
+
+
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
   /*-webkit-font-smoothing: antialiased;*/
@@ -24,9 +22,5 @@ export default {
   /*text-align: center;*/
   /*color: #2c3e50;*/
   /*margin-top: 60px;*/
-<<<<<<< HEAD
-/*}*/
-=======
->>>>>>> 15435357e10958ca24e79c54a1b6aedcaec5d65d
 }
 </style>
