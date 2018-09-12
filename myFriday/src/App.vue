@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!--<img src="./assets/logo.png">-->
 
     <router-view/>
   </div>
@@ -13,7 +12,6 @@ export default {
 </script>
 
 <style>
-
 
 #app {
   /*font-family: 'Avenir', Helvetica, Arial, sans-serif;*/
