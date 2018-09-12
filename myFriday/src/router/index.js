@@ -5,7 +5,6 @@ import HelloWorld from '@/components/HelloWorld'
 import GouWuChe_wu from '@/components/GouWuChe_wu'
 import GWC_tit from '@/components/GWC/GWC_tit'
 
-
 import Home from '@/components/Home'
 
 Vue.use(Router)
