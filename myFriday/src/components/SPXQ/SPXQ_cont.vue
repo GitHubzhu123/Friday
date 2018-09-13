@@ -5,49 +5,48 @@
     </div>
     <div class="sp_div">
       <div class="imgdiv">
-        <img class="bigimg" src="static/f/sp/图层 289.png" alt="">
+        <img class="bigimg" :src="src[0]" alt="">
         <div class="smallbox">
           <span class="left"></span>
           <div class="small_window">
             <div class="smallbox_tiao">
-              <img class="smallimg" src="static/f/sp/图层 289.png" alt="">
-              <img class="smallimg" src="static/f/sp/图层 289.png" alt="">
-              <img class="smallimg" src="static/f/sp/图层 289.png" alt="">
-              <img class="smallimg" src="static/f/sp/图层 289.png" alt="">
-              <img class="smallimg" src="static/f/sp/图层 289.png" alt="">
+              <img class="smallimg" :src="src[0]" alt="">
+              <img class="smallimg" :src="src[0]" alt="">
+              <img class="smallimg" :src="src[0]" alt="">
+              <img class="smallimg" :src="src[0]" alt="">
+              <img class="smallimg" :src="src[0]" alt="">
             </div>
           </div>
           <span class="right"></span>
         </div>
       </div>
       <div class="jieshao_div">
-        <p class="sp_name">新疆哈密瓜1500kg </p>
+        <p class="sp_name">{{spName[0]}} </p>
         <span class="lei  lei1">全国</span>
         <span class="lei  lei2">礼拜五</span>
         <span class="lei  lei3">次日达</span>
         <span class="lei  lei4">自营</span>
         <div class="jieshao1_div">
           <img src="static/f/组 15.png" alt="">
-          <p>雀斑石榴持续热卖！云南蒙自石榴，原产波斯（今伊朗）一带，公元前二世纪时传
-入我国。是中国三大石榴之一，粒大皮薄，汁多味甜爽口。雀斑石榴持续热卖！云
-南蒙自石榴，原产波斯（今伊朗）一带，公元前二世纪时传入我国。是中国三大石
-榴之一，粒大皮薄，汁多味甜爽口。</p>
+          <p>{{jieshao[0]}}</p>
         </div>
-        <p class="sp_money">现价：￥20.0<span>原价：￥40.0</span></p>
+        <p class="sp_money">现价：￥{{moneyX[0]}}<span>原价：￥{{moneyY[0]}}</span></p>
         <p class="guige">请选择规格<span>500g</span><span>500g</span></p>
         <p class="guige">请选择规格<span>500g</span><span>500g</span></p>
         <div class="jiaru">
+
           <span>数 量:</span>
           <div class="num_box">
-            <div class="jian_box">
+            <div class="jian_box" @click="jian()">
               <img src="static/f/jian.png" alt="">
             </div>
-            <span >1</span>
-            <div class="jia_box">
+            <span>{{num}}</span>
+            <div class="jia_box" @click="jia()">
               <img src="static/f/jia.png" alt="">
             </div>
           </div>
           <span>件</span>
+
           <span class="jrgwc">加入购物车</span>
           <span class="ljgm">立即购买</span>
         </div>
@@ -69,8 +68,53 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
     export default {
-        name: "SPXQ_cont"
+        name: "SPXQ_cont",
+      data(){
+        return{
+          num:1,
+          id:2,
+          sp:'',
+          src:[],
+          spName:[],
+          moneyX:[],
+          moneyY:[],
+          jieshao:[],
+        }
+      },
+      methods:{
+        jian(){
+          this.num--;
+          if(this.num<1){
+            this.num=1;
+          }
+        },
+        jia(){
+          this.num++;
+        }
+      },
+      mounted(){
+        axios.get('/api/vuephp/gwc.php?type=2&id='+this.id).then(res=>{
+          console.log(res.data)
+          this.sp=res.data;
+          var that = this;
+          for (var i=0;i<1;i++){
+
+            Vue.set(that.src,i,that.sp[i].src);
+            Vue.set(that.spName,i,that.sp[i].name);
+            Vue.set(that.moneyX,i,that.sp[i].money);
+            Vue.set(that.moneyY,i,that.sp[i].moneyY);
+            Vue.set(that.jieshao,i,that.sp[i].jieShao);
+
+            // this.src[0]=this.sp[0].src
+            // this.spName[0]=this.sp[0].spName
+            // this.moneyX[0]=this.sp[0].moneyX
+            // console.log(that.src[i]);
+          }
+        })
+      }
     }
 </script>
 
