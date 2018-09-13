@@ -1,4 +1,6 @@
+var webpack = require('webpack')
 'use strict'
+
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
@@ -29,6 +31,14 @@ module.exports = {
       '@': resolve('src'),
     }
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      jquery: "jquery",
+      "window.jQuery": "jquery"
+    })
+  ],
   module: {
     rules: [
       {
