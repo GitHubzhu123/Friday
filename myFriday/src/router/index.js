@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
-import GrMenu from '@/components/GrMenu'
-// import GrzhangHu from '@/components/personinfor/GrzhangHu'
+//个人中心
+import GrMenu from '@/components/Grzx/GrMenu'
+import DuiHuan from '@/components/Grzx/DuiHuan'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
@@ -24,15 +25,18 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld
     },
-    // {
-    //   path: '/grzhanghu',
-    //   name: 'GrzhangHu',
-    //   component: GrzhangHu
-    // },
+
     {
       path: '/grmenu',
       name: 'GrMenu',
-      component: GrMenu
+      component: GrMenu,
+      children:[
+        {
+          path: '/duihuan',
+          name: 'DuiHuan',
+          component: DuiHuan
+        },
+      ]
     },
     //购物车
     {
