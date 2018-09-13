@@ -4,7 +4,9 @@
     <div class="lbt">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"></div>
+          <div class="swiper-slide">
+            <div></div>
+          </div>
           <div class="swiper-slide"><img src="./../../static/z/主页/lbt.png" alt=""></div>
           <div class="swiper-slide"><img src="./../../static/z/主页/lbt.png" alt=""></div>
         </div>
