@@ -1,67 +1,68 @@
 <template>
   <div>
-    <div class="top">
-      <div class="topT">
-        <div class="topTl">
-          <span>所在城市 ：北京朝阳区 </span><img src="./../../static/z/主页/箭头.png" alt="">
+    <Top></Top>
+    <div class="lbt">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"></div>
+          <div class="swiper-slide"><img src="./../../static/z/主页/lbt.png" alt=""></div>
+          <div class="swiper-slide"><img src="./../../static/z/主页/lbt.png" alt=""></div>
         </div>
-        <div class="topTr">
-          <span>您好 ,</span>
-          <a class="phone1">17701269859</a>
-          <a href="#">退出</a>
-          <span class="span">|</span><a href="#">我的订单</a><span class="span">|</span><a href="#">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
-          <span class="span">|</span><span class="phone">400-800-8820</span>
-        </div>
+        <!-- 如果需要导航按钮 -->
+        <div class="swiper-pagination"></div>
+        <!--<div class="swiper-button-prev"></div>-->
+        <!--<div class="swiper-button-next"></div>-->
       </div>
     </div>
+    <Btm></Btm>
   </div>
 </template>
 
 <script>
+    import Top from "./Top";
+    import Btm from "./Btm";
     export default {
-        name: "Home"
+        name: "Home",
+      components: {Btm, Top},
+      mounted:function () {
+        var div = document.querySelector(".swiper-container");
+        var mySwiper = new Swiper(div, {
+          //竖直 vertical 水平 horizontal
+          direction: 'horizontal',
+             loop: true,
+             autoplay: true,
+              autoplay:{disableOnInteraction:false},
+              autoplayDisableOnInteraction : false,
+//              speed: 1000,
+//              effect: 'cube',
+//              on: {
+//                  slideChangeTransitionEnd: function() {
+//                      alert(this.activeIndex); //切换结束时，告诉我现在是第几个slide
+//                  },
+//              },
+          // 如果需要分页器
+          pagination: {
+            el: '.swiper-pagination',
+              clickable :true,
+
+          },
+        })
+      }
     }
 </script>
 
 <style scoped>
-  .top{
+  .lbt{
     width: 100%;
-    height: 35px;
-    background: #eee;
-    color: #6f6f6f;
+    height: 500px;
   }
-  .topT{
-    width: 1280px;
-    height: 35px;
-    margin: 0 auto;
-    font-size: 14px;
-    line-height: 35px;
+  .swiper-container{
+    width: 100%;
+    height: 500px;
   }
-  .topTl{
-    float: left;
-  }
-  .topTl>img{
-    position: relative;
-    bottom: 1px;
-  }
-  .topTr{
-    float: right;
-  }
-  .span{
-    margin:0 10px ;
-  }
-  .topTr>a{
-    text-decoration: none;
-    color: #6f6f6f;
-    /*margin-left: 3px;*/
-  }
-  .topTr .phone1{
-    color: #76ac6c;
-    margin-right: 7px;
-  }
-  .phone{
-    padding-left: 24px;
-    color: #666;
-    background: url("./../../static/z/主页/phone.png") no-repeat 2px 2px;
+  .swiper-slide{
+    width: 100%;
+    height: 500px;
+    background: url("./../../static/z/主页/lbt.png") no-repeat;
   }
 </style>
