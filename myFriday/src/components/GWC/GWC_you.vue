@@ -155,7 +155,7 @@
   .jian_box,.jia_box{
     width: 30px;
     height: 30px;
-    background: rgb(242,242,242) rgb(211,211,211);
+    background: rgb(242,242,242);
     position: relative;
   }
   .jian_box{

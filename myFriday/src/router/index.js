@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 
-import GrMenu from '@/components/personinfor/GrMenu'
+import GrMenu from '@/components/GrMenu'
 // import GrzhangHu from '@/components/personinfor/GrzhangHu'
 
 //购物车
