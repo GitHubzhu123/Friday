@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+
 //购物车
-import GouWuChe_wu from '@/components/GouWuChe_wu'
+import GouWuChe from '@/components/GouWuChe'
 import GWC_tit from '@/components/GWC/GWC_tit'
+import kong from '@/components/GWC/kong'
+import GWC_you from '@/components/GWC/GWC_you'
 
 import Home from '@/components/Home'
 
@@ -18,9 +21,21 @@ export default new Router({
     },
     //购物车
     {
-      path: '/gouwuche_wu',
-      name: 'GouWuChe_wu',
-      component: GouWuChe_wu
+      path: '/gouwuche',
+      name: 'GouWuChe',
+      component: GouWuChe,
+      children:[
+        {
+          path: '/kong',
+          name: 'kong',
+          component: kong
+        },
+        {
+          path: '/gwc_you',
+          name: 'GWC_you',
+          component: GWC_you
+        },
+      ]
     },
     {
       path: '/gwc_tit',
