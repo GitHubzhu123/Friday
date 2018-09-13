@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-
+    <router-link to="/grmenu">跳转</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
