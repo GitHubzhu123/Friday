@@ -56,11 +56,6 @@ export default new Router({
         },
       ]
     },
-    // {
-    //   path: '/gwc_tit',
-    //   name: 'GWC_tit',
-    //   component: GWC_tit
-    // },
     {
       path: '/spxq',
       name: 'SPXQ',
