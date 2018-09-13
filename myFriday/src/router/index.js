@@ -31,6 +31,7 @@ export default new Router({
       path: '/grmenu',
       name: 'GrMenu',
       component: GrMenu
+    },
     //购物车
     {
       path: '/gouwuche',
