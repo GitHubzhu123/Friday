@@ -1,11 +1,11 @@
 <template>
   <div class="leftMenu">
     <div>个人中心</div>
-    <ul>
-      <li>
+    <ul class="leftMenuCon">
+      <li class="oneLi">
         <div>
-          <span>交易管理</span>
-          <img src="" alt="">
+          <span class="col">交易管理</span>
+          <span>></span>
         </div>
         <ul>
           <li>我的账户</li>
@@ -19,7 +19,7 @@
       <li>
         <div>
           <span>会员资料</span>
-          <img src="" alt="">
+          <span>></span>
         </div>
         <ul>
           <li>个人资料</li>
@@ -30,41 +30,63 @@
         </ul>
       </li>
 
-      <li>
+      <li class="thrLi">
         <div>
           <span>站内信</span>
-          <img src="" alt="">
+          <span>></span>
         </div>
         <ul>
           <li>我的消息</li>
           <li>意见反馈</li>
         </ul>
       </li>
-
     </ul>
 
   </div>
-
-
 </template>
 
+
 <script>
-    export default {
-        name: "GrMenu"
-    }
+  export default {
+    name: "GrMenu",
+
+  }
 </script>
 
 <style scoped>
+
+  .col {
+    color:#ff0;
+  }
   .leftMenu{
-    /*width: 1230px;*/
-    /*height: 700px;*/
-    /*margin: 0 auto;*/
-    /*background: lightblue;*/
     width: 170px;
     height: 625px;
     background: lightseagreen;
+    overflow: hidden;
   }
   .leftMenu>div{
     font-size: 20px;
+    height: 60px;
+    line-height: 60px;
+    border: 1px solid #e2e2e2;
+  }
+  .leftMenu>div,.leftMenu>ul{
+    margin-left: 20px;
+  }
+  .leftMenuCon>li>div{
+    font-size: 20px;
+    /*margin-bottom: 20px;*/
+  }
+  .leftMenuCon>li,.leftMenuCon>li>ul>li{
+    margin: 15px 0;
+  }
+  .leftMenuCon>.oneLi{
+    margin-top: 0;
+  }
+  .leftMenuCon>li>div>span:last-child{
+    margin-left: 25px;
+  }
+  .leftMenuCon>.thrLi>div>span:last-child{
+    margin-left: 40px;
   }
 </style>
