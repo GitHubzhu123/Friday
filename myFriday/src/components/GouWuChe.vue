@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  import GWC_tit from '@/components/GWC/GWC_tit'
   import Top_Xiao from '@/components/Top_Xiao'
+  import GWC_tit from '@/components/GWC/GWC_tit'
   import Btm from '@/components/Btm'
     export default {
         name: "GouWuChe",

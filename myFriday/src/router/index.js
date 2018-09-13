@@ -10,7 +10,9 @@ import GouWuChe from '@/components/GouWuChe'
 import GWC_tit from '@/components/GWC/GWC_tit'
 import kong from '@/components/GWC/kong'
 import GWC_you from '@/components/GWC/GWC_you'
-
+//商品详情
+import SPXQ from '@/components/SPXQ'
+//home
 import Home from '@/components/Home'
 
 Vue.use(Router)
@@ -50,10 +52,15 @@ export default new Router({
         },
       ]
     },
+    // {
+    //   path: '/gwc_tit',
+    //   name: 'GWC_tit',
+    //   component: GWC_tit
+    // },
     {
-      path: '/gwc_tit',
-      name: 'GWC_tit',
-      component: GWC_tit
+      path: '/spxq',
+      name: 'SPXQ',
+      component: SPXQ
     },
     {
       path: '/home',
