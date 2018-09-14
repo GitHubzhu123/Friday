@@ -15,19 +15,19 @@
         </div>
 
         <ul class="inputs">
-          <li>
+          <li class="oneLi">
             昵称: <input type="text">
           </li>
-          <li>
-            性别: <label><input type="radio" name="sex">男</label>
-                  <label ><input type="radio" name="sex">女</label>
+          <li class="twoLi">
+            性别: <label><input type="radio" name="sex"> 男</label>
+                  <label ><input type="radio" name="sex"> 女</label>
           </li>
-          <li>
+          <li class="thrLi">
             生日: <select>
-            <option value=""></option>
-          </select>年
+            <option value="">1970</option>
+          </select> 年
           </li>
-          <li>
+          <li class="fourLi">
             手机: <input type="text">
             <span>更换手机</span>
           </li>
@@ -47,19 +47,10 @@
 </script>
 
 <style scoped>
-  .xiugai{
-    color: #aedb01;
-    font-size: 16px;
-  }
-  .touPho{
-    position: relative;
-  }
-  .touPho>img{
-    position: absolute;
-  }
+
 
   .top{
-    width: 1035px;
+    width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
     position: relative;
@@ -89,8 +80,74 @@
     position: relative;
     font-size: 20px;
   }
+  .mid input{
+    font-size: 16px;
+  }
 
   a{
     color: #ffffff;
+  }
+  .headImg{
+    width: 210px;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 40px;
+    margin-top: 40px;
+  }
+  .xiugai{
+    color: #aedb01;
+    font-size: 16px;
+  }
+  .touPho{
+    width: 80px;
+    height: 80px;
+    position: relative;
+  }
+  .touPho>img{
+    position: absolute;
+  }
+  .touPho>img:last-child{
+    top: 3px;
+    left: 3px;
+  }
+  .fourLi>span{
+    font-size: 16px;
+    color: #aedb01;
+    margin-left: 10px;
+  }
+  .twoLi>label{
+    margin-right: 35px;
+    margin-left: 10px;
+  }
+  .oneLi>input,.fourLi>input{
+    width: 170px;
+    height: 35px;
+    margin-left: 10px;
+  }
+  .thrLi>select{
+    width: 110px;
+    height: 40px;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  .ack{
+    width: 150px;
+    height: 50px;
+    background: #f08200;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    border-radius: 5px;
+    top: 365px;
+    left: 140px;
+    color: #ffffff;
+  }
+  .inputs{
+    margin-left: 80px;
+  }
+  .inputs>li{
+    margin: 15px 0;
   }
 </style>

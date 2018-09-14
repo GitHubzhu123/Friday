@@ -1,9 +1,16 @@
 <template>
   <div>
+    <div class="local">
+      <div class="loc">
+        <p>&times;</p>
+        <span>建议您的收货地址 ：</span><a href="###">河南省郑州市</a>
+
+      </div>
+    </div>
     <div class="top">
       <div class="topT">
         <div class="topTl">
-          <span>所在城市 ：北京朝阳区 </span><img src="./../../static/z/主页/箭头.png" alt="">
+          <span @click="local()">所在城市 ：北京朝阳区 </span><img src="./../../static/z/主页/箭头.png" alt="">
         </div>
         <div class="topTr">
           <span>您好 ,</span>
@@ -29,7 +36,60 @@
         <a href="#">全部分类 <img src="./../../static/z/主页/xia.png" alt=""></a>
         <div>
           <ul class="a1_1">
-            <li><img src="./../../static/z/主页/li1.png" alt="">新鲜水果</li>
+            <li><img src="./../../static/z/主页/li1.png" alt="">新鲜水果
+              <div class="list1">
+                <ul>
+                  <li><a href="###">应季鲜果</a></li>
+                  <li><a href="###">应季鲜果</a></li>
+                  <li><a href="###">应季鲜果</a></li>
+                  <li><a href="###">应季鲜果</a></li>
+                  <li><a href="###">应季鲜果</a></li>
+                  <li><a href="###">应季鲜果</a></li>
+                </ul>
+                <div class="list1_r">
+                    <div>
+                      <a href="###">草莓</a><span>|</span>
+                      <a href="###">葡萄</a><span>|</span>
+                      <a href="###">香蕉</a><span>|</span>
+                      <a href="###">苹果</a><br/>
+                      <a href="###">草莓</a><span>|</span>
+                      <a href="###">葡萄</a><span>|</span>
+                      <a href="###">香蕉</a><span>|</span>
+                      <a href="###">苹果</a><br/>
+                    </div>
+                  <div>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                  </div>
+                  <div>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                  </div>
+                  <div>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                  </div>
+                </div>
+              </div>
+            </li>
             <li><img src="./../../static/z/主页/li2.png" alt="">生猛海鲜</li>
             <li><img src="./../../static/z/主页/li3.png" alt="">肉类家禽</li>
             <li><img src="./../../static/z/主页/li4.png" alt="">蛋奶素食</li>
@@ -51,6 +111,7 @@
 
 <script>
   import Btm from "./Btm";
+
   export default {
     name: "Top",
     components:{
@@ -224,9 +285,13 @@
     color: #333;
     border-bottom: 1px solid #eee;
     background: white;
+    position: relative;
   }
   .a1_1>li:hover{
-    background: #dedede;
+    background: #ebffe7;
+  }
+  .a1_1>li:hover .list1{
+    display: block;
   }
   .a1_1>li>img{
     margin-right: 8px;
@@ -241,4 +306,81 @@
     background: #f08200;
     color: white;
   }
+  .list1{
+    width: 458px;
+    height: 500px;
+    background: #ebffe7;
+    position: absolute;
+    top: 0;
+    left: 170px;
+    display: none;
+  }
+  .list1>ul{
+    float: left;
+    margin-left: 38px;
+  }
+  .list1>ul>li{
+    margin-bottom: 20px;
+  }
+  .list1>ul>li>a{
+    color: #498e3d;
+    font-weight: 200;
+  }
+
+
+  .list1_r{
+    float: left;
+    margin-left: 30px;
+  }
+  .list1_r>div{
+    margin-bottom:20px;
+  }
+  .list1_r>div>a{
+    clear: both;
+    display: inline;
+     }
+  .list1_r>div>span{
+    margin: 20px;
+  }
+  .local{
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+  .loc{
+    width: 700px;
+    height: 350px;
+    background: white url("./../../static/z/主页/localbg.png");
+    margin: 180px auto;
+  }
+  .loc>p{
+    text-align: right;
+    margin-right: 20px;
+    padding-top: 10px;
+    font-size:30px;
+    color: #999;
+    font-weight: 100;
+  }
+  .loc>span{
+    margin-left: 65px;
+    font-size: 18px;
+    color: #333;
+  }
+  .loc>a{
+    margin-top: 20px;
+    display: inline-block;
+    width: 180px;
+    height: 33px;
+    text-align: center;
+    background: #498e3d;
+    line-height: 33px;
+    color: white;
+    border-radius: 8px;
+    font-weight: 200;
+  }
+
 </style>
