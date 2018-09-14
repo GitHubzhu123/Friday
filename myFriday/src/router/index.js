@@ -23,6 +23,7 @@ import SPXQ from '@/components/SPXQ'
 import Home from '@/components/Home'
 import Lbt from '@/components/Lbt'
 import Top from '@/components/Top'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -85,6 +86,7 @@ export default new Router({
       name: 'SPXQ',
       component: SPXQ
     },
+    //主页
     {
       path: '/top',
       name: 'Top',
@@ -98,10 +100,17 @@ export default new Router({
         },
       ]
     },
+    //轮播图
     {
       path: '/lbt',
       name: 'Lbt',
       component: Lbt
     },
+    //登录注册
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
+    }
   ]
 })
