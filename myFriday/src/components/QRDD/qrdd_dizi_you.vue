@@ -69,9 +69,6 @@
   }
   .swmr,.xg,.sc{
     float: right;
-    /*display: inline-block;*/
-    /*height: 40px;*/
-
   }
   .sc{
     margin-right: 10px;

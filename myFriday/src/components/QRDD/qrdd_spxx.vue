@@ -48,7 +48,8 @@
         <span style="color: red">*</span><span>请填写后认真核对发票信息</span>
         <hr>
         <p class="st">添加订单备注</p>
-        <input type="text" class="bz">
+        <input type="text" class="bz" placeholder="限45个字，请填写有关商品、支付、发票等信息">
+        <hr>
       </div>
     </div>
 </template>
@@ -251,12 +252,14 @@
     margin-right: 30px;
   }
   .tt{
-    width: 370px;
+    width: 360px;
+    padding-left: 10px;
     height: 35px;
     margin-right: 10px;
   }
   .bz{
-    width: 630px;
+    width: 620px;
+    padding-left: 10px;
     height: 35px;
     margin-top: 20px;
   }
