@@ -19,7 +19,11 @@ import GWC_you from '@/components/GWC/GWC_you'
 
 //商品详情
 import SPXQ from '@/components/SPXQ'
-
+//确认订单
+import QueRendingdan from '@/components/QueRendingdan'
+import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
+import qrdd_dizi_you from '@/components/QRDD/qrdd_dizi_you'
+import qrdd_spxx from '@/components/QRDD/qrdd_spxx'
 //主页
 //home
 import Home from '@/components/Home'
@@ -92,6 +96,31 @@ export default new Router({
         },
       ]
     },
+    //确认订单
+    {
+      path: '/querendingdan',
+      name: 'QueRendingdan',
+      component: QueRendingdan,
+      children:[
+
+      ]
+    },
+    {
+      path: '/qrdd_diziwu',
+      name: 'qrdd_diziwu',
+      component: qrdd_diziwu
+    },
+    {
+      path: '/qrdd_dizi_you',
+      name: 'qrdd_dizi_you',
+      component: qrdd_dizi_you
+    },
+    {
+      path: '/qrdd_spxx',
+      name: 'qrdd_spxx',
+      component: qrdd_spxx
+    },
+    //商品详情
     {
       path: '/spxq',
       name: 'SPXQ',

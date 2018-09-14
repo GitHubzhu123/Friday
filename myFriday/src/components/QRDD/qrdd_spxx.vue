@@ -1,8 +1,9 @@
 <template>
-    <div id="gwc_you">
-      <span class="smallche"></span>
-      <span>购物车</span>
-      <div class="shangdian" v-for="(item,i) in sdarr">
+    <div class="spxx">
+      <p class="st">商品信息</p>
+      <div class="sd_kp" v-for="item in [0,1]">
+
+      <div class="shangdian">
         <div class="sd_tit">
           <span class="gou gou1" ></span>
           <span class="zi1">爱果果水果店</span>
@@ -10,7 +11,6 @@
           <span class="zi2">单价</span>
           <span class="zi2">数量</span>
           <span class="zi2">金额</span>
-          <span class="zi2">操作</span>
         </div>
         <div class="sp" v-for="(item,j) in sparr">
           <span class="gou" :class="splength[j]?'gou1':'gou2'" @click="gou(j)"></span>
@@ -30,18 +30,26 @@
             </div>
           </div>
           <span class="zi3">￥{{money[j]*num[j]}}</span>
-          <span class="shan">删除</span>
         </div>
-        <p class="je_p">商品金额<span class="je_span">￥108.0</span></p>
+        <p class="je_p">
+          <span class="hei">运费</span><span class="hong">￥5.0</span>
+          <span class="hei">商品金额</span><span class="hong">￥108.0</span>
+          <span class="hei">商家合计</span><span class="hong">￥113.0</span>
+        </p>
       </div>
-      <div class="foot">
-        <span class="left">全选</span>
-        <span class="left">批量删除</span>
-        <span>商品总计:</span>
-        <span class="zongjia">￥2977</span>
-        <span class="ljgm" @click="qrdd">立即购买</span>
+        <hr>
+        <p class="st">开票信息</p>
+        <p class="xuan">
+          <span class="dian"></span><span class="zi">不需要</span>
+          <span class="dian"></span><span class="zi">个人</span>
+          <span class="dian"></span><span class="zi">单位</span>
+        </p>
+        <span>发票抬头：</span><input class="tt" type="text">
+        <span style="color: red">*</span><span>请填写后认真核对发票信息</span>
+        <hr>
+        <p class="st">添加订单备注</p>
+        <input type="text" class="bz">
       </div>
-
     </div>
 </template>
 
@@ -49,7 +57,7 @@
   import axios from 'axios'
   import Vue from 'vue'
     export default {
-        name: "GWC_you",
+        name: "qrdd_spxx",
       data(){
         return{
           sp:[],
@@ -64,12 +72,12 @@
         }
       },
       methods:{
-          gou(j){
-            // if (this.splength[j]){
-            //
-              this.$set(this.splength,j,!this.splength[j])
+        gou(j){
+          // if (this.splength[j]){
+          //
+          this.$set(this.splength,j,!this.splength[j])
 
-          },
+        },
         jian(){
 
         },
@@ -77,8 +85,8 @@
 
         },
         qrdd(){
-            localStorage.huang=1;
-            window.location.href="/#/querendingdan"
+          localStorage.huang=1;
+          window.location.href="/#/querendingdan"
 
         }
       },
@@ -102,7 +110,6 @@
                 Vue.set(that.spname,i,that.sp[i].name);
                 Vue.set(that.guige,i,that.sp[i].guiGe);
                 Vue.set(that.money,i,that.sp[i].money);
-
               })
             })(i,that);
           }
@@ -112,24 +119,15 @@
 </script>
 
 <style scoped>
-  #gwc_you{
-    margin: 20px 0;
-  }
-  #gwc_you>span{
-    font-size: 18px;
-  }
-  .smallche{
-    display: inline-block;
-    width: 22px;
-    height: 20px;
-    position: relative;
-    top: 2px;
-    background: url('/../static/f/JingLing.png') -20px 0px;
-    margin-right: 10px;
+  .st{
+    font-size: 20px;
+    margin-top: 20px;
+    /*line-height: 60px;*/
   }
   .shangdian{
     margin-top: 20px;
     border: 1px solid rgb(211,211,211);
+    margin-bottom: 30px;
   }
   .sd_tit{
 
@@ -216,45 +214,50 @@
   .hui{
     color: rgb(150,150,150);
   }
-  .shan{
-    display: inline-block;
-    width: 90px;
-    text-align: center;
-    color: rgb(73,142,61);
-  }
   .je_p{
     height: 80px;
     line-height: 80px;
     font-size: 20px;
     text-align: right;
-    padding-right: 40px;
   }
-  .je_span{
+  .hong{
     margin-left: 20px;
+    margin-right: 40px;
     color: rgb(255,87,87);
   }
-  .foot{
-    height: 130px;
-    line-height: 130px;
-    text-align: right;
+  hr{
+    margin-top: 20px;
+    height: 1px;
+    background: rgb(211,211,211);
+    border: none;
   }
-  .left{
-    float: left;
-    margin: 0 20px;
-    color: rgb(73,142,61);
+  .xuan{
+    line-height: 60px;
+    font-size: 15px;
   }
-  .zongjia{
-    font-size: 20px;
-    color: rgb(255,87,87);
+  .dian{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid rgb(190,190,190);
+    border-radius: 50%;
+    position: relative;
+    top: 2px;
+    margin-right: 10px;
+    background: url('/../static/f/JingLing.png') -418px 3px;
+  }
+  .zi{
+    margin-left: 10px;
     margin-right: 30px;
   }
-  .ljgm{
-    display: inline-block;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    background: rgb(240,130,0);
-    border-radius: 5px;
+  .tt{
+    width: 370px;
+    height: 35px;
+    margin-right: 10px;
+  }
+  .bz{
+    width: 630px;
+    height: 35px;
+    margin-top: 20px;
   }
 </style>

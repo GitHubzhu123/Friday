@@ -14,7 +14,19 @@
 <script>
 
     export default {
-        name: "GWC_tit"
+        name: "GWC_tit",
+      mounted(){
+          // localStorage.huang=0
+          var huang=localStorage.huang
+        console.log(huang)
+          // $(".zi").css({
+          //   color:'rgb(0,0,0)'
+          // });
+          $(".zi").eq(huang).css({
+            color:'rgb(240,130,0)'
+          })
+
+      }
     }
 </script>
 
