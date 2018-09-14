@@ -255,12 +255,14 @@
     width: 360px;
     padding-left: 10px;
     height: 35px;
+    font-size: 15px;
     margin-right: 10px;
   }
   .bz{
     width: 620px;
     padding-left: 10px;
     height: 35px;
+    font-size: 15px;
     margin-top: 20px;
   }
 </style>
