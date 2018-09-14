@@ -8,6 +8,8 @@ import DuiHuan from '@/components/Grzx/DuiHuan'
 import Adress from '@/components/Grzx/Adress'
 import NewAdress from '@/components/Grzx/NewAdress'
 import AdressGuanL from '@/components/Grzx/AdressGuanL'
+import GrZiLiao from '@/components/Grzx/GrZiLiao'
+import YiJianFK from '@/components/Grzx/YiJianFK'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
@@ -54,6 +56,16 @@ export default new Router({
           path: '/adressguanl',
           name: 'AdressGuanL',
           component: AdressGuanL,
+        },
+        {
+          path: '/grziliao',
+          name: 'GrZiLiao',
+          component: GrZiLiao,
+        },
+        {
+          path: '/yijianfk',
+          name: 'YiJianFK',
+          component: YiJianFK,
         },
       ]
     },
