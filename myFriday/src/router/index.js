@@ -5,16 +5,26 @@ import HelloWorld from '@/components/HelloWorld'
 //个人中心
 import GrMenu from '@/components/Grzx/GrMenu'
 import DuiHuan from '@/components/Grzx/DuiHuan'
+import Adress from '@/components/Grzx/Adress'
+import NewAdress from '@/components/Grzx/NewAdress'
+import AdressGuanL from '@/components/Grzx/AdressGuanL'
+import GrZiLiao from '@/components/Grzx/GrZiLiao'
+import YiJianFK from '@/components/Grzx/YiJianFK'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
 import GWC_tit from '@/components/GWC/GWC_tit'
 import kong from '@/components/GWC/kong'
 import GWC_you from '@/components/GWC/GWC_you'
+
 //商品详情
 import SPXQ from '@/components/SPXQ'
+
+//主页
 //home
 import Home from '@/components/Home'
+import Lbt from '@/components/Lbt'
+import Top from '@/components/Top'
 
 Vue.use(Router)
 
@@ -26,6 +36,7 @@ export default new Router({
       component: HelloWorld
     },
 
+    // 个人中心
     {
       path: '/grmenu',
       name: 'GrMenu',
@@ -35,6 +46,31 @@ export default new Router({
           path: '/duihuan',
           name: 'DuiHuan',
           component: DuiHuan
+        },
+        {
+          path: '/adress',
+          name: 'Adress',
+          component: Adress,
+        },
+        {
+          path: '/newadress',
+          name: 'NewAdress',
+          component: NewAdress,
+        },
+        {
+          path: '/adressguanl',
+          name: 'AdressGuanL',
+          component: AdressGuanL,
+        },
+        {
+          path: '/grziliao',
+          name: 'GrZiLiao',
+          component: GrZiLiao,
+        },
+        {
+          path: '/yijianfk',
+          name: 'YiJianFK',
+          component: YiJianFK,
         },
       ]
     },
@@ -62,9 +98,22 @@ export default new Router({
       component: SPXQ
     },
     {
-      path: '/home',
-      name: 'Home',
-      component: Home
+      path: '/top',
+      name: 'Top',
+      component: Top,
+      redirect:'/home',
+      children:[
+        {
+          path: '/home',
+          name: 'Home',
+          component: Home
+        },
+      ]
+    },
+    {
+      path: '/lbt',
+      name: 'Lbt',
+      component: Lbt
     },
   ]
 })

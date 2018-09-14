@@ -41,14 +41,38 @@
           </ul>
         </div>
       </div>
-      <a href="#" class="a2">首页</a><a href="#" class="a2">同城</a><a href="#" class="a2">礼拜五</a><a href="#" class="a2">积分商城</a><a href="#" class="a2">导航+</a>
+      <a href="/#/home" class="a2">
+        首页</a><a href="#" class="a2">同城</a><a href="#" class="a2">礼拜五</a><a href="#" class="a2">积分商城</a><a href="#" class="a2">导航+</a>
     </div>
+    <router-view></router-view>
+    <Btm></Btm>
   </div>
 </template>
 
 <script>
+  import Btm from "./Btm";
   export default {
-    name: "Top"
+    name: "Top",
+    components:{
+      Btm,
+    },
+    mounted:function () {
+      $('.a2').eq(0).css({
+        background:'#f08200',
+        color: 'white',
+      })
+      $('.a2').click(function () {
+        $('.a2').css({
+          background:'white',
+          color: '#333',
+        })
+        $(this).css({
+          background:'#f08200',
+            color: 'white',
+        })
+      })
+
+    }
   }
 </script>
 
