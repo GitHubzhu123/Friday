@@ -9,7 +9,6 @@ import Adress from '@/components/Grzx/Adress'
 import NewAdress from '@/components/Grzx/NewAdress'
 import AdressGuanL from '@/components/Grzx/AdressGuanL'
 
-
 //购物车
 import GouWuChe from '@/components/GouWuChe'
 import GWC_tit from '@/components/GWC/GWC_tit'
@@ -76,11 +75,6 @@ export default new Router({
         },
       ]
     },
-    // {
-    //   path: '/gwc_tit',
-    //   name: 'GWC_tit',
-    //   component: GWC_tit
-    // },
     {
       path: '/spxq',
       name: 'SPXQ',
