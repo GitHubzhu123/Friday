@@ -15,21 +15,21 @@
         <div class="sp" v-for="(item,j) in sparr">
           <span class="gou" :class="splength[j]?'gou1':'gou2'" @click="gou(j)"></span>
           <div class="sp_div">
-            <img src="static/f/sp/图层 275.png" alt="" class="sp_img">
-            <span>云南蒙自石榴 8个装</span>
+            <img :src="src[j]" alt="" class="sp_img">
+            <span>{{spname[j]}}</span>
           </div>
-          <span class="zi3 hui">8个装 </span>
-          <span class="zi3 hui">￥569</span>
+          <span class="zi3 hui">{{guige[j]}}</span>
+          <span class="zi3 hui">{{money[j]}}</span>
           <div class="num_box">
-            <div class="jian_box">
+            <div class="jian_box" @click="jian">
               <img src="static/f/jian.png" alt="">
             </div>
-            <span >1</span>
-            <div class="jia_box">
+            <span >{{num[j]}}</span>
+            <div class="jia_box" @click="jia">
               <img src="static/f/jia.png" alt="">
             </div>
           </div>
-          <span class="zi3">￥569</span>
+          <span class="zi3">￥{{money[j]*num[j]}}</span>
           <span class="shan">删除</span>
         </div>
         <p class="je_p">商品金额<span class="je_span">￥108.0</span></p>
@@ -53,6 +53,11 @@
       data(){
         return{
           sp:[],
+          src:[],
+          spname:[],
+          guige:[],
+          money:[],
+          num:[],
           sdarr:[0],
           sparr:[],
           splength:[]
@@ -63,12 +68,14 @@
             // if (this.splength[j]){
             //
               this.$set(this.splength,j,!this.splength[j])
-            // }
 
-            // console.log(this.splength[j])
-            // $($event.target).removeClass("gou2")
-            // $($event.target).addClass("gou1")
-          }
+          },
+        jian(){
+
+        },
+        jia(){
+
+        },
       },
       mounted(){
         var a=[1,2,3]
@@ -78,18 +85,23 @@
         };
         var usid=Number(localStorage.userid)
         axios.get('/api/vuephp/gwc.php?type=21&userid=1').then(res=>{
-          // console.log(usid,res.data)
           this.sparr=res.data;
           var that = this;
-          // for (var i=0;i<1;i++){
-          //   Vue.set(that.src,i,that.sp[i].src);
-          //   Vue.set(that.spName,i,that.sp[i].name);
-          //   Vue.set(that.moneyX,i,that.sp[i].money);
-          //   Vue.set(that.moneyY,i,that.sp[i].moneyY);
-          //   Vue.set(that.jieshao,i,that.sp[i].jieShao);
-          // }
-        })
 
+          for (var i=0;i<this.sparr.length;i++){
+            Vue.set(that.num,i,that.sparr[i].num);
+            (function(i,that){
+              axios.get('/api/vuephp/gwc.php?type=2&id='+that.sparr[i].spID).then(res=>{
+                that.sp[i]=res.data[0];
+                Vue.set(that.src,i,that.sp[i].src);
+                Vue.set(that.spname,i,that.sp[i].name);
+                Vue.set(that.guige,i,that.sp[i].guiGe);
+                Vue.set(that.money,i,that.sp[i].money);
+
+              })
+            })(i,that);
+          }
+        })
       }
     }
 </script>

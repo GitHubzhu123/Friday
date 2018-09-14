@@ -8,27 +8,33 @@
       <ul class="midCon">
         <li class="liOne">
           <p>收货人</p>
-          <div></div>
+          <div>张三</div>
         </li>
         <li class="liTwo">
           <p>所在区域</p>
-          <div></div>
+          <div>北京</div>
         </li>
         <li class="liThr">
           <p>街道地址</p>
-          <div></div>
+          <div>大兴街56号</div>
         </li>
         <li class="liFour">
           <p>联系电话</p>
-          <div></div>
+          <div>18530969636</div>
         </li>
         <li class="liFive">
           <p>备注</p>
-          <div></div>
+          <div>哈喽,你好啊</div>
         </li>
         <li class="liSix">
           <p>操作</p>
-          <div></div>
+          <div>
+            <span>设为默认地址</span>
+            <div class="line1"></div>
+            <span>修改</span>
+            <div class="line2"></div>
+            <span>删除</span>
+          </div>
         </li>
       </ul>
     </div>
@@ -47,23 +53,48 @@
     width: 105px;
   }
   .liTwo{
-    width: 155px;
+    width: 120px;
   }
   .liThr{
-    width: 300px;
+    width: 320px;
   }
   .liFour{
     width: 125px;
   }
   .liFive{
-    width: 110px;
+    width: 140px;
   }
   .liSix{
-    width: 200px;
+    width: 230px;
+  }
+  .liSix>div{
+    position: relative;
+    background: lightseagreen;
+    /*width: 100%;*/
+  }
+  .liSix>div>span{
+    margin-left: 10px;
+  }
+  .line1{
+    position: absolute;
+    width: 2px;
+    height: 16px;
+    background: #666666;
+    top: 3px;
+    left: 128px;
+  }
+  .line2{
+    position: absolute;
+    width: 2px;
+    height: 16px;
+    background: #666666;
+    top: 3px;
+    left: 175px;
   }
   .midCon{
     width: 1040px;
     background: aqua;
+    margin: 20px 0 0 20px;
   }
   .midCon>li{
     float: left;
@@ -75,7 +106,7 @@
     text-align: center;
   }
   .top{
-    width: 1035px;
+    width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
     position: relative;
