@@ -84,7 +84,7 @@
 <style scoped>
 
   #content{
-    width: 1230px;
+    width: 1280px;
     background: lightseagreen;
   }
   .leftMenu{
@@ -119,7 +119,7 @@
     /*padding-bottom: 15px;*/
   }
   .right{
-    width: 1035px;
+    width: 1090px;
     border: 1px solid #e2e2e2;
     float: right;
   }

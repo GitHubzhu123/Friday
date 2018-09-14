@@ -19,7 +19,7 @@
 
 <style scoped>
   .top{
-    width: 1035px;
+    width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
     position: relative;

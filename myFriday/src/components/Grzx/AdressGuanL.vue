@@ -56,13 +56,13 @@
     width: 120px;
   }
   .liThr{
-    width: 300px;
+    width: 320px;
   }
   .liFour{
     width: 125px;
   }
   .liFive{
-    width: 115px;
+    width: 140px;
   }
   .liSix{
     width: 230px;
@@ -106,7 +106,7 @@
     text-align: center;
   }
   .top{
-    width: 1035px;
+    width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
     position: relative;
