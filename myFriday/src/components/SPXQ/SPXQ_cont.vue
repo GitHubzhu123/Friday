@@ -47,7 +47,7 @@
           </div>
           <span>件</span>
 
-          <span class="jrgwc">加入购物车</span>
+          <span class="jrgwc" @click="jrgwc()">加入购物车</span>
           <span class="ljgm">立即购买</span>
         </div>
         <div class="tb_box">
@@ -93,25 +93,25 @@
         },
         jia(){
           this.num++;
-        }
+        },
+        jrgwc(){
+          axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.sp[0].id+'&num='+this.num).then(res=> {
+            console.log('aa')
+          })
+        },
       },
       mounted(){
+        localStorage.userid=1;
         axios.get('/api/vuephp/gwc.php?type=2&id='+this.id).then(res=>{
           console.log(res.data)
           this.sp=res.data;
           var that = this;
           for (var i=0;i<1;i++){
-
             Vue.set(that.src,i,that.sp[i].src);
             Vue.set(that.spName,i,that.sp[i].name);
             Vue.set(that.moneyX,i,that.sp[i].money);
             Vue.set(that.moneyY,i,that.sp[i].moneyY);
             Vue.set(that.jieshao,i,that.sp[i].jieShao);
-
-            // this.src[0]=this.sp[0].src
-            // this.spName[0]=this.sp[0].spName
-            // this.moneyX[0]=this.sp[0].moneyX
-            // console.log(that.src[i]);
           }
         })
       }

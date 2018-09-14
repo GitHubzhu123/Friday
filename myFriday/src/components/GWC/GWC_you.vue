@@ -46,11 +46,14 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
     export default {
         name: "GWC_you",
       data(){
         return{
-          sdarr:[0,1],
+          sp:[],
+          sdarr:[0],
           sparr:[],
           splength:[]
         }
@@ -62,18 +65,31 @@
               this.$set(this.splength,j,!this.splength[j])
             // }
 
-            console.log(this.splength[j])
+            // console.log(this.splength[j])
             // $($event.target).removeClass("gou2")
             // $($event.target).addClass("gou1")
           }
       },
       mounted(){
-          var a=[1,2,3]
+        var a=[1,2,3]
         this.sparr=a;
-          for(var i=0;i<this.sparr.length;i++){
-            this.splength.push(false)
-          }
-          console.log(this.splength)
+        for(var i=0;i<this.sparr.length;i++){
+          this.splength.push(false)
+        };
+        var usid=Number(localStorage.userid)
+        axios.get('/api/vuephp/gwc.php?type=21&userid=1').then(res=>{
+          // console.log(usid,res.data)
+          this.sparr=res.data;
+          var that = this;
+          // for (var i=0;i<1;i++){
+          //   Vue.set(that.src,i,that.sp[i].src);
+          //   Vue.set(that.spName,i,that.sp[i].name);
+          //   Vue.set(that.moneyX,i,that.sp[i].money);
+          //   Vue.set(that.moneyY,i,that.sp[i].moneyY);
+          //   Vue.set(that.jieshao,i,that.sp[i].jieShao);
+          // }
+        })
+
       }
     }
 </script>
