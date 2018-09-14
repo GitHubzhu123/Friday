@@ -5,6 +5,9 @@ import HelloWorld from '@/components/HelloWorld'
 //个人中心
 import GrMenu from '@/components/Grzx/GrMenu'
 import DuiHuan from '@/components/Grzx/DuiHuan'
+import Adress from '@/components/Grzx/Adress'
+import NewAdress from '@/components/Grzx/NewAdress'
+import AdressGuanL from '@/components/Grzx/AdressGuanL'
 
 
 //购物车
@@ -27,6 +30,7 @@ export default new Router({
       component: HelloWorld
     },
 
+    // 个人中心
     {
       path: '/grmenu',
       name: 'GrMenu',
@@ -36,6 +40,21 @@ export default new Router({
           path: '/duihuan',
           name: 'DuiHuan',
           component: DuiHuan
+        },
+        {
+          path: '/adress',
+          name: 'Adress',
+          component: Adress,
+        },
+        {
+          path: '/newadress',
+          name: 'NewAdress',
+          component: NewAdress,
+        },
+        {
+          path: '/adressguanl',
+          name: 'AdressGuanL',
+          component: AdressGuanL,
         },
       ]
     },

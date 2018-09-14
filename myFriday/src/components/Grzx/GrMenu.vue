@@ -24,7 +24,7 @@
           </div>
           <ul v-show="bol2">
             <li><router-link to="">个人资料</router-link></li>
-            <li><router-link to="">地址管理</router-link></li>
+            <li><router-link to="/adressguanl">地址管理</router-link></li>
             <li><router-link to="">我的收藏</router-link></li>
             <li><router-link to="">最近浏览</router-link></li>
             <li><router-link to="">修改密码</router-link></li>
