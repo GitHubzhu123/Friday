@@ -64,7 +64,11 @@
 </script>
 
 <style scoped>
+  .btm{
+    margin-top: 30px;
+  }
   .btmT{
+    clear: both;
     width: 1280px;
     height: 105px;
     margin: 0 auto;
@@ -88,6 +92,10 @@
   .btmT>ul>li>img{
     margin-right: 10px;
     vertical-align: middle;
+    transition: 2s;
+  }
+  .btmT>ul>li>img:hover{
+    transform: rotate(360deg) scale(1.3);
   }
   .btm{
     border-top: 1px solid #ddd;
@@ -163,5 +171,6 @@
   }
   .p2{
     color: #f08200;
+    margin-bottom: 20px;
   }
 </style>

@@ -16,10 +16,15 @@ import GouWuChe from '@/components/GouWuChe'
 import GWC_tit from '@/components/GWC/GWC_tit'
 import kong from '@/components/GWC/kong'
 import GWC_you from '@/components/GWC/GWC_you'
+
 //商品详情
 import SPXQ from '@/components/SPXQ'
+
+//主页
 //home
 import Home from '@/components/Home'
+import Lbt from '@/components/Lbt'
+import Top from '@/components/Top'
 
 Vue.use(Router)
 
@@ -93,9 +98,22 @@ export default new Router({
       component: SPXQ
     },
     {
-      path: '/home',
-      name: 'Home',
-      component: Home
+      path: '/top',
+      name: 'Top',
+      component: Top,
+      redirect:'/home',
+      children:[
+        {
+          path: '/home',
+          name: 'Home',
+          component: Home
+        },
+      ]
+    },
+    {
+      path: '/lbt',
+      name: 'Lbt',
+      component: Lbt
     },
   ]
 })
