@@ -12,6 +12,7 @@
 </template>
 
 <script>
+
     export default {
         name: "GWC_tit"
     }
@@ -20,7 +21,7 @@
 <style scoped>
 #gwc_tit{
   height: 130px;
-  margin-top: 20px;
+  /*margin-top: 20px;*/
 }
   .logo{
     margin-top: 25px;
