@@ -29,7 +29,7 @@
           </li>
           <li class="fourLi">
             手机: <input type="text">
-            <span>更换手机</span>
+            <router-link to="/genghuanphone"><span>更换手机</span></router-link>
           </li>
         </ul>
         <div class="ack">确认提交</div>
@@ -112,7 +112,7 @@
     top: 3px;
     left: 3px;
   }
-  .fourLi>span{
+  .fourLi>a{
     font-size: 16px;
     color: #aedb01;
     margin-left: 10px;
