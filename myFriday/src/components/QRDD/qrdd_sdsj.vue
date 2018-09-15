@@ -8,13 +8,19 @@
     <hr>
     <p class="zhifu">实付金额：<span class="red">￥2977</span></p>
     <p class="zhifu">订单完成后可获得积分：<span class="huang">300积分</span></p>
-    <p class="zhifu"><span class="btn">提交订单</span></p>
+    <p class="zhifu"><span class="btn" @click="tj">提交订单</span></p>
   </div>
 </template>
 
 <script>
     export default {
-        name: "qrdd_sdsj"
+        name: "qrdd_sdsj",
+      methods:{
+          tj(){
+            localStorage.huang=2;
+            window.location.href="/#/dingdantijiao"
+          }
+      },
     }
 </script>
 
