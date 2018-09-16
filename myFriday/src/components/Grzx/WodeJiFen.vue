@@ -67,6 +67,7 @@
   .bottom>p{
     height: 60px;
     line-height: 60px;
+    margin-left: 20px;
   }
   .redSpan{
     color: #f08200;

@@ -75,7 +75,7 @@
                 </p>
               </li>
               <li class="botLiThr">
-                <router-link to="">查看详情</router-link>
+                <router-link to="/dingdanxq">查看详情</router-link>
                 <div>删除订单</div>
               </li>
             </ul>

@@ -25,6 +25,8 @@ import WodeCollect from '@/components/Grzx/WodeCollect'
 import RecentLook from '@/components/Grzx/RecentLook'
 import GaiPassword from '@/components/Grzx/GaiPassword'
 import WodeMessage from '@/components/Grzx/WodeMessage'
+import DingDanXq from '@/components/Grzx/DingDanXq'
+import DingdaPingJia from '@/components/Grzx/DingdaPingJia'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
@@ -172,6 +174,17 @@ export default new Router({
           name: 'WodeMessage',
           component: WodeMessage,
         },
+        {
+          path: '/dingdanxq',
+          name: 'DingDanXq',
+          component: DingDanXq,
+        },
+        {
+          path: '/dingdapingjia',
+          name: 'DingdaPingJia',
+          component: DingdaPingJia,
+        },
+
       ]
     },
     //购物车
