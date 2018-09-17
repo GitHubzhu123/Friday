@@ -247,25 +247,28 @@ export default new Router({
     {
       path: '/spxq',
       name: 'SPXQ',
-      component: SPXQ
-    },
-    {
-      path: '/spxq_cont',
-      name: 'SPXQ_cont',
-      component: SPXQ_cont,
+      component: SPXQ,
       children:[
         {
-          path: '/spxq_dh',
-          name: 'spxq_dh',
-          component: spxq_dh
-        },
-        {
-          path: '/spxq_pj',
-          name: 'spxq_pj',
-          component: spxq_pj
+          path: '/spxq_cont',
+          name: 'SPXQ_cont',
+          component: SPXQ_cont,
+          children:[
+            {
+              path: '/spxq_dh',
+              name: 'spxq_dh',
+              component: spxq_dh
+            },
+            {
+              path: '/spxq_pj',
+              name: 'spxq_pj',
+              component: spxq_pj
+            },
+          ]
         },
       ]
     },
+
 
     //主页
     {
