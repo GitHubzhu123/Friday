@@ -48,7 +48,18 @@
 
 <script>
   export default {
-    name: "WodeMoney"
+    name: "WodeMoney",
+    data(){
+      return {
+
+      }
+    },
+    mounted(){
+      $('.money>div').click(function () {
+        $('.money>div').css('background','#fff');
+        $(this).css('background','#66995d');
+      })
+    }
   }
 </script>
 
@@ -80,6 +91,7 @@
   .bottom{
     border-top: 1px solid #e2e2e2 ;
     position: relative;
+    cursor: default;
   }
 
   .botCon{
@@ -112,6 +124,7 @@
     border: 1px solid #e2e2e2;
     float: left;
     margin-right: 40px;
+
   }
   .money:after{
     content: '';

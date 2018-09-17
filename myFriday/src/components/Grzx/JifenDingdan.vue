@@ -4,7 +4,7 @@
       <span>积分订单</span>
       <p>
         <span>当前积分 : </span>
-        <span>240分</span>
+        <router-link to="/wodejifen"><span>240分</span></router-link>
       </p>
     </div>
     <div class="bottom">
@@ -102,7 +102,7 @@
     position: absolute;
     right: 20px;
   }
-  .top>p>span:last-child{
+  .top>p>a{
     color: #f08200;
   }
   .bottom{
@@ -187,6 +187,9 @@
     align-items: center;
     border-bottom: 1px solid #e2e2e2;
     border-right: 1px solid #e2e2e2;
+  }
+  .botLiThr>a{
+    color: #4b943d;
   }
   .botLiThr>div{
     width: 90px;

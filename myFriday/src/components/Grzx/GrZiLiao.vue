@@ -99,6 +99,7 @@
   .xiugai{
     color: #aedb01;
     font-size: 16px;
+    margin-left: 10px;
   }
   .touPho{
     width: 80px;

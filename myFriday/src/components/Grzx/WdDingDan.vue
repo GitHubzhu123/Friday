@@ -51,7 +51,19 @@
 
 <script>
     export default {
-        name: "WdDingDan"
+        name: "WdDingDan",
+      mounted(){
+          $('.left>li>span').click(function () {
+            $('.left>li>span').css({
+              background:'#fff',
+              color:'#000'
+            });
+            $(this).css({
+              background:'#f08200',
+              color:'#fff'
+            })
+          })
+      }
     }
 </script>
 

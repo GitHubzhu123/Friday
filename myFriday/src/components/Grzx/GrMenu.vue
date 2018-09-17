@@ -58,9 +58,9 @@
     name: "GrMenu",
     data(){
       return {
-        bol1:false,
-        bol2:false,
-        bol3:false,
+        bol1:true,
+        bol2:true,
+        bol3:true,
       }
     },
     components:{
@@ -91,6 +91,7 @@
   #content{
     width: 1280px;
     background: lightseagreen;
+    user-select:none;
   }
   .leftMenu{
     float: left;
