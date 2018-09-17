@@ -94,7 +94,7 @@
       data(){
         return{
           num:1,
-          id:2,
+          id:10,
           sp:'',
           src:[],
           srci:0,
@@ -177,7 +177,7 @@
       mounted(){
         localStorage.userid=1;
         axios.get('/api/vuephp/gwc.php?type=2&id='+this.id).then(res=>{
-          // console.log(res.data)
+          console.log(res.data)
           this.sp=res.data;
           var that = this;
           for (var i=0;i<1;i++){
