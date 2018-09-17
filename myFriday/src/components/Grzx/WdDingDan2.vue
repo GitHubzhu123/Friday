@@ -80,6 +80,50 @@
               </li>
             </ul>
           </li>
+
+          <!---->
+          <li>
+            <div class="botLiTop">
+              <span class="oneS">订单号 : <span>123456787</span></span>
+              <span class="twoS">下单日期 : <span></span></span>
+              <span class="thrS">爱果果水果店</span>
+              <span class="fourS">订单状态 :</span>
+              <span class="fiveS">关闭</span>
+            </div>
+            <ul class="botLiCon">
+              <li class="botLiOne">
+                <div class="botLiOneLeft">
+                  <div>
+                    <img src="../../../static/imgM/苹果.png" alt="">
+                  </div>
+                  <span class="span1">云南昭通苹果</span>
+                  <span class="span2">6个装</span>
+                  <span class="span3">¥35.0x1</span>
+                </div>
+                <div class="botLiOneLeft">
+                  <div>
+                    <img src="../../../static/imgM/苹果.png" alt="">
+                  </div>
+                  <span class="span1">云南昭通苹果</span>
+                  <span class="span2">6个装</span>
+                  <span class="span3">¥35.0x1</span>
+                </div>
+              </li>
+              <li class="botLiTwo">
+                <p>
+                  <span>店铺合计:¥</span>
+                  <span>105.5</span>
+                </p>
+                <p>
+                  (含运费 : 8.0元)
+                </p>
+              </li>
+              <li class="botLiThr">
+                <router-link to="/dingdanxq">查看详情</router-link>
+                <div>删除订单</div>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
     </div>
@@ -214,7 +258,6 @@
   .botLiThr{
     width: 138px;
     display: flex;
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -235,6 +278,12 @@
     float: left;
     height: 240px;
     font-size: 14px;
+    margin: 20px 0;
+  }
+  .botLiCon::after{
+    content: '';
+    display: block;
+    clear: both;
   }
   .botLiTwo{
     width: 208px;

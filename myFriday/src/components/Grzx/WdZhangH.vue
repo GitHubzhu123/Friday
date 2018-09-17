@@ -11,11 +11,11 @@
       <ul class="topRig">
         <li>
           <p>当前积分</p>
-          <span>124</span>
+          <router-link to="/wodejifen"><span>124</span></router-link>
         </li>
         <li>
           <p>我的钱包</p>
-          <span>¥1220.0</span>
+          <router-link to="/wodemoney"><span>¥1220.0</span></router-link>
         </li>
         <li class="thrLi">
           <p class="chognzhi" @click="aa">充值有礼>></p>
@@ -40,14 +40,14 @@
     name: "WdZhangH",
     methods:{
       aa(){
-        window.location.href='/#/adress'
+        window.location.href='/#/wodemoney'
       }
     }
   }
 </script>
 
 <style scoped>
-  .thrLi>a{
+  a{
     color: #f08200;
   }
 
