@@ -6,18 +6,16 @@
     <div class="sp_div">
       <div class="imgdiv">
         <img class="bigimg" :src="src[0]" alt="">
+        <div class="fangda"></div>
+        <div class="fangda2"><img :src="src[0]" alt=""></div>
         <div class="smallbox">
-          <span class="left"></span>
+          <span class="left" @click="spimg_left"></span>
           <div class="small_window">
             <div class="smallbox_tiao">
-              <img class="smallimg" :src="src[0]" alt="">
-              <img class="smallimg" :src="src[0]" alt="">
-              <img class="smallimg" :src="src[0]" alt="">
-              <img class="smallimg" :src="src[0]" alt="">
-              <img class="smallimg" :src="src[0]" alt="">
+              <img class="smallimg" :src="src[0]" alt="" v-for="item in [0,1,2,3,4,5,6,7,8,9]">
             </div>
           </div>
-          <span class="right"></span>
+          <span class="right" @click="spimg_right"></span>
         </div>
       </div>
       <div class="jieshao_div">
@@ -51,7 +49,7 @@
           <span class="ljgm">立即购买</span>
         </div>
         <div class="tb_box">
-          <span class="tubiao tb1"></span>
+          <span class="tubiao tb1" @click="sc"></span>
           <span>收藏此商品 </span>
           <span class="fx">分享到：</span>
           <span class="tubiao tb2"></span>
@@ -64,10 +62,14 @@
     </div>
     <div class="dh_pj">
       <div class="dh_pj_tit">
-        <span>商品详情</span>
-        <span>商品评价</span>
+        <span class="titchange" @click="tit_change1">商品详情</span>
+        <span @click="tit_change2">商品评价</span>
       </div>
       <div class="dh">
+        <div class="dh_gwc" @click="jrgwc()">
+          <img src="static/f/图层 293.png" alt="">
+          加入购物车
+        </div>
         <spxq_dh></spxq_dh>
       </div>
       <div class="pj">
@@ -95,13 +97,34 @@
           id:2,
           sp:'',
           src:[],
+          srci:0,
           spName:[],
           moneyX:[],
           moneyY:[],
           jieshao:[],
+          scbol:true,
+          tiaoleft:0,
         }
       },
       methods:{
+        spimg_left(){
+          this.tiaoleft+=110
+          if(this.tiaoleft>0){
+            this.tiaoleft=0
+          }
+          $(".smallbox_tiao").animate({
+            left:this.tiaoleft,
+          },500)
+        },
+        spimg_right(){
+          this.tiaoleft-=110
+          if(this.tiaoleft<-550){
+            this.tiaoleft=-550
+          }
+          $(".smallbox_tiao").animate({
+            left:this.tiaoleft,
+          },500)
+        },
         jian(){
           this.num--;
           if(this.num<1){
@@ -116,11 +139,45 @@
             console.log('aa')
           })
         },
+        sc(){
+          if(this.scbol==true){
+            $(".tb1").css({
+              background: "url('/../static/f/JingLing.png') -120px -0px",
+            })
+            this.scbol=!this.scbol
+          }else{
+            $(".tb1").css({
+              background: "url('/../static/f/JingLing.png') -145px -0px",
+            })
+            this.scbol=!this.scbol
+          }
+        },
+        tit_change1(){
+          $(".dh_pj_tit span").removeClass("titchange")
+          $(".dh_pj_tit span").eq(0).addClass("titchange")
+          $(".pj").css("display","none")
+          $(".dh").css("display","block")
+        },
+        tit_change2(){
+          $(".dh_pj_tit span").removeClass("titchange")
+          $(".dh_pj_tit span").eq(1).addClass("titchange")
+          $(".dh").css("display","none")
+          $(".pj").css("display","block")
+        },
+        handleScroll () {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          if($(".spxq_dh").offset().top-scrollTop<100){
+            console.log($(".spxq_dh").offset().top-scrollTop)
+            $(".dh_gwc").css("display","block")
+          }else {
+            $(".dh_gwc").css("display","none")
+          }
+        },
       },
       mounted(){
         localStorage.userid=1;
         axios.get('/api/vuephp/gwc.php?type=2&id='+this.id).then(res=>{
-          console.log(res.data)
+          // console.log(res.data)
           this.sp=res.data;
           var that = this;
           for (var i=0;i<1;i++){
@@ -130,7 +187,56 @@
             Vue.set(that.moneyY,i,that.sp[i].moneyY);
             Vue.set(that.jieshao,i,that.sp[i].jieShao);
           }
-        })
+        });
+        //移入放大
+        $(".bigimg").mouseover(function () {
+          $(".fangda2").css("display","block")
+          window.onmousemove = function(e) {
+            var even = e || event;
+            $(".fangda").css({
+              display: "block",
+              left:even.clientX - $(".bigimg").offset().left - $(".fangda").width()/2 + "px",
+              top:even.clientY - $(".bigimg").offset().top + $(document).scrollTop() - $(".fangda").height()/2 + "px",
+            })
+            if(even.clientX<$(".bigimg").offset().left
+              ||even.clientX>$(".bigimg").offset().left+500
+              ||even.clientY<$(".bigimg").offset().top-$(document).scrollTop()
+              ||even.clientY>$(".bigimg").offset().top-$(document).scrollTop()+500)
+            {
+              $(".fangda2").css("display","none")
+              $(".fangda").css("display","none")
+            }
+            if($(".fangda").position().left<0){
+              $(".fangda").css({
+                left:0,
+              })
+            }
+            if($(".fangda").position().left>$(".bigimg").width()-$(".fangda").width()){
+              $(".fangda").css({
+                left:$(".bigimg").width()-$(".fangda").width(),
+              })
+            }
+            if($(".fangda").position().top<0){
+              $(".fangda").css({
+                top:0,
+              })
+            }
+            if($(".fangda").position().top>$(".bigimg").height()-$(".fangda").height()){
+              $(".fangda").css({
+                top:$(".bigimg").height()-$(".fangda").height(),
+              })
+            }
+
+            console.log($(".fangda").position().left)
+            $(".fangda2 img").css({
+              left:-($(".fangda").position().left)*1.65+ "px",
+              top:-($(".fangda").position().top)*1.65+ "px",
+            })
+          }
+        });
+        //导航的加入购物车
+        window.addEventListener('scroll', this.handleScroll)
+
       }
     }
 </script>
@@ -151,10 +257,34 @@
   .imgdiv{
     width: 500px;
     display: inline-block;
+    position: relative;
   }
   .bigimg{
     width: 500px;
     height: 500px;
+  }
+  .fangda{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    top: 0;
+    display: none;
+    background: rgba(0,0,0,0.1);
+
+  }
+  .fangda2{
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    display: none;
+    left: 510px;
+    top: 0;
+  }
+  .fangda2 img{
+    position: absolute;
+    width: 1000px;
+    height: 1000px;
   }
   .smallbox{
     width: 500px;
@@ -183,12 +313,14 @@
   .small_window{
     float: left;
     width: 420px;
+    height: 92px;
     overflow: hidden;
+    position: relative;
   }
   .smallbox_tiao{
     display: inline-block;
-    width: 550px;
-
+    width: 1100px;
+    position: absolute;
   }
   .smallimg{
     width: 90px;
@@ -303,6 +435,8 @@
     text-align: center;
     border-radius: 5px;
     margin-left: 20px;
+    color: white;
+    font-size: 20px;
   }
   .jrgwc{
     background: rgb(255,174,79);
@@ -326,7 +460,7 @@
     top: 12px;
   }
   .tb1{
-    background: url('/../static/f/JingLing.png') -120px -0px;
+    background: url('/../static/f/JingLing.png') -145px -0px;
   }
   .fx{
     margin-left: 40px;
@@ -355,20 +489,40 @@
     background: rgb(244,244,244);
     line-height: 50px;
     border-bottom: 1px solid rgb(220,220,220);
+    position: relative;
   }
   .dh_pj_tit>span{
     display: inline-block;
     height: 50px;
     padding: 0 25px;
   }
-  /*.titchange{*/
-    /*background: white;*/
-    /*border-right: 1px solid rgb(220,220,220);*/
-    /*border-top: 3px solid rgb(73,142,61);*/
-  /*}*/
+  .titchange{
+     background: white;
+     border-right: 1px solid rgb(220,220,220);
+     border-top: 3px solid rgb(73,142,61);
+   }
   .dh{
     padding: 0 40px 30px 40px;
     /*display: none;*/
+  }
+  .dh_gwc{
+    width: 180px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background: rgb(240,130,0);
+    top: 0px;
+    /*right: 0px;*/
+    margin-left: 1060px;
+    color: white;
+    display: none;
+    position: fixed;
+    z-index: 99;
+  }
+  .dh_gwc img{
+    margin-right: 20px;
+    position: relative;
+    top: 5px;
   }
   .pj{
     padding: 0 40px 30px 40px;

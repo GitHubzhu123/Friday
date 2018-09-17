@@ -6,7 +6,7 @@
     <div class="bottom">
       <p>
         <span>当前积分 :</span>
-        <span class="redSpan">240分</span>
+        <router-link class="redSpan" to=""><span>240分</span></router-link>
       </p>
       <div class="botCon">
         <div class="botConNav">
