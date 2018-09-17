@@ -60,18 +60,35 @@
           <span class="tubiao tb5"></span>
           <span class="tubiao tb6"></span>
         </div>
-
       </div>
-
     </div>
+    <div class="dh_pj">
+      <div class="dh_pj_tit">
+        <span>商品详情</span>
+        <span>商品评价</span>
+      </div>
+      <div class="dh">
+        <spxq_dh></spxq_dh>
+      </div>
+      <div class="pj">
+        <spxq_pj></spxq_pj>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   import Vue from 'vue'
+  import spxq_dh from '@/components/SPXQ/spxq_dh'
+  import spxq_pj from '@/components/SPXQ/spxq_pj'
     export default {
         name: "SPXQ_cont",
+      components:{
+        spxq_dh:spxq_dh,
+        spxq_pj:spxq_pj,
+      },
       data(){
         return{
           num:1,
@@ -129,7 +146,7 @@
     color: rgb(150,150,150);
   }
   .sp_div{
-    border: 1px solid;
+    /*border: 1px solid;*/
   }
   .imgdiv{
     width: 500px;
@@ -328,5 +345,33 @@
   }
   .tb6{
     background: url('/../static/f/JingLing.png') -340px -0px;
+  }
+  .dh_pj{
+    /*height: 500px;*/
+    border: 1px solid rgb(220,220,220);
+  }
+  .dh_pj_tit{
+    height: 50px;
+    background: rgb(244,244,244);
+    line-height: 50px;
+    border-bottom: 1px solid rgb(220,220,220);
+  }
+  .dh_pj_tit>span{
+    display: inline-block;
+    height: 50px;
+    padding: 0 25px;
+  }
+  /*.titchange{*/
+    /*background: white;*/
+    /*border-right: 1px solid rgb(220,220,220);*/
+    /*border-top: 3px solid rgb(73,142,61);*/
+  /*}*/
+  .dh{
+    padding: 0 40px 30px 40px;
+    /*display: none;*/
+  }
+  .pj{
+    padding: 0 40px 30px 40px;
+    display: none;
   }
 </style>

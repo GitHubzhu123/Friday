@@ -36,6 +36,9 @@ import GWC_you from '@/components/GWC/GWC_you'
 
 //商品详情
 import SPXQ from '@/components/SPXQ'
+import SPXQ_cont from '@/components/SPXQ/SPXQ_cont'
+import spxq_dh from '@/components/SPXQ/spxq_dh'
+import spxq_pj from '@/components/SPXQ/spxq_pj'
 //确认订单
 import QueRendingdan from '@/components/QueRendingdan'
 import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
@@ -246,6 +249,24 @@ export default new Router({
       name: 'SPXQ',
       component: SPXQ
     },
+    {
+      path: '/spxq_cont',
+      name: 'SPXQ_cont',
+      component: SPXQ_cont,
+      children:[
+        {
+          path: '/spxq_dh',
+          name: 'spxq_dh',
+          component: spxq_dh
+        },
+        {
+          path: '/spxq_pj',
+          name: 'spxq_pj',
+          component: spxq_pj
+        },
+      ]
+    },
+
     //主页
     {
       path: '/top',
