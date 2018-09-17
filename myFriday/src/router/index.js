@@ -21,12 +21,14 @@ import GWC_you from '@/components/GWC/GWC_you'
 import SPXQ from '@/components/SPXQ'
 
 //主页
-//home
 import Home from '@/components/Home'
 import Lbt from '@/components/Lbt'
 import Top from '@/components/Top'
 import Login from '@/components/Login'
-
+//积分商城
+import Jfsc from '@/components/Jfsc'
+//同城
+import Tc from '@/components/Tc'
 Vue.use(Router)
 
 export default new Router({
@@ -109,6 +111,16 @@ export default new Router({
           path: '/home',
           name: 'Home',
           component: Home
+        },
+        {
+          path: '/jfsc',
+          name: 'Jfsc',
+          component: Jfsc
+        },
+        {
+          path: '/tc',
+          name: 'Tc',
+          component: Tc
         },
       ]
     },

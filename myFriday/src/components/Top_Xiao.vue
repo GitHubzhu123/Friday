@@ -6,7 +6,7 @@
       </div>
       <div class="topTr">
         <span>您好 ,</span>
-        <a class="phone1">17701269859</a>
+        <a class="phone1">{{userid}}</a>
         <a href="#">退出</a>
         <span class="span">|</span><a href="#">我的订单</a><span class="span">|</span><a href="#">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
         <span class="span">|</span><span class="phone">400-800-8820</span>
@@ -18,7 +18,12 @@
 
 <script>
     export default {
-        name: "Top_Xiao"
+        name: "Top_Xiao",
+      data(){
+          return {
+            userid:localStorage.userid
+          }
+      }
     }
 </script>
 
