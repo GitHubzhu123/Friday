@@ -163,9 +163,12 @@
     margin-left: 20px;
   }
   .bottom{
-    height: 565px;
+    /*height: 565px;*/
     border-top: 1px solid #e2e2e2 ;
     position: relative;
+  }
+  .botConBot>li{
+    margin-bottom: 20px;
   }
   .left{
     display: flex;
@@ -199,7 +202,7 @@
   }
   .botCon{
     width: 1050px;
-    height: 565px;
+    /*height: 565px;*/
     margin: auto;
     position: relative;
   }
@@ -290,7 +293,7 @@
     float: left;
     height: 240px;
     font-size: 14px;
-    margin: 20px 0;
+    /*margin: 20px 0;*/
   }
   .botLiCon::after{
     content: '';

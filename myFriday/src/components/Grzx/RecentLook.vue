@@ -15,7 +15,6 @@
           <span class="thrS">¥40.00</span>
           <img class="gouc" src="../../../static/imgM/购物车失效.png" alt="">
         </div>
-        <div class="caozuo">取消收藏</div>
         <div class="cha">×</div>
       </li>
       <li></li>
@@ -76,7 +75,7 @@
   }
   .bottom>li{
     width: 305px;
-    height: 480px;
+    height: 430px;
     float: left;
     margin: 40px 0 0 40px;
     position: relative;
@@ -87,14 +86,14 @@
     font-size: 20px;
     color: #5c5c5c;
     position: absolute;
-    bottom: 148px;
+    bottom: 95px;
     left: 20px;
   }
   .oneP{
     font-size: 14px;
     color: #929292;
     position: absolute;
-    bottom: 115px;
+    bottom: 65px;
     left: 20px;
   }
   .twoS{
@@ -115,7 +114,7 @@
     height: 253px;
     position: absolute;
     left: 20px;
-    bottom: 185px;
+    bottom: 135px;
   }
   .gouc{
     position: absolute;
@@ -123,23 +122,12 @@
   }
   .gouwuche{
     position: absolute;
-    bottom: 75px;
+    bottom: 25px;
     left: 20px;
     width: 305px;
     height: 35px;
     line-height: 35px;
   }
-  .caozuo{
-    width: 150px;
-    height: 36px;
-    background: #4b943d;
-    color: #ffffff;
-    line-height: 36px;
-    text-align: center;
-    border-radius: 20px;
-    position: absolute;
-    bottom: 20px;
-    left: 77px;
-  }
+
 
 </style>

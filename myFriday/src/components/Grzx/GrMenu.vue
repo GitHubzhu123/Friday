@@ -11,7 +11,7 @@
             </div>
             <ul v-show="bol1">
               <li><router-link to="/wdzhangh">我的账户</router-link></li>
-              <li><router-link to="/wddingdan2">我的订单</router-link></li>
+              <li><router-link to="/dingdapingjia">我的订单</router-link></li>
               <li><router-link to="/wodejifen">我的积分</router-link></li>
               <li><router-link to="/jifendingdan">积分订单</router-link></li>
               <li><router-link to="/wodemoney">我的钱包</router-link></li>
