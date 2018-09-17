@@ -11,7 +11,7 @@
             <p>珍享 南非进口红心葡萄柚 西柚柚子</p>
           </div>
           <div class="conRight">
-            <div class="oneD">
+            <div class="oneD wujiaoxing">
               <span>商品评分</span>
               <img src="../../../static/imgM/黑色五角星.png" alt="">
               <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -42,7 +42,7 @@
             <p>珍享 南非进口红心葡萄柚 西柚柚子</p>
           </div>
           <div class="conRight">
-            <div class="oneD">
+            <div class="wujiaoxing oneD">
               <span>商品评分</span>
               <img src="../../../static/imgM/黑色五角星.png" alt="">
               <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -68,7 +68,7 @@
         </li>
       </ul>
       <div class="serveFenshu">
-        <div class="serveD">
+        <div class="wujiaoxing">
           <span>服务态度</span>
           <img src="../../../static/imgM/黑色五角星.png" alt="">
           <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -76,7 +76,7 @@
           <img src="../../../static/imgM/黑色五角星.png" alt="">
           <img src="../../../static/imgM/黑色五角星.png" alt="">
         </div>
-        <div class="miaoshuD">
+        <div class="wujiaoxing">
           <span>描述相符</span>
           <img src="../../../static/imgM/黑色五角星.png" alt="">
           <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -92,7 +92,22 @@
 
 <script>
   export default {
-    name: "DingdaPingJia"
+    name: "DingdaPingJia",
+    mounted(){
+      $('textarea').focus(function () {
+        $(this).next().css('display','none')
+      });
+      $('textarea').blur(function () {
+        if($(this).val()=='') {
+          $(this).next().css('display','block')
+        }
+      });
+      $('.wujiaoxing>img').click(function () {
+        this.src='../../../static/imgM/红色五角星.png'
+      });
+
+
+    }
   }
 </script>
 
@@ -114,6 +129,9 @@
     justify-content: space-between;
     margin: auto;
 
+  }
+  img{
+    vertical-align: top;
   }
 
   .top{
@@ -170,11 +188,12 @@
   .twoD>textarea{
     resize: none;
     outline: none;
-    width: 600px;
-    height: 135px;
+    width: 576px;
+    height: 117px;
     position: absolute;
     right: 0;
     top: 5px;
+    padding: 9px 12px;
   }
   .thrD>span{
     margin-left: 10px;

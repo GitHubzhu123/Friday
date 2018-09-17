@@ -31,7 +31,6 @@
 
 <style scoped>
 
-
   .top{
     width: 1090px;
     height: 58px;
@@ -57,7 +56,7 @@
     margin-left: 20px;
   }
   .bottom{
-    height: 565px;
+    /*height: 565px;*/
     border-top: 1px solid #e2e2e2 ;
     position: relative;
   }
@@ -65,11 +64,10 @@
     width: 305px;
     height: 480px;
     float: left;
-    margin: 40px 0 0 40px;
+    margin: 40px 0 40px 40px;
     position: relative;
     border: 1px solid #e2e2e2;
   }
-
   .oneS{
     font-size: 20px;
     color: #5c5c5c;

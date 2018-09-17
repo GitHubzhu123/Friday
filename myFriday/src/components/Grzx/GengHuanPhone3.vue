@@ -1,15 +1,48 @@
 <template>
-  <div class="success">
-    <div>
-      <img src="../../../../static/imgM/绑定成功.png" alt="">
-      <span>恭喜您成功修改</span>
+  <div class="duihuan">
+    <div class="top">
+      <span>换绑手机</span>
     </div>
+    <div class="mid">
+      <div class="midCon">
+        <!--路由-->
+        <div class="luyou">
+          <div class="oneDiv">
+            <span>1.验证新手机号</span>
+            <img src="../../../static/imgM/验证原手机1.png" alt="">
+            <!--<img src="../../../static/imgM/验证原手机2.png" alt="">-->
+          </div>
+          <div class="twoDiv">
+            <span>2.验证新手机号</span>
+            <img src="../../../static/imgM/验证新手机1.png" alt="">
+            <!--<img src="../../../static/imgM/验证新手机2.png" alt="">-->
+          </div>
+          <div class="thrDiv">
+            <span>3.换绑成功</span>
+            <img src="../../../static/imgM/换绑成功2.png" alt="">
+            <!--<img src="../../../static/imgM/换绑成功2.png" alt="">-->
+          </div>
+        </div>
+        <!--组件展示-->
+        <div class="zujian">
+          <div class="success">
+            <div>
+              <img src="../../../static/imgM/绑定成功.png" alt="">
+              <span>恭喜您成功修改</span>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
     export default {
-        name: "YanZeSucc"
+        name: "GengHuanPhone3"
     }
 </script>
 

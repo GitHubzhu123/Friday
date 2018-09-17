@@ -25,9 +25,11 @@
           $('textarea').focus(function () {
             $('.midCon>p').css('display','none')
           })
-          // $('textarea').blur(function () {
-          //   $('.midCon>p').css('display','block')
-          // })
+          $('textarea').blur(function () {
+            if($('textarea').val()=='') {
+              $('.midCon>p').css('display','block')
+            }
+          })
       }
     }
 </script>
@@ -99,12 +101,13 @@
     color: #999999;
   }
   .midCon>textarea{
-    width: 1000px;
-    height: 375px;
+    width: 960px;
+    height: 335px;
     margin: 45px;
     outline: none;
     font-size: 16px;
     resize:none;
+    padding: 20px;
     /*text-indent: 2em;*/
   }
 </style>

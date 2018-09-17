@@ -12,9 +12,8 @@ import GrZiLiao from '@/components/Grzx/GrZiLiao'
 import YiJianFK from '@/components/Grzx/YiJianFK'
 import BangDiPhone from '@/components/Grzx/BangDiPhone'
 import GengHuanPhone from '@/components/Grzx/GengHuanPhone'
-import YanZeOld from '@/components/Grzx/HuanPhone/YanZeOld'
-import YanZeNew from '@/components/Grzx/HuanPhone/YanZeNew'
-import YanZeSucc from '@/components/Grzx/HuanPhone/YanZeSucc'
+import GengHuanPhone2 from '@/components/Grzx/GengHuanPhone2'
+import GengHuanPhone3 from '@/components/Grzx/GengHuanPhone3'
 import WdZhangH from '@/components/Grzx/WdZhangH'
 import WdDingDan from '@/components/Grzx/WdDingDan'
 import WdDingDan2 from '@/components/Grzx/WdDingDan2'
@@ -113,23 +112,16 @@ export default new Router({
           path: '/genghuanphone',
           name: 'GengHuanPhone',
           component: GengHuanPhone,
-          children:[
-            {
-              path: '/',
-              name: 'YanZeOld',
-              component: YanZeOld,
-            },
-            {
-              path: '/yanzenew',
-              name: 'YanZeNew',
-              component: YanZeNew,
-            },
-            {
-              path: '/yanzesucc',
-              name: 'YanZeSucc',
-              component: YanZeSucc,
-            },
-          ]
+        },
+        {
+          path: '/genghuanphone2',
+          name: 'GengHuanPhone2',
+          component: GengHuanPhone2,
+        },
+        {
+          path: '/genghuanphone3',
+          name: 'GengHuanPhone3',
+          component: GengHuanPhone3,
         },
         {
           path: '/wdzhangh',
