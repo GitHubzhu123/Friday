@@ -51,7 +51,7 @@
           <span class="ljgm">立即购买</span>
         </div>
         <div class="tb_box">
-          <span class="tubiao tb1"></span>
+          <span class="tubiao tb1" @click="sc"></span>
           <span>收藏此商品 </span>
           <span class="fx">分享到：</span>
           <span class="tubiao tb2"></span>
@@ -64,8 +64,8 @@
     </div>
     <div class="dh_pj">
       <div class="dh_pj_tit">
-        <span>商品详情</span>
-        <span>商品评价</span>
+        <span class="titchange" @click="tit_change">商品详情</span>
+        <span @click="tit_change2">商品评价</span>
       </div>
       <div class="dh">
         <spxq_dh></spxq_dh>
@@ -99,6 +99,7 @@
           moneyX:[],
           moneyY:[],
           jieshao:[],
+          scbol:true,
         }
       },
       methods:{
@@ -115,6 +116,31 @@
           axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.sp[0].id+'&num='+this.num).then(res=> {
             console.log('aa')
           })
+        },
+        sc(){
+          if(this.scbol==true){
+            $(".tb1").css({
+              background: "url('/../static/f/JingLing.png') -120px -0px",
+            })
+            this.scbol=!this.scbol
+          }else{
+            $(".tb1").css({
+              background: "url('/../static/f/JingLing.png') -145px -0px",
+            })
+            this.scbol=!this.scbol
+          }
+        },
+        tit_change(){
+          $(".dh_pj_tit span").removeClass("titchange")
+          $(".dh_pj_tit span").eq(0).addClass("titchange")
+          $(".pj").css("display","none")
+          $(".dh").css("display","block")
+        },
+        tit_change2(){
+          $(".dh_pj_tit span").removeClass("titchange")
+          $(".dh_pj_tit span").eq(1).addClass("titchange")
+          $(".dh").css("display","none")
+          $(".pj").css("display","block")
         },
       },
       mounted(){
@@ -326,7 +352,7 @@
     top: 12px;
   }
   .tb1{
-    background: url('/../static/f/JingLing.png') -120px -0px;
+    background: url('/../static/f/JingLing.png') -145px -0px;
   }
   .fx{
     margin-left: 40px;
@@ -361,11 +387,11 @@
     height: 50px;
     padding: 0 25px;
   }
-  /*.titchange{*/
-    /*background: white;*/
-    /*border-right: 1px solid rgb(220,220,220);*/
-    /*border-top: 3px solid rgb(73,142,61);*/
-  /*}*/
+  .titchange{
+    background: white;
+    border-right: 1px solid rgb(220,220,220);
+    border-top: 3px solid rgb(73,142,61);
+  }
   .dh{
     padding: 0 40px 30px 40px;
     /*display: none;*/
