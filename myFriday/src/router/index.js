@@ -27,6 +27,8 @@ import GaiPassword from '@/components/Grzx/GaiPassword'
 import WodeMessage from '@/components/Grzx/WodeMessage'
 import DingDanXq from '@/components/Grzx/DingDanXq'
 import DingdaPingJia from '@/components/Grzx/DingdaPingJia'
+import WdZhangDan from '@/components/Grzx/WdZhangDan'
+import JiFenDingDanXq from '@/components/Grzx/JiFenDingDanXq'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
@@ -188,6 +190,16 @@ export default new Router({
           path: '/dingdapingjia',
           name: 'DingdaPingJia',
           component: DingdaPingJia,
+        },
+        {
+          path: '/wdzhangdan',
+          name: 'WdZhangDan',
+          component: WdZhangDan,
+        },
+        {
+          path: '/jifendingdanxq',
+          name: 'JiFenDingDanXq',
+          component: JiFenDingDanXq,
         },
 
       ]

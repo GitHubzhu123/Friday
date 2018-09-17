@@ -2,7 +2,7 @@
   <div class="duihuan">
     <div class="top">
       <span>充值卡兑换</span>
-      <div>查看账单</div>
+      <div><router-link to="/wdzhangdan">查看账单</router-link></div>
     </div>
     <div class="bottom">
       <input type="text" placeholder="请输入充值卡兑换码进行充值">
@@ -25,7 +25,7 @@
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .top>div>a{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -67,5 +67,7 @@
     border-radius: 5px;
     top: 210px;
     left: 33px;
+    color: #fff;
+    font-size: 20px;
   }
 </style>

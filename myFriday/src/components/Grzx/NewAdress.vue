@@ -119,7 +119,7 @@
     border-top: 1px solid #e2e2e2 ;
     position: relative;
     /*text-align: center;*/
-    font-size: 20px;
+    font-size: 18px;
     /*font-weight: lighter;*/
   }
 

@@ -67,6 +67,25 @@
           </div>
         </li>
       </ul>
+      <div class="serveFenshu">
+        <div class="serveD">
+          <span>服务态度</span>
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+        </div>
+        <div class="miaoshuD">
+          <span>描述相符</span>
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+          <img src="../../../static/imgM/黑色五角星.png" alt="">
+        </div>
+      </div>
+      <div class="tijiao">提交评价</div>
     </div>
   </div>
 </template>
@@ -78,7 +97,24 @@
 </script>
 
 <style scoped>
+  .tijiao{
+    background: #f08200;
+    color: #ffffff;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 60px auto 40px;
+    font-size: 20px;
+  }
+  .serveFenshu{
+    width: 490px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
 
+  }
 
   .top{
     width: 1090px;

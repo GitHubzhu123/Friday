@@ -6,16 +6,17 @@
           <img src="../../../static/imgM/头像大图背景.png" alt="">
           <img src="../../../static/imgM/头像大图.png" alt="">
         </div>
-        <span>您好,<span class="redSpan">12345678</span></span>
+        <span class="redSpan">您好,</span>
+        <router-link to="/grziliao"><span>1853呃呃呃呃呃呃06</span></router-link>
       </div>
       <ul class="topRig">
         <li>
           <p>当前积分</p>
-          <span>124</span>
+          <router-link to="/wodejifen"><span>124</span></router-link>
         </li>
         <li>
           <p>我的钱包</p>
-          <span>¥1220.0</span>
+          <router-link to="/wodemoney"><span>¥1220.0</span></router-link>
         </li>
         <li class="thrLi">
           <p class="chognzhi" @click="aa">充值有礼>></p>
@@ -40,14 +41,14 @@
     name: "WdZhangH",
     methods:{
       aa(){
-        window.location.href='/#/adress'
+        window.location.href='/#/wodemoney'
       }
     }
   }
 </script>
 
 <style scoped>
-  .thrLi>a{
+  a{
     color: #f08200;
   }
 
@@ -63,10 +64,34 @@
     align-items: center;
     justify-content: space-between;
   }
+  .topLef{
+    width: 430px;
+    height: 150px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 40px;
+  }
   .redSpan{
+    margin-left: 35px;
+  }
+  .topLef>a{
     color: #e85e35;
     margin-left: 5px;
   }
+  .topLefCon{
+    position: relative;
+    width: 140px;
+    height: 140px;
+  }
+  .topLefCon>img{
+    position: absolute;
+  }
+  .topLefCon>img:last-child{
+    top: 4px;
+    left: 5px;
+  }
+
   .chognzhi{
     color: #6da961;
     margin-left: -20px;
@@ -87,26 +112,7 @@
     text-align: center;
     margin-right: 60px;
   }
-  .topLef{
-    width: 315px;
-    height: 150px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left: 40px;
-  }
-  .topLefCon{
-    position: relative;
-    width: 140px;
-    height: 140px;
-  }
-  .topLefCon>img{
-    position: absolute;
-  }
-  .topLefCon>img:last-child{
-    top: 4px;
-    left: 5px;
-  }
+
 
   .bottom{
     width: 1090px;
