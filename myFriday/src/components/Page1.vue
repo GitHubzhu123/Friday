@@ -46,16 +46,16 @@
                   <li><a href="###">应季鲜果</a></li>
                 </ul>
                 <div class="list1_r">
-                    <div>
-                      <a href="###">草莓</a><span>|</span>
-                      <a href="###">葡萄</a><span>|</span>
-                      <a href="###">香蕉</a><span>|</span>
-                      <a href="###">苹果</a><br/>
-                      <a href="###">草莓</a><span>|</span>
-                      <a href="###">葡萄</a><span>|</span>
-                      <a href="###">香蕉</a><span>|</span>
-                      <a href="###">苹果</a><br/>
-                    </div>
+                  <div>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                    <a href="###">草莓</a><span>|</span>
+                    <a href="###">葡萄</a><span>|</span>
+                    <a href="###">香蕉</a><span>|</span>
+                    <a href="###">苹果</a><br/>
+                  </div>
                   <div>
                     <a href="###">草莓</a><span>|</span>
                     <a href="###">葡萄</a><span>|</span>
@@ -103,8 +103,8 @@
       <a href="/#/home" class="a2">
         首页</a><a href="#" class="a2">同城</a><a href="#" class="a2">礼拜五</a><a href="/#/jfsc" class="a2">积分商城</a><a href="#" class="a2">导航+</a>
     </div>
-    <!--<router-view></router-view>-->
-    <!--<Btm></Btm>-->
+    <router-view></router-view>
+    <Btm></Btm>
   </div>
 </template>
 
@@ -160,7 +160,7 @@
         })
         $(this).css({
           background:'#f08200',
-            color: 'white',
+          color: 'white',
         })
       })
 
@@ -369,7 +369,7 @@
   .list1_r>div>a{
     clear: both;
     display: inline;
-     }
+  }
   .list1_r>div>span{
     margin: 20px;
   }

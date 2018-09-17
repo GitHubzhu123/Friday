@@ -38,6 +38,9 @@ import GWC_you from '@/components/GWC/GWC_you'
 
 //商品详情
 import SPXQ from '@/components/SPXQ'
+import SPXQ_cont from '@/components/SPXQ/SPXQ_cont'
+import spxq_dh from '@/components/SPXQ/spxq_dh'
+import spxq_pj from '@/components/SPXQ/spxq_pj'
 //确认订单
 import QueRendingdan from '@/components/QueRendingdan'
 import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
@@ -47,12 +50,14 @@ import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
 //提交订单完成
 import DingDanTiJiao from '@/components/DingDanTiJiao'
 //主页
-//home
 import Home from '@/components/Home'
 import Lbt from '@/components/Lbt'
 import Top from '@/components/Top'
 import Login from '@/components/Login'
-
+//积分商城
+import Jfsc from '@/components/Jfsc'
+//同城
+import Tc from '@/components/Tc'
 Vue.use(Router)
 
 export default new Router({
@@ -256,8 +261,29 @@ export default new Router({
     {
       path: '/spxq',
       name: 'SPXQ',
-      component: SPXQ
+      component: SPXQ,
+      children:[
+        {
+          path: '/spxq_cont',
+          name: 'SPXQ_cont',
+          component: SPXQ_cont,
+          children:[
+            {
+              path: '/spxq_dh',
+              name: 'spxq_dh',
+              component: spxq_dh
+            },
+            {
+              path: '/spxq_pj',
+              name: 'spxq_pj',
+              component: spxq_pj
+            },
+          ]
+        },
+      ]
     },
+
+
     //主页
     {
       path: '/top',
@@ -269,6 +295,16 @@ export default new Router({
           path: '/home',
           name: 'Home',
           component: Home
+        },
+        {
+          path: '/jfsc',
+          name: 'Jfsc',
+          component: Jfsc
+        },
+        {
+          path: '/tc',
+          name: 'Tc',
+          component: Tc
         },
       ]
     },
