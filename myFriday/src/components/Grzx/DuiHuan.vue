@@ -21,7 +21,6 @@
   .top{
     width: 1090px;
     height: 58px;
-    /*border-bottom: 1px solid #e2e2e2;*/
     position: relative;
     line-height: 58px;
     font-size: 20px;
