@@ -93,7 +93,7 @@
       data(){
         return{
           num:1,
-          id:10,
+          id:7,
           sp:'',
           src:[],
           srci:0,
@@ -136,7 +136,7 @@
         },
         jrgwc(){
           axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.sp[0].id+'&num='+this.num+'&shangdian='+this.shangdian).then(res=> {
-
+// console.log(res.data)
           })
           gwcfr()
         },
