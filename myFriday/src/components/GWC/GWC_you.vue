@@ -30,7 +30,7 @@
             </div>
           </div>
           <span class="zi3">￥{{money[j]*num[j]}}</span>
-          <span class="shan">删除</span>
+          <span class="shan" @click="gwc_sc">删除</span>
         </div>
         <p class="je_p">商品金额<span class="je_span">￥108.0</span></p>
       </div>
@@ -58,9 +58,11 @@
           guige:[],
           money:[],
           num:[],
-          sdarr:[0],
+          shangdian:[],
+          sdarr:[],
           sparr:[],
           splength:[]
+
         }
       },
       methods:{
@@ -68,7 +70,6 @@
             // if (this.splength[j]){
             //
               this.$set(this.splength,j,!this.splength[j])
-
           },
         jian(){
 
@@ -79,6 +80,9 @@
         qrdd(){
             localStorage.huang=1;
             window.location.href="/#/querendingdan"
+
+        },
+        gwc_sc(){
 
         }
       },
@@ -92,7 +96,7 @@
         axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
           this.sparr=res.data;
           var that = this;
-
+          console.log()
           for (var i=0;i<this.sparr.length;i++){
             Vue.set(that.num,i,that.sparr[i].num);
             (function(i,that){
@@ -102,10 +106,18 @@
                 Vue.set(that.spname,i,that.sp[i].name);
                 Vue.set(that.guige,i,that.sp[i].guiGe);
                 Vue.set(that.money,i,that.sp[i].money);
+                Vue.set(that.shangdian,i,that.sp[i].shangDian);
+                console.log(that.shangdian,that.shangdian.length)
+                // for (var j = 0; j < that.shangdian.length; j++) {
+                //   if (that.sdarr.indexOf(that.shangdian[j]) < 0) {
+                //     that.sdarr.push(that.shangdian[j]);
+                //   }
+                // }
 
               })
             })(i,that);
           }
+          console.log(this.sdarr)
         })
       }
     }

@@ -16,6 +16,26 @@
         width: 1280px;
         margin: 0 auto;
       }
+      body{
+        position: relative;
+      }
+      .gwcfeiru{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgb(240,130,0);
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .gwcfeiru img{
+        position: absolute;
+        margin:auto;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="static/swiper-4.3.3.min.css">
@@ -31,4 +51,29 @@
   </body>
   <script src="static/swiper-4.3.3.min.js"></script>
   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script>
+    //购物车飞入
+    function gwcfr(e){
+      var even = e || event;
+      $("body").append("<div class='gwcfeiru'><img src='static/f/图层 293.png' alt=''></div>")
+      $(".gwcfeiru").css({
+        left:even.clientX,
+        top:even.clientY+$(document).scrollTop(),
+      })
+      $(".gwcfeiru").animate({
+        left:$(".togwc").offset().left,
+        top:$(".togwc").offset().top-50,
+      },1000)
+      $(".gwcfeiru").animate({
+        width:"40px",
+        height:"40px",
+        left:$(".togwc").offset().left+20,
+        top:$(".togwc").offset().top,
+      },500)
+      setTimeout(function () {
+        $(".gwcfeiru").css("display","none")
+      },1500)
+
+    }
+  </script>
 </html>
