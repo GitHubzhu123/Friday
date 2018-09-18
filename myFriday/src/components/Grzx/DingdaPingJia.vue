@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>订单评价</span>
     </div>
     <div class="bottom">
@@ -112,36 +112,16 @@
 </script>
 
 <style scoped>
-  .tijiao{
-    background: #f08200;
-    color: #ffffff;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 5px;
-    margin: 60px auto 40px;
-    font-size: 20px;
-  }
-  .serveFenshu{
-    width: 490px;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
 
-  }
-  img{
-    vertical-align: top;
-  }
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .bottom{
@@ -221,5 +201,26 @@
   }
   .oneD>span{
     margin-right: 15px;
+  }
+  .tijiao{
+    background: #f08200;
+    color: #ffffff;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 60px auto 40px;
+    font-size: 20px;
+  }
+  .serveFenshu{
+    width: 490px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+
+  }
+  img{
+    vertical-align: top;
   }
 </style>

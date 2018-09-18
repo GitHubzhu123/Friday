@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>修改密码</span>
     </div>
     <div class="mid">
@@ -109,30 +109,16 @@
 </script>
 
 <style scoped>
-  .yzm{
-    position: absolute;
-    left: 135px;
-    top: 8px;
-    width: 175px;
-    height: 35px;
-    font-size: 14px;
-    color: #f08200;
-  }
-  .yzm>span{
-    position: absolute;
-    right: 0;
-    top: 10px;
-  }
 
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -146,7 +132,7 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .mid{
@@ -236,5 +222,20 @@
     margin-top: -25px;
     margin-left: -110px;
   }
+  .yzm{
+    position: absolute;
+    left: 135px;
+    top: 8px;
+    width: 175px;
+    height: 35px;
+    font-size: 14px;
+    color: #f08200;
+  }
+  .yzm>span{
+    position: absolute;
+    right: 0;
+    top: 10px;
+  }
+
 
 </style>

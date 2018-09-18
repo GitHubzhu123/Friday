@@ -1,5 +1,6 @@
 <template>
   <div id="box">
+    <top></top>
     <div id="content">
       <div class="leftMenu">
         <div>个人中心</div>
@@ -11,7 +12,7 @@
             </div>
             <ul v-show="bol1">
               <li><router-link to="/wdzhangh">我的账户</router-link></li>
-              <li><router-link to="/dingdapingjia">我的订单</router-link></li>
+              <li><router-link to="/wddingdan2">我的订单</router-link></li>
               <li><router-link to="/wodejifen">我的积分</router-link></li>
               <li><router-link to="/jifendingdan">积分订单</router-link></li>
               <li><router-link to="/wodemoney">我的钱包</router-link></li>
@@ -49,11 +50,14 @@
         <router-view></router-view>
       </div>
     </div>
+    <btm></btm>
   </div>
 </template>
 
 
 <script>
+  import Top from '@/components/Top'
+  import Btm from '@/components/Btm'
   export default {
     name: "GrMenu",
     data(){
@@ -64,7 +68,8 @@
       }
     },
     components:{
-
+      top:Top,
+      btm:Btm
     },
     methods:{
       aa(){
@@ -87,14 +92,19 @@
 </script>
 
 <style scoped>
-
+  #box{
+    width: 100%;
+  }
   #content{
     width: 1280px;
-    background: lightseagreen;
+    /*background: lightseagreen;*/
     user-select:none;
+    margin: 40px auto;
+    border: 0;
   }
   .leftMenu{
-    float: left;
+    /*float: left;*/
+    display: inline-block;
     width: 170px;
     height: 625px;
     overflow: hidden;
@@ -127,6 +137,7 @@
     border: 1px solid #e2e2e2;
     float: right;
     margin-bottom: 40px;
+    /*display: inline-block;*/
   }
 
 </style>

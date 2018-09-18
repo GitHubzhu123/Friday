@@ -125,7 +125,7 @@ export default new Router({
           component: GengHuanPhone3,
         },
         {
-          path: '/wdzhangh',
+          path: '/',
           name: 'WdZhangH',
           component: WdZhangH,
         },

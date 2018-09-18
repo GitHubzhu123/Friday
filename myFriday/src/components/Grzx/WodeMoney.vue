@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>账户余额 : </span>
       <span>¥20.00</span>
     </div>
@@ -65,26 +65,18 @@
 
 <style scoped>
 
-  .ljcz{
-    background: #f08200;
-    color: #ffffff;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 5px;
-  }
-  .top{
+
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
-  .top>span:last-child{
+  .toP>span:last-child{
     margin-left: 0px;
     color: #f08200;
   }
@@ -154,7 +146,15 @@
     left: 200px;
     top: 80px;
   }
-
+  .ljcz{
+    background: #f08200;
+    color: #ffffff;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+  }
 
 
 </style>

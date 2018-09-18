@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>充值卡兑换</span>
       <div><router-link to="/wdzhangdan">查看账单</router-link></div>
     </div>
@@ -18,14 +18,14 @@
 </script>
 
 <style scoped>
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div>a{
+  .toP>div>a{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -39,7 +39,7 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .bottom{
