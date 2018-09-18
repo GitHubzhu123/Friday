@@ -20,23 +20,6 @@
       body{
         position: relative;
       }
-      .gwcfeiru{
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: rgb(240,130,0);
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      .gwcfeiru img{
-        position: absolute;
-        margin:auto;
-        top:0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
     </style>
     <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     <link rel="stylesheet" href="static/swiper-4.3.3.min.css">
@@ -58,8 +41,23 @@
       var even = e || event;
       $("body").append("<div class='gwcfeiru'><img src='static/f/图层 293.png' alt=''></div>")
       $(".gwcfeiru").css({
+        width: '50px',
+        height: '50px',
+        borderRadius: '50%',
+        background: 'rgb(240,130,0)',
+        position: 'absolute',
+        top: 0,
+        left: 0,
         left:even.clientX,
         top:even.clientY+$(document).scrollTop(),
+      });
+      $(".gwcfeiru img").css({
+        position: 'absolute',
+        margin:'auto',
+        top:0,
+        bottom: 0,
+        left: 0,
+        right: 0,
       })
       $(".gwcfeiru").animate({
         left:$(".togwc").offset().left,
@@ -74,7 +72,7 @@
       setTimeout(function () {
         $(".gwcfeiru").css("display","none")
       },1500)
-
+      //计数div
     }
   </script>
 </html>
