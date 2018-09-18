@@ -5,32 +5,35 @@
       <div class="shangdian" v-for="(item,i) in sdarr">
         <div class="sd_tit">
           <span class="gou gou1" ></span>
-          <span class="zi1">爱果果水果店</span>
+          <span class="zi1">{{item}}</span>
           <span class="zi2">规格</span>
           <span class="zi2">单价</span>
           <span class="zi2">数量</span>
           <span class="zi2">金额</span>
           <span class="zi2">操作</span>
         </div>
-        <div class="sp" v-for="(item,j) in sparr">
+        <div class="sp" v-for="(jj,j) in spARR[i]">
           <span class="gou" :class="splength[j]?'gou1':'gou2'" @click="gou(j)"></span>
           <div class="sp_div">
-            <img :src="src[j]" alt="" class="sp_img">
-            <span>{{spname[j]}}</span>
+            <img :src="jj.src" alt="" class="sp_img">
+            <span>{{jj.name}}</span>
           </div>
-          <span class="zi3 hui">{{guige[j]}}</span>
-          <span class="zi3 hui">{{money[j]}}</span>
-          <div class="num_box">
-            <div class="jian_box" @click="jian">
-              <img src="static/f/jian.png" alt="">
-            </div>
-            <span >{{num[j]}}</span>
-            <div class="jia_box" @click="jia">
-              <img src="static/f/jia.png" alt="">
+          <span class="zi3 hui">{{jj.guiGe}}</span>
+          <span class="zi3 hui">{{jj.money}}</span>
+          <div class="numdiv">
+            <div class="num_box">
+              <div class="jian_box" @click="jian">
+                <img src="static/f/jian.png" alt="">
+              </div>
+              <span >{{num[i][j]}}</span>
+              <div class="jia_box" @click="jia">
+                <img src="static/f/jia.png" alt="">
+              </div>
             </div>
           </div>
-          <span class="zi3">￥{{money[j]*num[j]}}</span>
-          <span class="shan">删除</span>
+
+          <span class="zi3">￥{{jj.money*num[i][j]}}</span>
+          <span class="shan" @click="gwc_sc">删除</span>
         </div>
         <p class="je_p">商品金额<span class="je_span">￥108.0</span></p>
       </div>
@@ -57,10 +60,13 @@
           spname:[],
           guige:[],
           money:[],
-          num:[],
-          sdarr:[0],
+          shangdian:[],
+          sdarr:[],
           sparr:[],
-          splength:[]
+          splength:[],
+          spARR:[[],[]],
+          gwc:[],
+          num:[[],[]],
         }
       },
       methods:{
@@ -68,7 +74,6 @@
             // if (this.splength[j]){
             //
               this.$set(this.splength,j,!this.splength[j])
-
           },
         jian(){
 
@@ -80,6 +85,9 @@
             localStorage.huang=1;
             window.location.href="/#/querendingdan"
 
+        },
+        gwc_sc(){
+
         }
       },
       mounted(){
@@ -89,24 +97,65 @@
           this.splength.push(false)
         };
         var usid=Number(localStorage.userid)
+        // 购买商品
+        // axios.get('/api/vuephp/gwc.php?type=22&userid='+usid).then(res=>{
+        //   console.log(res.data)
+        // })
+
+        // axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+        //   console.log(res.data)
+        //   var that = this;
+        //   //分类商店
+        //   for(var i=0;i<res.data.length;i++){
+        //     Vue.set(that.shangdian,i,res.data[i].shangDian);
+        //     // Vue.set(that.num,i,res.data[i].num);
+        //   }
+        //   for (var i = 0; i < that.shangdian.length; i++) {
+        //     if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
+        //       that.sdarr.push(that.shangdian[i]);
+        //     }
+        //   }
+        //   // console.log(that.sdarr,that.num)
+        // })
+
         axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
-          this.sparr=res.data;
-          var that = this;
-
-          for (var i=0;i<this.sparr.length;i++){
-            Vue.set(that.num,i,that.sparr[i].num);
-            (function(i,that){
-              axios.get('/api/vuephp/gwc.php?type=2&id='+that.sparr[i].spID).then(res=>{
-                that.sp[i]=res.data[0];
-                Vue.set(that.src,i,that.sp[i].src);
-                Vue.set(that.spname,i,that.sp[i].name);
-                Vue.set(that.guige,i,that.sp[i].guiGe);
-                Vue.set(that.money,i,that.sp[i].money);
-
-              })
-            })(i,that);
-          }
+          // console.log(res.data)
+          this.gwc=res.data
         })
+
+        axios.get('/api/vuephp/gwc.php?type=22&userid='+usid).then(res=>{
+          // console.log(res.data)
+          this.sp=res.data;
+          var that = this;
+          for(var i=0;i<res.data.length;i++){
+            Vue.set(that.shangdian,i,res.data[i].shangDian);
+            // Vue.set(that.num,i,res.data[i].num);
+           }
+          for (var i = 0; i < that.shangdian.length; i++) {
+            if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
+              that.sdarr.push(that.shangdian[i]);
+            }
+          }
+          for(var i=0;i<that.sdarr.length;i++){
+            for(var j=0;j<that.sp.length;j++){
+              if(that.sp[j].shangDian==that.sdarr[i]){
+                that.spARR[i].push(that.sp[j])
+                // 去重
+                for (var n=0;n<that.gwc.length;n++){
+                    if(that.gwc[n].spID==that.sp[j].id){
+                      that.num[i].push(that.gwc[n].num)
+
+                  }
+
+                }
+
+              }
+            }
+          }
+          // console.log(that.num)
+        })
+
+
       }
     }
 </script>
@@ -138,10 +187,14 @@
     line-height: 50px;
   }
   .zi1{
-    margin-right: 295px;
+    display: inline-block;
+    width: 400px;
+    /*margin-right: 295px;*/
   }
   .zi2{
-    margin-right: 145px;
+    display: inline-block;
+    text-align: center;
+    width: 155px;
   }
   .gou{
     display: inline-block;
@@ -164,7 +217,7 @@
     border-bottom:1px solid rgb(211,211,211);
   }
   .sp_div{
-    width: 360px;
+    width: 400px;
     display: inline-block;
     /*background: #666666;*/
   }
@@ -174,16 +227,20 @@
     vertical-align:middle;
     margin-right: 20px;
   }
-  .num_box{
+  .numdiv{
     display: inline-block;
+    width: 155px;
+    text-align: center;
+  }
+  .num_box{
+
     vertical-align:middle;
-    width: 100px;
+    /*width: 130px;*/
     height: 30px;
     border: 1px solid rgb(211,211,211);
     margin-left: -0px;
-    margin-right: 70px;
     line-height: 30px;
-    text-align: center;
+
   }
   .jian_box,.jia_box{
     width: 30px;
@@ -194,10 +251,12 @@
   .jian_box{
     float: left;
     border-right: 1px solid rgb(211,211,211);
+    margin-right: 10px;
   }
   .jia_box{
     float: right;
     border-left: 1px solid rgb(211,211,211);
+    margin-left: 10px;
   }
   .num_box img{
     position: absolute;
@@ -209,16 +268,16 @@
   }
   .zi3{
     display: inline-block;
-    width: 100px;
+    width: 155px;
     text-align: center;
-    margin-right: 80px;
+    /*margin-right: 80px;*/
   }
   .hui{
     color: rgb(150,150,150);
   }
   .shan{
     display: inline-block;
-    width: 90px;
+    width: 155px;
     text-align: center;
     color: rgb(73,142,61);
   }
@@ -256,5 +315,6 @@
     text-align: center;
     background: rgb(240,130,0);
     border-radius: 5px;
+    color: white;
   }
 </style>

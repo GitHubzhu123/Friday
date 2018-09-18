@@ -76,7 +76,6 @@
         <spxq_pj></spxq_pj>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -94,7 +93,7 @@
       data(){
         return{
           num:1,
-          id:10,
+          id:7,
           sp:'',
           src:[],
           srci:0,
@@ -102,6 +101,7 @@
           moneyX:[],
           moneyY:[],
           jieshao:[],
+          shangdian:[],
           scbol:true,
           tiaoleft:0,
         }
@@ -135,9 +135,10 @@
           this.num++;
         },
         jrgwc(){
-          axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.sp[0].id+'&num='+this.num).then(res=> {
-            console.log('aa')
+          axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.sp[0].id+'&num='+this.num+'&shangdian='+this.shangdian).then(res=> {
+// console.log(res.data)
           })
+          gwcfr()
         },
         sc(){
           if(this.scbol==true){
@@ -173,11 +174,12 @@
             $(".dh_gwc").css("display","none")
           }
         },
+
       },
       mounted(){
         localStorage.userid=1;
         axios.get('/api/vuephp/gwc.php?type=2&id='+this.id).then(res=>{
-          console.log(res.data)
+          // console.log(res.data)
           this.sp=res.data;
           var that = this;
           for (var i=0;i<1;i++){
@@ -186,6 +188,7 @@
             Vue.set(that.moneyX,i,that.sp[i].money);
             Vue.set(that.moneyY,i,that.sp[i].moneyY);
             Vue.set(that.jieshao,i,that.sp[i].jieShao);
+            Vue.set(that.shangdian,i,that.sp[i].shangDian);
           }
         });
         //移入放大
@@ -227,14 +230,13 @@
               })
             }
 
-            console.log($(".fangda").position().left)
             $(".fangda2 img").css({
               left:-($(".fangda").position().left)*1.65+ "px",
               top:-($(".fangda").position().top)*1.65+ "px",
             })
           }
         });
-        //导航的加入购物车
+        //导航的加入购物车显示
         window.addEventListener('scroll', this.handleScroll)
 
       }
@@ -528,4 +530,5 @@
     padding: 0 40px 30px 40px;
     display: none;
   }
+
 </style>

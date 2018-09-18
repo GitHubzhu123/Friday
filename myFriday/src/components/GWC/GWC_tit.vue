@@ -18,7 +18,6 @@
       mounted(){
           // localStorage.huang=0
           var huang=localStorage.huang
-        console.log(huang)
           // $(".zi").css({
           //   color:'rgb(0,0,0)'
           // });
