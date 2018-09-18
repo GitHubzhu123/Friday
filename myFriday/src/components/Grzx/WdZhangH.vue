@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <div class="topLef">
         <div class="topLefCon">
           <img src="../../../static/imgM/头像大图背景.png" alt="">
@@ -48,11 +48,9 @@
 </script>
 
 <style scoped>
-  a{
-    color: #f08200;
-  }
 
-  .top{
+
+  .toP{
     width: 1090px;
     height: 220px;
     background: #f4fff2;
@@ -96,7 +94,7 @@
     color: #6da961;
     margin-left: -20px;
   }
-  .topRig>li>span{
+  .topRig>li>a{
     color: #f08200;
   }
   .topRig>li>p{
@@ -116,11 +114,10 @@
 
   .bottom{
     width: 1090px;
-    height: 386px;
-    border-top: 1px solid #e2e2e2;
+    height: 384px;
+    /*border-top: 1px solid #e2e2e2;*/
     position: relative;
-    background: lightseagreen;
-    border-top: 1px solid #e2e2e2;
+    /*border-top: 1px solid #e2e2e2;*/
   }
   .botThrDiv>span{
     font-size: 50px;
@@ -168,8 +165,11 @@
   }
   .bottom>img{
     position: absolute;
-    top: 1px;
+    top: 0;
     left: 2.5px;
+  }
+  .thrLi>a{
+    color: #f08200;
   }
 
 </style>

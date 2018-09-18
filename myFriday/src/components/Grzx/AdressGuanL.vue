@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>地址管理</span>
       <div><router-link to="/newadress">添加新地址</router-link></div>
     </div>
@@ -95,7 +95,7 @@
   .duihuan{
     height: 625px;
   }
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
@@ -103,7 +103,7 @@
     font-size: 20px;
     border-bottom: 1px solid #e2e2e2;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -117,10 +117,10 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
-  .top a{
+  .toP a{
     font-size: 14px;
   }
 

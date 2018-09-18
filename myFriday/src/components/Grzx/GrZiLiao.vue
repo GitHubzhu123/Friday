@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>个人资料</span>
     </div>
     <div class="mid">
@@ -41,15 +41,22 @@
 
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
     export default {
-        name: "GrZiLiao"
+        name: "GrZiLiao",
+      mounted(){
+        axios.get('/api/PHP/Day04/mfriday.php?type=3&id=2').then(res=>{
+            console.log(res.data)
+        })
+      }
     }
 </script>
 
 <style scoped>
 
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
@@ -57,7 +64,7 @@
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -71,7 +78,7 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .mid{

@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>积分订单</span>
       <p>
         <span>当前积分 : </span>
@@ -87,22 +87,22 @@
 
 
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>span{
+  .toP>span{
     position: absolute;
     left: 20px;
   }
-  .top>p{
+  .toP>p{
     position: absolute;
     right: 20px;
   }
-  .top>p>a{
+  .toP>p>a{
     color: #f08200;
   }
   .bottom{

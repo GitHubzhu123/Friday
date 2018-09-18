@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>我的账单</span>
     </div>
     <div class="bottom">
@@ -49,14 +49,14 @@
 </script>
 
 <style scoped>
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .bottom{

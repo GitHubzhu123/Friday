@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>订单评价</span>
     </div>
     <div class="bottom">
@@ -11,7 +11,7 @@
             <p>珍享 南非进口红心葡萄柚 西柚柚子</p>
           </div>
           <div class="conRight">
-            <div class="oneD">
+            <div class="oneD wujiaoxing">
               <span>商品评分</span>
               <img src="../../../static/imgM/黑色五角星.png" alt="">
               <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -42,7 +42,7 @@
             <p>珍享 南非进口红心葡萄柚 西柚柚子</p>
           </div>
           <div class="conRight">
-            <div class="oneD">
+            <div class="wujiaoxing oneD">
               <span>商品评分</span>
               <img src="../../../static/imgM/黑色五角星.png" alt="">
               <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -68,7 +68,7 @@
         </li>
       </ul>
       <div class="serveFenshu">
-        <div class="serveD">
+        <div class="wujiaoxing">
           <span>服务态度</span>
           <img src="../../../static/imgM/黑色五角星.png" alt="">
           <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -76,7 +76,7 @@
           <img src="../../../static/imgM/黑色五角星.png" alt="">
           <img src="../../../static/imgM/黑色五角星.png" alt="">
         </div>
-        <div class="miaoshuD">
+        <div class="wujiaoxing">
           <span>描述相符</span>
           <img src="../../../static/imgM/黑色五角星.png" alt="">
           <img src="../../../static/imgM/黑色五角星.png" alt="">
@@ -92,38 +92,36 @@
 
 <script>
   export default {
-    name: "DingdaPingJia"
+    name: "DingdaPingJia",
+    mounted(){
+      $('textarea').focus(function () {
+        $(this).next().css('display','none')
+      });
+      $('textarea').blur(function () {
+        if($(this).val()=='') {
+          $(this).next().css('display','block')
+        }
+      });
+      $('.wujiaoxing>img').click(function () {
+        this.src='../../../static/imgM/红色五角星.png'
+      });
+
+
+    }
   }
 </script>
 
 <style scoped>
-  .tijiao{
-    background: #f08200;
-    color: #ffffff;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    border-radius: 5px;
-    margin: 60px auto 40px;
-    font-size: 20px;
-  }
-  .serveFenshu{
-    width: 490px;
-    display: flex;
-    justify-content: space-between;
-    margin: auto;
 
-  }
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .bottom{
@@ -170,11 +168,12 @@
   .twoD>textarea{
     resize: none;
     outline: none;
-    width: 600px;
-    height: 135px;
+    width: 576px;
+    height: 117px;
     position: absolute;
     right: 0;
     top: 5px;
+    padding: 9px 12px;
   }
   .thrD>span{
     margin-left: 10px;
@@ -202,5 +201,26 @@
   }
   .oneD>span{
     margin-right: 15px;
+  }
+  .tijiao{
+    background: #f08200;
+    color: #ffffff;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 60px auto 40px;
+    font-size: 20px;
+  }
+  .serveFenshu{
+    width: 490px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+
+  }
+  img{
+    vertical-align: top;
   }
 </style>

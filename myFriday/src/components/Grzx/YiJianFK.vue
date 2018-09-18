@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>意见反馈</span>
     </div>
     <div class="mid">
@@ -25,23 +25,25 @@
           $('textarea').focus(function () {
             $('.midCon>p').css('display','none')
           })
-          // $('textarea').blur(function () {
-          //   $('.midCon>p').css('display','block')
-          // })
+          $('textarea').blur(function () {
+            if($('textarea').val()=='') {
+              $('.midCon>p').css('display','block')
+            }
+          })
       }
     }
 </script>
 
 <style scoped>
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -55,7 +57,7 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .mid{
@@ -99,12 +101,13 @@
     color: #999999;
   }
   .midCon>textarea{
-    width: 1000px;
-    height: 375px;
+    width: 960px;
+    height: 335px;
     margin: 45px;
     outline: none;
     font-size: 16px;
     resize:none;
+    padding: 20px;
     /*text-indent: 2em;*/
   }
 </style>
