@@ -75,6 +75,11 @@ export default new Router({
       component: GrMenu,
       children:[
         {
+          path: '/',
+          name: 'WdZhangH',
+          component: WdZhangH,
+        },
+        {
           path: '/duihuan',
           name: 'DuiHuan',
           component: DuiHuan

@@ -1,6 +1,7 @@
 <template>
   <div id="box">
     <top></top>
+    <div class="fengexian"></div>
     <div id="content">
       <div class="leftMenu">
         <div>个人中心</div>
@@ -138,6 +139,12 @@
     float: right;
     margin-bottom: 40px;
     /*display: inline-block;*/
+  }
+  .fengexian{
+    margin-top: 15px;
+    width: 100%;
+    height: 1px;
+    background: #e2e2e2;
   }
 
 </style>
