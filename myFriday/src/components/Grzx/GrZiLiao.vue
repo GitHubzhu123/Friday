@@ -41,8 +41,15 @@
 
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
     export default {
-        name: "GrZiLiao"
+        name: "GrZiLiao",
+      mounted(){
+        axios.get('/api/PHP/Day04/mfriday.php?type=3&id=2').then(res=>{
+            console.log(res.data)
+        })
+      }
     }
 </script>
 

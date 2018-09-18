@@ -287,17 +287,16 @@
     border-radius: 5px;
     margin-top: 15px;
   }
+  .botLiCon{
+
+  }
   .botLiCon>li{
     float: left;
     height: 240px;
     font-size: 14px;
     /*margin: 20px 0;*/
   }
-  .botLiCon::after{
-    content: '';
-    display: block;
-    clear: both;
-  }
+
   .botLiTwo{
     width: 208px;
     height: 240px;
@@ -308,6 +307,15 @@
     border-bottom: 1px solid #e2e2e2;
     border-right: 1px solid #e2e2e2;
   }
-
+  .botLiCon::after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .botLiOne::after{
+    content: '';
+    display: block;
+    clear: both;
+  }
 
 </style>

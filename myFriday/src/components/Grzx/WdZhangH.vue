@@ -94,7 +94,7 @@
     color: #6da961;
     margin-left: -20px;
   }
-  .topRig>li>span{
+  .topRig>li>a{
     color: #f08200;
   }
   .topRig>li>p{
