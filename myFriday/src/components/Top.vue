@@ -26,7 +26,7 @@
           <div class="topC1_2"><a>热门:</a><a href="#">奇异果</a><a href="#">牛排</a><a href="#">山竹</a><a href="#">牛油果</a></div>
         </div>
         <div class="topC2">
-          <a><img src="./../../static/z/主页/user.png" alt="">个人中心</a><a @click="to_gwc"><img src="./../../static/z/主页/gwc.png" alt="">购物车</a>
+          <a href="/grmenu"><img src="./../../static/z/主页/user.png" alt="">个人中心</a><a @click="to_gwc"><img src="./../../static/z/主页/gwc.png" alt="">购物车</a>
         </div>
       </div>
     </div>
