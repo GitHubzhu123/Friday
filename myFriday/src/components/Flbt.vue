@@ -51,9 +51,6 @@
     width: 100%;
     height: 500px;
   }
-  /*.swiper-pagination-bullet-active{*/
-  /*background-color: red !important;*/
-  /*}*/
   .lbt .swiper-slide{
     width: 100%;
     height: 500px;
@@ -83,6 +80,7 @@
     margin: auto;
     text-align: center;
     color: white;
+    text-shadow: 1px 1px 5px #999;
   }
   .slide1C>p{
     font-size: 72px;

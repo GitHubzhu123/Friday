@@ -89,7 +89,7 @@
           this.splength.push(false)
         };
         var usid=Number(localStorage.userid)
-        axios.get('/api/vuephp/gwc.php?type=21&userid=1').then(res=>{
+        axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
           this.sparr=res.data;
           var that = this;
 

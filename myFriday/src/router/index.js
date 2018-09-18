@@ -57,6 +57,7 @@ import Login from '@/components/Login'
 import Jfsc from '@/components/Jfsc'
 //同城
 import Tc from '@/components/Tc'
+import Zt from '@/components/Zt'
 Vue.use(Router)
 
 export default new Router({
@@ -299,6 +300,16 @@ export default new Router({
           component: Tc
         },
       ]
+    },
+    {
+      path: '/tcc',
+      name: 'Tc',
+      component: Tc
+    },
+    {
+      path: '/zt',
+      name: 'Zt',
+      component: Zt
     },
     //轮播图
     {
