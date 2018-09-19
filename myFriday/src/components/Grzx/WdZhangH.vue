@@ -7,7 +7,7 @@
           <img src="../../../static/imgM/头像大图.png" alt="">
         </div>
         <span class="redSpan">您好,</span>
-        <router-link to="/grziliao"><span>1853呃呃呃呃呃呃06</span></router-link>
+        <router-link to="/grziliao"><span>{{username}}</span></router-link>
       </div>
       <ul class="topRig">
         <li>
@@ -37,13 +37,29 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   export default {
     name: "WdZhangH",
+    data(){
+      return{
+        username:'',
+        jifen:'',
+        money:'',
+      }
+    },
     methods:{
       aa(){
         window.location.href='/#/wodemoney'
       }
-    }
+    },
+    mounted(){
+      localStorage.userid=1
+      axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
+        console.log(res.data)
+        this.username=res.data[0].userName
+      })
+    },
   }
 </script>
 

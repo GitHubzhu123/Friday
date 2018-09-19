@@ -93,6 +93,7 @@
     font-size: 20px;
     /*background: lightcyan;*/
   }
+
   .liwu>li{
     width: 360px;
     height: 190px;
@@ -118,6 +119,7 @@
     margin-right: 40px;
 
   }
+
   .money:after{
     content: '';
     display: block;

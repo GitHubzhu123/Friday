@@ -103,6 +103,7 @@
     margin: 40px auto;
     border: 0;
   }
+
   .leftMenu{
     /*float: left;*/
     display: inline-block;

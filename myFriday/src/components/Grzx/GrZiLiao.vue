@@ -16,19 +16,19 @@
 
         <ul class="inputs">
           <li class="oneLi">
-            昵称: <input type="text">
+            昵称: <input id="oneInp" type="text">
           </li>
           <li class="twoLi">
             性别: <label><input type="radio" name="sex"> 男</label>
                   <label ><input type="radio" name="sex"> 女</label>
           </li>
           <li class="thrLi">
-            生日: <select>
-            <option value="">1970</option>
+            生日: <select id="thrInp">
+            <option value="1970">1970</option>
           </select> 年
           </li>
           <li class="fourLi">
-            手机: <input type="text">
+            手机: <input id="fourInp" type="text">
             <router-link to="/genghuanphone"><span>更换手机</span></router-link>
           </li>
         </ul>
@@ -45,9 +45,18 @@
   import Vue from 'vue'
     export default {
         name: "GrZiLiao",
+      methods:{
+
+      },
       mounted(){
-        axios.get('/api/PHP/Day04/mfriday.php?type=0').then(res=>{
+        $('.ack').click(function () {
+          var one=document.getElementById('oneInp');
+          var thr=document.getElementById('thrInp');
+          var four=document.getElementById('fourInp');
+          axios.get('/api/PHP/Day04/mfriday.php?type=4&nicheng='+one.value+'&birthday='+thr.value+'&id='+localStorage.userid).then(res=>{
+            console.log(thr.value)
             console.log(res.data)
+          })
         })
       }
     }
