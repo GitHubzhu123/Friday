@@ -1,5 +1,65 @@
 <template>
   <div>
+    <div class="login">
+      <div class="log">
+        <div class="log1">
+          <a @click="clear()" href="###" class="span1">&times;</a>
+          <div class="log_1"><span>登录</span><a href="###">手机验证登录<img src="./../../static/z/主页/pp.png" alt=""></a>
+            </div>
+          <div class="log_2"><input type="text" placeholder="请输入手机号" class="val1">
+            <img src="./../../static/z/login/dui.png" alt="" class="dui">
+          <p class="p1"><span>!</span>{{p1}}</p></div>
+          <div class="log_2"><input type="text" placeholder="请输入密码" class="val2">
+            <p class="p2"><span>!</span>{{p2}}</p></div>
+          <div class="log_4">
+            <input type="text" placeholder="验证码">
+            <canvas id="canvas" width="80" height="30"></canvas>
+            <a href="#" id="changeImg">看不清，换一张</a>
+          </div>
+          <div class="log_5">
+            <input type="checkbox">自动登录
+            <a href="###">忘记密码？</a>
+          </div>
+          <div class="log_6">
+            <a @click="log()">登录</a><a href="###" @click="zc()">会员注册</a>
+          </div>
+          <div class="log_7">
+            <p>提示 ：未注册用户将直接注册成为礼拜五用户</p>
+            <span>---------用合作网站登录----------</span>
+          </div>
+          <div class="log_8"><img src="./../../static/z/login/wei.png" alt="">
+            <img src="./../../static/z/login/qq.png" alt=""></div>
+        </div>
+        <div class="log2">
+          <a href="###" class="span1" @click="clear()">&times;</a>
+          <div class="log2_1"><input type="text" placeholder="请输入手机号">
+            <img src="./../../static/z/login/dui.png" alt="" class="dui1">
+            <p class="p3 log2p1"><span>!</span>手机号码不正确 ，请重新输入</p>
+          </div>
+          <div class="log2_2">
+            <input type="text" placeholder="请输入密码（6-20位号码字符）">
+            <p class="p3 log2p2"><span>!</span>密码不正确</p>
+          </div>
+          <div class="log2_2 log2_22">
+            <input type="text" placeholder="请确认密码">
+            <p class="p3 log2p3"><span>!</span>两次密码输入不一致</p>
+          </div>
+          <div class="log2_3">
+            <input type="text" id="code_input" value="" placeholder="验证码"/>
+            <div id="v_container"></div>
+            <div class="yzm"><a href="###">看不清换一张</a></div>
+            <p class="p3 log2p4"><span>!</span>验证失败</p>
+          </div>
+          <div class="log2_4">
+            <input type="text" placeholder="手机验证码">
+            <button @click="yzm()">获取验证码</button>
+            <a href="###">{{djs}}s</a>
+          </div>
+          <div class="log2_5"><img @click="changeI()" :src="bol?src1:src2" alt=""><span>我已阅读并同意《礼拜五用户协议》</span></div>
+          <div class="log2_6"><a href="###" @click="zcc()">注册</a><a href="###" @click="dl()">登录</a></div>
+        </div>
+      </div>
+    </div>
     <div class="local">
       <div class="loc">
         <p>&times;</p>
@@ -13,8 +73,8 @@
         </div>
         <div class="topTr">
           <span>您好 ,</span>
-          <a class="phone1">{{userid}}</a>
-          <a href="#">退出</a>
+          <a class="phone1" @click="login()">{{userid}}</a>
+          <a @click="tc()">退出</a>
           <span class="span">|</span><a href="#">我的订单</a><span class="span">|</span><a href="#">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
           <span class="span">|</span><span class="phone">400-800-8820</span>
         </div>
@@ -120,10 +180,87 @@
     },
     data(){
       return {
-        userid:localStorage.userid
+        userid:'',
+        p1:'手机号码不正确，请重新输入',
+        p2:'密码不正确，请重新输入',
+        djs:60,
+        bol:true,
+        src1:'./../../static/z/主页/yuan1.png',
+        src2:'./../../static/z/主页/yuan2.png'
       }
     },
     methods:{
+      changeI(){
+        this.bol = !this.bol;
+      },
+      yzm(){
+        this.djs=60;
+        $('.log2_4>a').css({
+          display:'block'
+        })
+        var times = setInterval(function () {
+          this.djs--;
+          if(this.djs==0){
+            clearInterval(times);
+
+            $('.log2_4>a').css({
+              display:'none'
+            })
+          }
+        }.bind(this),1000)
+      },
+      clear(){
+        $('.login').css({
+          display:'none'
+        })
+      },
+      tc(){
+        var bol = confirm('确定要退出登录吗')
+        if(bol){
+          localStorage.userid = '未登录';
+          this.userid = localStorage.userid;
+          localStorage.login = false;
+          // location.reload()
+        }else{
+
+        }
+      },
+      log(){
+        var val1 = $('.val1').val();
+        var val2 = $('.val2').val();
+        var pattern = /^((1[358][0-9])|(14[57])|(17[0678])|(19[7]))\d{8}$/;
+        if(pattern.test($('.val1').val())&&val2.length>=6&&val2.length<20){
+          axios.get('/api/vuephp/user.php?type=2&phone='+val1).then(res=> {
+            console.log(res.data);
+            if (res.data==0){
+              // alert('该用户不存在');
+              this.p1 = '该用户不存在';
+              $('.p1').css({
+                opacity:'1'
+              })
+            }else if(res.data[0].passWord==val2){
+              alert('登录成功');
+              $('.login').css({
+                display:'none'
+              })
+
+              localStorage.userid = $('.val1').val();
+              this.userid = localStorage.userid
+              localStorage.login = true;
+              // location.reload()
+              $('.p2').css({
+                opacity:'0'
+              })
+            }else{
+              $('.p2').css({
+                opacity:'1'
+              })
+            }
+          })
+        }else{
+          alert('请检查输入信息是否正确');
+        }
+      },
       to_gwc(){
         axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
           // console.log(res.data)
@@ -136,9 +273,203 @@
           // this.sparr = res.data;
           // var that = this;
         })
-      }
+      },
+      zc(){
+        $('.log2').css({
+          display:'block'
+        })
+        $('.log1').css({
+          display:'none'
+        })
+      },
+      dl(){
+        $('.log1').css({
+          display:'block'
+        })
+        $('.log2').css({
+          display:'none'
+        })
+      },
+      login(){
+        $('.login').css({
+          display:' block'
+        })
+      },
+      zcc(){
+        var a1 = $('.log2_1>input').val();
+        var b1 = $('.log2_2>input').val();
+        if (a1.length>=0&&b1.length>=0){
+          axios.get('/api/vuephp/user.php?type=1&phone='+a1+'&password='+b1).then((response) => {
+            console.log(response.data);
+            if (response.data == 0) {
+              alert('注册成功');
+            } else {
+              alert('该账号已存在');
+            }
+          })
+        }
+      },
     },
     mounted:function () {
+      this.userid = localStorage.userid;
+      $('.login').css({
+        display:'none'
+      })
+      $('.log1').css({
+        display:'block'
+      })
+      $('.log2').css({
+        display:'none'
+      })
+      $('.dui1').css({
+        opacity:'0'
+      })
+      $('.log2_1>input').blur(function () {
+        var a1 = $('.log2_1>input').val();
+        var pattern = /^((1[358][0-9])|(14[57])|(17[0678])|(19[7]))\d{8}$/;
+        if (pattern.test(a1)){
+          $('.dui1').css({
+            opacity:'1'
+          })
+          $('.log2p1').css({
+            opacity:'0'
+          })
+        }else{
+          $('.dui1').css({
+            opacity:'0'
+          })
+          $('.log2p1').css({
+            opacity:'1'
+          })
+        }
+      })
+      $('.log2_2>input').blur(function () {
+        var a2 = $('.log2_2>input').val();
+        if (a2.length>=6){
+          $('.log2p2').css({
+            opacity:'0'
+          })
+        }else{
+          $('.log2p2').css({
+            opacity:'1'
+          })
+        }
+      })
+      $('.log2_22>input').blur(function () {
+        var a3 = $('.log2_22>input').val();
+        if (a3==$('.log2_2>input').val()){
+          $('.log2p3').css({
+            opacity:'0'
+          })
+        }else{
+          $('.log2p3').css({
+            opacity:'1'
+          })
+        }
+      })
+    $('.yzm>a').click(function () {
+      $('#verifyCanvas').click();
+    })
+      var verifyCode = new GVerify("v_container");
+      $('#code_input').blur(function(){
+        var res = verifyCode.validate(document.getElementById("code_input").value);
+        if(res){
+          $('.log2p4').css({
+            opacity:'0'
+          })
+        }else{
+          $('.log2p4').css({
+            opacity:'1'
+          })
+        }
+      })
+      //登录
+      $('.dui').css({
+        opacity:'0'
+      })
+      $('.p1').css({
+        opacity:'0'
+      })
+      $('.p2').css({
+        opacity:'0'
+      })
+      $('.val1').blur(function () {
+        var pattern = /^((1[358][0-9])|(14[57])|(17[0678])|(19[7]))\d{8}$/;
+        if (pattern.test($('.val1').val())) {
+          $('.dui').css({
+            opacity:'1'
+          })
+          $('.p1').css({
+            opacity:'0'
+          })
+        }else{
+          $('.dui').css({
+            opacity:'0'
+          })
+          $('.p1').css({
+            opacity:'1'
+          })
+        }
+      });
+      //验证码
+      function randomNum(min,max){
+        return Math.floor( Math.random()*(max-min)+min);
+      }
+      /**生成一个随机色**/
+      function randomColor(min,max){
+        var r = randomNum(min,max);
+        var g = randomNum(min,max);
+        var b = randomNum(min,max);
+        return "rgb("+r+","+g+","+b+")";
+      }
+      drawPic();
+      document.getElementById("changeImg").onclick = function(e){
+        e.preventDefault();
+        drawPic();
+      }
+
+      /**绘制验证码图片**/
+      function drawPic(){
+        var canvas=document.getElementById("canvas");
+        var width=canvas.width;
+        var height=canvas.height;
+        var ctx = canvas.getContext('2d');
+        ctx.textBaseline = 'bottom';
+        /**绘制背景色**/
+        ctx.fillStyle = randomColor(180,240); //颜色若太深可能导致看不清
+        ctx.fillRect(0,0,width,height);
+        /**绘制文字**/
+        var str = 'ABCEFGHJKLMNPQRSTWXY123456789';
+        for(var i=0; i<4; i++){
+          var txt = str[randomNum(0,str.length)];
+          ctx.fillStyle = randomColor(50,160);  //随机生成字体颜色
+          ctx.font = randomNum(20,40)+'px SimHei'; //随机生成字体大小
+          var x = 10+i*25;
+          var y = randomNum(25,45);
+          var deg = randomNum(-45, 45);
+          //修改坐标原点和旋转角度
+          ctx.translate(x,y);
+          ctx.rotate(deg*Math.PI/180);
+          ctx.fillText(txt, 0,0);
+          //恢复坐标原点和旋转角度
+          ctx.rotate(-deg*Math.PI/180);
+          ctx.translate(-x,-y);
+        }
+        /**绘制干扰线**/
+        for(var i=0; i<3; i++){
+          ctx.strokeStyle = randomColor(40,180);
+          ctx.beginPath();
+          ctx.moveTo( randomNum(0,width), randomNum(0,height) );
+          ctx.lineTo( randomNum(0,width), randomNum(0,height) );
+          ctx.stroke();
+        }
+        /**绘制干扰点**/
+        for(var i=0; i<80; i++){
+          ctx.fillStyle = randomColor(0,255);
+          ctx.beginPath();
+          ctx.arc(randomNum(0,width),randomNum(0,height), 1, 0, 2*Math.PI);
+          ctx.fill();
+        }}
       $('.aa').on('click', addProduct);
       function addProduct(event) {
         var offset = $('#end').offset();
@@ -162,8 +493,6 @@
         });
         $('.u-flyer').delay(800).animate({opacity:0},1)
       }
-
-
 
 
       $('.a2').eq(0).css({
@@ -374,8 +703,6 @@
     color: #498e3d;
     font-weight: 200;
   }
-
-
   .list1_r{
     float: left;
     margin-left: 30px;
@@ -430,5 +757,299 @@
     border-radius: 8px;
     font-weight: 200;
   }
+.login{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+}
+  .log{
+    width: 385px;
+    height: 500px;
+    background: white;
+    margin: 200px auto 0 auto;
+    border: 5px solid #e2e2e2;
+    position: relative;
+  }
+  .log1{
+    width: 100%;
+  }
+  .log_1{
+      margin: 25px 35px 10px 35px;
+      line-height: 35px;
+  }
+  .log_1 span{
+    font-size: 24px;
+    color: #666;
+  }
+  .log_1 a{
+    font-size: 16px;
+    color: #5b9751;
+    float: right;
+  }
+  .log_1 a>img{
+    position: relative;
+    top: 2px;
+    margin-left: 5px;
+  }
+  .log_2{
+    position: relative;
+    margin-left: 35px;
+  }
+  .log_2>img{
+    position: absolute;
+    top: 16px;
+    right: 55px;
+  }
+  .log_2>input{
+    width: 295px;
+    height: 40px;
+    font-size: 16px;
+    padding-left: 10px;
+  }
+  .log_2>p{
+    font-size: 12px;
+    margin: 5px 0;
+    color: #e05259;
+  }
+  .log_2>p>span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    color: white;
+    text-align: center;
+    line-height: 13px;
+    background: #db2630;
+    border-radius: 50%;
+    margin-right: 5px;
+    position: relative;
+    top: 0.5px;
+  }
+  .log_4{
+    margin-left: 35px;
+  }
+  .log_4 input{
+    width: 105px;
+    padding-left: 10px;
+    font-size: 16px;
+    height: 40px;
+  }
+  #canvas{
+    position: relative;
+    top: 8px;
+  }
+  #changeImg{
+    font-size: 14px;
+    color: #f08200;
+  }
+  .log_5{
+    width: 305px;
+    margin: 15px auto;
+    font-size: 14px;
+    color: #666;
+  }
+  .log_5>a{
+    float: right;
+    color: #f18c24;text-decoration: underline;
+    margin-right: 50px;
+  }
+  .log_6{
+    width: 305px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  .log_6>a{
+    display: inline-block;
+    width: 133px;
+    height: 45px;color: white;
+    text-align: center;
+    line-height: 45px;
+    border-radius: 5px;
+  }
+  .log_6>a:nth-of-type(1){
+    background: #f08200;
+  }
+  .log_6>a:nth-of-type(2){
+    background: #498e3d;
+  }
+  .log_7{
+    width: 305px;
+    margin: 0 auto;
+  }
+  .log_7>p{
+    font-size: 14px;
+    color: #a6a6a6;
+    font-weight: 200;
+    margin:  15px 0 10px 0;
+  }
+  .log_7>span{
+    color: #707070;
+  }
+  .log_8{
+    text-align: center;
+    margin-top: 15px;
+  }
+  .log_8>img:nth-of-type(1){
+    margin-right: 15px;
+     }
+  .login input{
+    outline: none;
+  }
+  .login input::placeholder{
+    font-weight: 200;
+    color: #9f9f9f;
+  }
+  .span1{
+    position: absolute;
+    top: 0px;
+    font-size: 24px;
+    color: #ccc;
+    font-weight: 200;
+    right: 10px;
+  }
+  .log2{
+    width: 305px;
+    height: 500px;
+    margin: 0 auto;
+    /*background: lemonchiffon;*/
+  }
+  .log2 p{
+    opacity: 0;
+  }
+  .log2 input{
+    font-size: 16px;
+    padding-left: 10px;
+  }
+  .log2 input::placeholder{
+    color: #a5a5a5;
+    font-weight: 200;
+  }
+  .log2_1{
+    padding-top: 30px;
+    position: relative;
+  }
+.log2_1>input{
+  width: 295px;
+  height: 40px;
+  /*padding-left: 10px;*/
+}
+  .log2_1>img{
+    position: absolute;
+    right: 10px;
+    top: 47px;
+  }
+.p3{
+  font-size: 12px;
+  color: #e0414a;
+  margin: 7px 0;
+}
+  .p3>span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: #db2630;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    line-height: 13px;
+    margin-right: 2px;
+  }
+  .log2_2>input {
+    width: 295px;
+    height: 40px;
+    /*padding-left: 10px;*/
+  }
+  .log2_3>input {
+    width: 93px;
+    height: 40px;
+    float: left;
+  }
+  .log2_3>button {
+    float: left;
+  }
 
+  .log2_3 p{
+    clear: both;
+    padding: 7px 0;
+  }
+  .log2_4{
+    position: relative;
+    height: 40px;
+    bottom: 5px;
+  }
+  .log2_4>input {
+    width: 295px;
+    height: 40px;
+  }
+  .log2_4>button{
+    position: absolute;
+    width: 97px;
+    height: 33px;
+    background: #498e3d;
+    color: white;
+    right: 2px;
+    top: 5px;
+    outline: none;
+    font-weight: 200;
+  }
+  .log2_4>a{
+    position: absolute;
+    display: inline-block;
+    width: 97px;
+    height: 33px;
+    background: #498e3d;
+    color: white;
+    right: 2px;
+    top: 5px;
+    text-align: center;
+    line-height: 33px;
+    font-weight: 200;
+    display: none;
+  }
+  .log2_5{
+    font-size: 14px;
+    margin: 15px 0;color: #666;
+  }
+  .log2_5>img{
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+  }
+  .log2_6{
+    display: flex;
+    justify-content: space-between;
+  }
+  .log2_6>a{
+    display: inline-block;
+    width: 133px;
+    height: 44px;
+    text-align: center;
+    line-height: 44px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 200;
+  }
+  .log2_6>a:nth-child(1){
+    background: #f08200;
+  }
+  .log2_6>a:nth-child(2){
+    background: #498e3d;
+  }
+  #v_container{
+    position: relative;
+    top: 5px;
+    left: 10px;
+    float: left;
+    width: 60px;
+    height: 30px;
+  }
+  .yzm>a{
+    font-size: 14px;
+    margin-left: 35px;
+    line-height: 38px;
+    color: #f29322;
+  }
 </style>

@@ -59,6 +59,8 @@ import Jfsc from '@/components/Jfsc'
 //同城
 import Tc from '@/components/Tc'
 import Zt from '@/components/Zt'
+import Lbw from '@/components/Lbw'
+import Qb from '@/components/Qb'
 Vue.use(Router)
 
 export default new Router({
@@ -310,10 +312,21 @@ export default new Router({
       ]
     },
     {
+      path: '/jfsc1',
+      name: 'Jfsc',
+      component: Jfsc
+    },
+    {
       path: '/tcc',
       name: 'Tc',
       component: Tc
     },
+    {
+      path: '/qb',
+      name: 'Qb',
+      component: Qb
+    },
+
     {
       path: '/zt',
       name: 'Zt',
@@ -330,6 +343,11 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/lbw',
+      name: 'Lbw',
+      component: Lbw
     }
   ]
 })
