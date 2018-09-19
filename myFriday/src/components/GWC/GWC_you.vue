@@ -2,9 +2,10 @@
     <div id="gwc_you">
       <span class="smallche"></span>
       <span>购物车</span>
+      <!--商店-->
       <div class="shangdian" v-for="(item,i) in sdarr">
         <div class="sd_tit">
-          <span class="gou gou1" ></span>
+          <span class="gou" :class="goubol[i].sdgou?'gou1':'gou2'" @click="sdgouchange(i)"></span>
           <span class="zi1">{{item}}</span>
           <span class="zi2">规格</span>
           <span class="zi2">单价</span>
@@ -12,21 +13,24 @@
           <span class="zi2">金额</span>
           <span class="zi2">操作</span>
         </div>
+        <!--单条商品-->
         <div class="sp" v-for="(jj,j) in spARR[i]">
-          <span class="gou" :class="splength[j]?'gou1':'gou2'" @click="gou(j)"></span>
+          <span class="gou" :class="goubol[i].spgou[j]?'gou1':'gou2'" @click="spgouchange(i,j)"></span>
           <div class="sp_div">
             <img :src="jj.src" alt="" class="sp_img">
             <span>{{jj.name}}</span>
           </div>
           <span class="zi3 hui">{{jj.guiGe}}</span>
           <span class="zi3 hui">{{jj.money}}</span>
+          <!--数量-->
           <div class="numdiv">
             <div class="num_box">
-              <div class="jian_box" @click="jian">
+              <div class="jian_box" @click="jian(i,j)">
                 <img src="static/f/jian.png" alt="">
               </div>
-              <span >{{num[i][j]}}</span>
-              <div class="jia_box" @click="jia">
+              <!--<span >{{num[i][j]}}</span>-->
+              <input type="text" :value="num[i][j]" class="inp" @blur="inputnum(i,j,$event)">
+              <div class="jia_box" @click="jia(i,j)">
                 <img src="static/f/jia.png" alt="">
               </div>
             </div>
@@ -56,10 +60,6 @@
       data(){
         return{
           sp:[],
-          src:[],
-          spname:[],
-          guige:[],
-          money:[],
           shangdian:[],
           sdarr:[],
           sparr:[],
@@ -67,20 +67,59 @@
           spARR:[[],[]],
           gwc:[],
           num:[[],[]],
+          goubol:[],
+          zongjine:[{sdzong:100,spzong:[]}],
         }
       },
       methods:{
-          gou(j){
-            // if (this.splength[j]){
-            //
-              this.$set(this.splength,j,!this.splength[j])
-          },
-        jian(){
+          //商店的勾
+        sdgouchange(i){
+          this.goubol[i].sdgou=!this.goubol[i].sdgou
+          //下属商品的勾和商店的勾保持一致
+          if(this.goubol[i].sdgou){
+            for(var a=0;a<this.goubol[i].spgou.length;a++){
+              this.$set(this.goubol[i].spgou,a,true)
+            }
+          }else {
+            for(var a=0;a<this.goubol[i].spgou.length;a++){
+              this.$set(this.goubol[i].spgou,a,false)
+            }
+          }
+        },
+        //商品的勾
+        spgouchange(i,j){
+          this.$set(this.goubol[i].spgou,j,!this.goubol[i].spgou[j])
+        },
+        // 减号
+        jian(i,j){
+          this.$set(this.num[i],j,this.num[i][j]*1-1)
+          console.log(this.spARR[i][j].id)
+          axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+console.log(res.data)
+          })
+          // if(this.num[i][j]==0){
+          //   alert("该商品将被删除")
+          // }
 
         },
-        jia(){
+        // 加号
+        jia(i,j){
+          this.$set(this.num[i],j,this.num[i][j]*1+1)
+
+          axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+            console.log(res.data)
+          })
 
         },
+        //输入框改变数量
+        inputnum(i,j,$event){
+            this.num[i][j]=$event.target.value
+
+          axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+            console.log(res.data)
+          })
+        },
+        //确认订单
         qrdd(){
             localStorage.huang=1;
             window.location.href="/#/querendingdan"
@@ -91,8 +130,6 @@
         }
       },
       mounted(){
-        // var a=[1,2,3]
-        // this.sparr=a;
         for(var i=0;i<this.sparr.length;i++){
           this.splength.push(false)
         };
@@ -134,26 +171,31 @@
           for (var i = 0; i < that.shangdian.length; i++) {
             if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
               that.sdarr.push(that.shangdian[i]);
+
             }
           }
           for(var i=0;i<that.sdarr.length;i++){
+            //打钩
+            that.goubol.push({sdgou:true,spgou:[]})
+            that.goubol[i].sdgou=false;
+            //总价
+            // that.zongjine.push({sdgou:true,spgou:[]})
             for(var j=0;j<that.sp.length;j++){
               if(that.sp[j].shangDian==that.sdarr[i]){
-                that.spARR[i].push(that.sp[j])
-                // 去重
+                that.spARR[i].push(that.sp[j])//将商品加入对应商店
+                that.goubol[i].spgou.push(false)//给商品绑定勾的状态
                 for (var n=0;n<that.gwc.length;n++){
-                    if(that.gwc[n].spID==that.sp[j].id){
-                      that.num[i].push(that.gwc[n].num)
-
+                  if(that.gwc[n].spID==that.sp[j].id){
+                    that.num[i].push(that.gwc[n].num)//给商品对应数量
                   }
-
                 }
-
               }
             }
           }
-          // console.log(that.num)
+          // console.log(that.goubol)
+
         })
+
 
 
       }
@@ -242,6 +284,13 @@
     line-height: 30px;
 
   }
+  .num_box input{
+    height: 28px;
+    width: 80px;
+    text-align: center;
+    font-size: 15px;
+    border: 0 solid;
+  }
   .jian_box,.jia_box{
     width: 30px;
     height: 30px;
@@ -251,12 +300,12 @@
   .jian_box{
     float: left;
     border-right: 1px solid rgb(211,211,211);
-    margin-right: 10px;
+    /*margin-right: 10px;*/
   }
   .jia_box{
     float: right;
     border-left: 1px solid rgb(211,211,211);
-    margin-left: 10px;
+    /*margin-left: 10px;*/
   }
   .num_box img{
     position: absolute;
