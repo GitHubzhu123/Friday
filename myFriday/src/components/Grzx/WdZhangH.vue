@@ -1,13 +1,13 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <div class="topLef">
         <div class="topLefCon">
           <img src="../../../static/imgM/头像大图背景.png" alt="">
           <img src="../../../static/imgM/头像大图.png" alt="">
         </div>
         <span class="redSpan">您好,</span>
-        <router-link to="/grziliao"><span>1853呃呃呃呃呃呃06</span></router-link>
+        <router-link to="/grziliao"><span>{{username}}</span></router-link>
       </div>
       <ul class="topRig">
         <li>
@@ -37,22 +37,36 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   export default {
     name: "WdZhangH",
+    data(){
+      return{
+        username:'',
+        jifen:'',
+        money:'',
+      }
+    },
     methods:{
       aa(){
         window.location.href='/#/wodemoney'
       }
-    }
+    },
+    mounted(){
+      localStorage.userid=1
+      axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
+        console.log(res.data)
+        this.username=res.data[0].userName
+      })
+    },
   }
 </script>
 
 <style scoped>
-  a{
-    color: #f08200;
-  }
 
-  .top{
+
+  .toP{
     width: 1090px;
     height: 220px;
     background: #f4fff2;
@@ -96,7 +110,7 @@
     color: #6da961;
     margin-left: -20px;
   }
-  .topRig>li>span{
+  .topRig>li>a{
     color: #f08200;
   }
   .topRig>li>p{
@@ -116,11 +130,10 @@
 
   .bottom{
     width: 1090px;
-    height: 386px;
-    border-top: 1px solid #e2e2e2;
+    height: 384px;
+    /*border-top: 1px solid #e2e2e2;*/
     position: relative;
-    background: lightseagreen;
-    border-top: 1px solid #e2e2e2;
+    /*border-top: 1px solid #e2e2e2;*/
   }
   .botThrDiv>span{
     font-size: 50px;
@@ -168,8 +181,11 @@
   }
   .bottom>img{
     position: absolute;
-    top: 1px;
+    top: 0;
     left: 2.5px;
+  }
+  .thrLi>a{
+    color: #f08200;
   }
 
 </style>

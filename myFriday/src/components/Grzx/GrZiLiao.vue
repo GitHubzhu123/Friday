@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>个人资料</span>
     </div>
     <div class="mid">
@@ -16,19 +16,19 @@
 
         <ul class="inputs">
           <li class="oneLi">
-            昵称: <input type="text">
+            昵称: <input id="oneInp" type="text">
           </li>
           <li class="twoLi">
             性别: <label><input type="radio" name="sex"> 男</label>
                   <label ><input type="radio" name="sex"> 女</label>
           </li>
           <li class="thrLi">
-            生日: <select>
-            <option value="">1970</option>
+            生日: <select id="thrInp">
+            <option value="1970">1970</option>
           </select> 年
           </li>
           <li class="fourLi">
-            手机: <input type="text">
+            手机: <input id="fourInp" type="text">
             <router-link to="/genghuanphone"><span>更换手机</span></router-link>
           </li>
         </ul>
@@ -41,15 +41,31 @@
 
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
     export default {
-        name: "GrZiLiao"
+        name: "GrZiLiao",
+      methods:{
+
+      },
+      mounted(){
+        $('.ack').click(function () {
+          var one=document.getElementById('oneInp');
+          var thr=document.getElementById('thrInp');
+          var four=document.getElementById('fourInp');
+          axios.get('/api/PHP/Day04/mfriday.php?type=4&nicheng='+one.value+'&birthday='+thr.value+'&id='+localStorage.userid).then(res=>{
+            console.log(thr.value)
+            console.log(res.data)
+          })
+        })
+      }
     }
 </script>
 
 <style scoped>
 
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
@@ -57,7 +73,7 @@
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -71,7 +87,7 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .mid{

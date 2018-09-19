@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>我的收藏</span>
     </div>
     <ul class="bottom">
@@ -31,15 +31,14 @@
 
 <style scoped>
 
-
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     position: relative;
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -53,11 +52,11 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .bottom{
-    height: 565px;
+    /*height: 565px;*/
     border-top: 1px solid #e2e2e2 ;
     position: relative;
   }
@@ -65,11 +64,10 @@
     width: 305px;
     height: 480px;
     float: left;
-    margin: 40px 0 0 40px;
+    margin: 40px 0 40px 40px;
     position: relative;
     border: 1px solid #e2e2e2;
   }
-
   .oneS{
     font-size: 20px;
     color: #5c5c5c;

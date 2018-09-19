@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <div class="oneD">
         <span>订单编号 :</span>
         <span>1233455555666</span>
@@ -92,7 +92,7 @@
 
 <style scoped>
 
-  .top{
+  .toP{
     width: 1090px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
@@ -100,7 +100,7 @@
     line-height: 58px;
     font-size: 18px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
   }
   .oneD{

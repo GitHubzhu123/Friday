@@ -1,29 +1,47 @@
 <template>
   <div class="duihuan">
     <div class="toP">
-      <span>修改密码</span>
+      <span>换绑手机</span>
     </div>
     <div class="mid">
-      <ul class="midCon">
-        <li><input type="text" placeholder="请输入手机号"></li>
-        <li><input type="password" placeholder="请输入密码(6-20位号码字符)"></li>
-        <li><input type="password" placeholder="请再次输入密码确认"></li>
-        <li class="fourLi">
-          <input type="text" placeholder="验证码">
-          <div class="yzm"><canvas id="canvas" width="80" height="35"></canvas>
-            <span id="changeImg">看不清换一张</span></div>
-        </li>
-        <li class="fiveLi">
-          <input type="text" placeholder="手机验证码">
-          <button>获取验证码</button>
-        </li>
-      </ul>
-      <div class="bangding" @click="aa">提交修改</div>
-      <div class="success" v-show="bol">
-        <div>
-          <img src="../../../static/imgM/绑定成功.png" alt="">
-          <span>恭喜你修改成功</span>
+      <div class="midCon">
+        <!--路由-->
+        <div class="luyou">
+          <div class="oneDiv">
+            <span>1.验证新手机号</span>
+            <img src="../../../static/imgM/验证原手机1.png" alt="">
+            <!--<img src="../../../static/imgM/验证原手机2.png" alt="">-->
+          </div>
+          <div class="twoDiv">
+            <span>2.验证新手机号</span>
+            <img src="../../../static/imgM/验证新手机2.png" alt="">
+            <!--<img src="../../../static/imgM/验证新手机2.png" alt="">-->
+          </div>
+          <div class="thrDiv">
+            <span>3.换绑成功</span>
+            <img src="../../../static/imgM/换绑成功1.png" alt="">
+            <!--<img src="../../../static/imgM/换绑成功2.png" alt="">-->
+          </div>
         </div>
+        <!--组件展示-->
+        <div class="zujian">
+          <div class="old">
+            <ul class="oldCon">
+              <li><input type="text" placeholder="请输入原手机号"></li>
+              <li class="twoLi">
+                <input type="text" placeholder="验证码">
+                <div class="yzm"><canvas id="canvas" width="80" height="35"></canvas>
+                  <span id="changeImg">看不清换一张</span></div>
+              </li>
+              <li><input type="text" placeholder="输入密码验证身份"></li>
+            </ul>
+            <div class="tijiao">
+              <router-link to="/genghuanphone3"><span>提交验证</span></router-link>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
@@ -32,15 +50,10 @@
 
 <script>
   export default {
-    name: "GaiPassword",
+    name: "GengHuanPhone",
     data(){
       return {
-        bol:false
-      }
-    },
-    methods:{
-      aa(){
-        this.bol=true
+
       }
     },
     mounted(){
@@ -108,8 +121,8 @@
   }
 </script>
 
-<style scoped>
 
+<style scoped>
 
   .toP{
     width: 1090px;
@@ -139,24 +152,40 @@
     height: 565px;
     border-top: 1px solid #e2e2e2 ;
     position: relative;
-    font-size: 16px;
+    font-size: 20px;
   }
   .midCon{
     position: relative;
     margin: 40px 0 0 40px;
   }
-  .bangding{
-    width: 150px;
-    height: 50px;
-    background: #f08200;
-    text-align: center;
-    line-height: 50px;
-    position: absolute;
-    border-radius: 5px;
-    top: 450px;
-    left: 40px;
-    color: #ffffff;
-    font-size: 20px;
+  .luyou{
+    /*width: 800px;*/
+    height: 42px;
+    /*background: #007aff;*/
+  }
+  .luyou>div{
+    height: 42px;
+    float: left;
+    position: relative;
+    line-height: 42px;
+  }
+  .luyou>div>img{
+    float: left;
+  }
+  .luyou>div>span{
+    margin-left: -190px;
+  }
+  .luyou>.thrDiv>span{
+    margin-left: -170px;
+  }
+  a{
+    color: #000;
+  }
+
+  .zujian{
+    margin-top: 40px;
+    position: relative;
+    /*overflow: hidden;*/
   }
   li>input{
     width: 310px;
@@ -166,61 +195,11 @@
     background: #f9f9f9;
     outline: none;
   }
-  .fourLi>input{
+  .twoLi>input{
     width: 110px;
   }
-  .fourLi>img{
-    width: 80px;
-    height: 35px;
-    vertical-align: middle;
-    margin-left: 15px;
-    margin-right: 5px;
-  }
-  .fourLi{
+  .twoLi{
     position: relative;
-  }
-  .fourLi>span{
-    font-size: 14px;
-    color: #f08200;
-  }
-  .fiveLi{
-    position: relative;
-    width: 310px;
-  }
-  .fiveLi>button{
-    width: 100px;
-    height: 32px;
-    position: absolute;
-    background: #e8e8e8;
-    right: 5px;
-    top: 9px;
-    text-align: center;
-    line-height: 32px;
-    font-size: 14px;
-  }
-  .success{
-    width: 460px;
-    height: 185px;
-    background: #d9d9d9;
-    border-radius: 20px;
-    position: absolute;
-    top: 163px;
-    right: 90px;
-    font-size: 20px;
-    color: #f08200;
-    text-align: center;
-  }
-  .success>div{
-    width: 220px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-top: -25px;
-    margin-left: -110px;
   }
   .yzm{
     position: absolute;
@@ -237,5 +216,30 @@
     top: 10px;
   }
 
-
+  .twoLi>img{
+    width: 80px;
+    height: 35px;
+    vertical-align: middle;
+    margin-left: 15px;
+    margin-right: 5px;
+  }
+  .twoLi>a{
+    font-size: 14px;
+    color: #f08200;
+  }
+  .tijiao{
+    width: 150px;
+    height: 50px;
+    background: #f08200;
+    text-align: center;
+    line-height: 50px;
+    position: absolute;
+    border-radius: 5px;
+    top: 250px;
+    left: 0;
+    font-size: 20px;
+  }
+  a{
+    color: #ffffff;
+  }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="duihuan">
-    <div class="top">
+    <div class="toP">
       <span>添加新地址</span>
     </div>
     <div class="mid">
@@ -11,17 +11,11 @@
         <!---->
         <li class="twoLi">
           <span>*</span>所在地区:
-          <select class="one">
-            <option value="0">请选择省区</option>
-            <option value="1">北京</option>
-            <option value="2">河南</option>
-          </select>
-          <select class="two">
-            <option value="">请选择城市</option>
-          </select>
-          <select class="three">
-            <option value="">请选择区县</option>
-          </select>
+          <div id="city">
+            <select class="prov"></select>
+            <select class="city" disabled="disabled"></select>
+            <select class="dist" disabled="disabled"></select>
+          </div>
         </li>
         <!---->
         <li class="thrLi">
@@ -54,34 +48,16 @@
 
       },
       mounted(){
-        var HNCitys=["郑州", "开封", "洛阳", "平顶山", "安阳", "鹤壁", "新乡", "焦作", "濮阳", "许昌", "漯河", "三门峡", "商丘", "周口", "驻马店", "南阳", "信阳", "济源"];
-        var Beijing=['东城','西城','朝阳','丰台','石景山','海淀','门头沟','房山','通州','顺义','昌平','大兴','怀柔','平谷','密云','延庆'];
-        var one=document.querySelector('.one');
-        var two=document.querySelector('.two');
-        var three=document.querySelector('.three');
-        $('.one').change(function () {
-          two.innerHTML="<option>--请选择城市--</option>"
-
-          console.log(this.HNCitys)
-          if (one.value == "2") {
-            for (var i = 0; i < HNCitys.length; i++) {
-              // 创建 option
-              var opt1 = document.createElement("option");
-              opt1.innerHTML = HNCitys[i];
-
-              // 添加
-              two.appendChild(opt1);
-            }
-          }
-          // 如果是北京
-          if (one.value == "1") {
-            for (var j = 0; j < Beijing.length; j++) {
-              var opt2 = document.createElement("option");
-              opt2.innerHTML = Beijing[j];
-              two.appendChild(opt2);
-            }
-          }
-        });
+        // $(document).ready(function () {
+        //   $("#city").citySelect({
+        //     url:"../../../static/city.min.js",  //请求地址，请在localhost下请求这个地址，或者后端直接返回数据
+        //     prov:"", //省的默认值，可不写此属性；
+        //     city:"", //地市的默认值，可不写；
+        //     dist:"", //区的默认值，可不写
+        //     nodata:"none", //设置此属性为"none"，当子集无数据时，隐藏select
+        //     required:true //是否默认选中
+        //   });
+        // })
       }
     }
 </script>
@@ -89,7 +65,7 @@
 <style scoped>
 
 
-  .top{
+  .toP{
     width: 1035px;
     height: 58px;
     /*border-bottom: 1px solid #e2e2e2;*/
@@ -97,7 +73,7 @@
     line-height: 58px;
     font-size: 20px;
   }
-  .top>div{
+  .toP>div{
     position: absolute;
     right: 20px;
     top: 50%;
@@ -111,7 +87,7 @@
     font-size: 16px;
     border-radius: 5px;
   }
-  .top>span{
+  .toP>span{
     margin-left: 20px;
   }
   .mid{
@@ -142,7 +118,10 @@
     width: 458px;
     height: 35px;
   }
-  .twoLi>select{
+  #city{
+    display: inline-block;
+  }
+  .twoLi select{
     width: 140px;
     height: 35px;
     font-size: 16px;
