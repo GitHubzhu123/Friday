@@ -46,7 +46,7 @@
     export default {
         name: "GrZiLiao",
       mounted(){
-        axios.get('/api/PHP/Day04/mfriday.php?type=3&id=2').then(res=>{
+        axios.get('/api/PHP/Day04/mfriday.php?type=0').then(res=>{
             console.log(res.data)
         })
       }
