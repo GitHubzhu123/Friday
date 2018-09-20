@@ -1,6 +1,6 @@
 <template>
   <div id="box">
-    <top></top>
+
     <div class="fengexian"></div>
     <div id="content">
       <div class="leftMenu">
@@ -51,7 +51,7 @@
         <router-view></router-view>
       </div>
     </div>
-    <btm></btm>
+
   </div>
 </template>
 
