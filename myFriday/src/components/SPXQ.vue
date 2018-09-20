@@ -1,9 +1,10 @@
 <template>
     <div id="spxq">
-      <top></top>
+      <!--<top></top>-->
+      <!--<top_-xiao></top_-xiao>-->
       <hr>
       <spxq_cont></spxq_cont>
-      <btm></btm>
+      <!--<btm></btm>-->
     </div>
 </template>
 
@@ -11,9 +12,11 @@
   import Top from '@/components/Top'
   import Btm from '@/components/Btm'
   import SPXQ_cont from '@/components/SPXQ/SPXQ_cont'
+  import Top_Xiao from "./Top_Xiao";
     export default {
         name: "SPXQ",
       components:{
+        Top_Xiao,
         top:Top,
         btm:Btm,
         spxq_cont:SPXQ_cont,

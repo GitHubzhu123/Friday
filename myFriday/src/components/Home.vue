@@ -40,7 +40,7 @@
       </div>
       <div class="lisB">
         <ul>
-          <li v-for="(arr,i) in data" v-if="i<4"><img :src="arr.src" alt="">
+          <li v-for="(arr,i) in data" v-if="i<4"><img :src="arr.src" alt="" @click="toXiang1(i)">
             <div class="lisC">
               <p>{{arr.name}}</p>
               <p>{{arr.jj}}</p>
@@ -61,7 +61,7 @@
       </div>
       <div class="lisB">
         <ul>
-          <li v-for=" (arr1,i) in data1" v-if="i<4"><img :src="arr1.src" alt="">
+          <li v-for=" (arr1,i) in data1" v-if="i<4"><img :src="arr1.src" alt="" @click="toXiang2(i)">
             <div class="lisC">
               <p>{{arr1.name}}</p>
               <p>{{arr1.jj}}</p>
@@ -81,7 +81,7 @@
       </div>
       <div class="lisB">
         <ul>
-          <li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="">
+          <li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="" @click="toXiang3(i)">
             <div class="lisC">
               <p>{{arr2.name}}</p>
               <p>{{arr2.jj}}</p>
@@ -91,26 +91,26 @@
           </li>
         </ul>
       </div>
-      <div class="lisT">
-        <div class="lisT_l">
-          <img src="./../../static/z/主页/c5.png" alt="">
-          <span>蛋奶速食</span><a>采自新疆优质水果生产基地 ，品质一流</a>
+      <!--<div class="lisT">-->
+        <!--<div class="lisT_l">-->
+          <!--<img src="./../../static/z/主页/c5.png" alt="">-->
+          <!--<span>蛋奶速食</span><a>采自新疆优质水果生产基地 ，品质一流</a>-->
 
-          <div class="lisT_r"><a href="#">更多&gt;</a></div>
-        </div>
-      </div>
-      <div class="lisB">
-        <ul>
-          <li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="">
-            <div class="lisC">
-              <p>{{arr2.name}}</p>
-              <p>{{arr2.jj}}</p>
-              <a>￥{{arr2.money}}</a><span>￥{{arr2.moneyY}}</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="" @click="a4(i)">
-            </div>
-          </li>
-        </ul>
-      </div>
+          <!--<div class="lisT_r"><a href="#">更多&gt;</a></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="lisB">-->
+        <!--<ul>-->
+          <!--<li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="">-->
+            <!--<div class="lisC">-->
+              <!--<p>{{arr2.name}}</p>-->
+              <!--<p>{{arr2.jj}}</p>-->
+              <!--<a>￥{{arr2.money}}</a><span>￥{{arr2.moneyY}}</span>-->
+              <!--<img src="./../../static/z/主页/gwc1.png" alt="" @click="a4(i)">-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
     </div>
     <!--<Btm></Btm>-->
   </div>
@@ -134,11 +134,25 @@
         }
       },
       methods:{
+          toXiang1(i){
+            localStorage.spxqid = this.data[i].id;
+            window.location.href = '/#/spxq'
+          },
+        toXiang2(i){
+          localStorage.spxqid = this.data1[i].id;
+          window.location.href = '/#/spxq'
+        },
+        toXiang3(i){
+          localStorage.spxqid = this.data2[i].id;
+          window.location.href = '/#/spxq'
+        },
         a1(i){
-          // alert(localStorage.login);
-          // console.log(this.data[i]);
+          console.log(this.data[i]);
           if(localStorage.login=='true'){
             gwcfr();
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
           }else {
             // alert('您还未登录');
             $('.login').css({
@@ -147,10 +161,13 @@
           }
         },
         a2(i){
-          console.log(this.data[i])
+          console.log(this.data1[i]);
           if(localStorage.login=='true'){
             gwcfr();
-          }else{
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data1[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
+          }else {
             // alert('您还未登录');
             $('.login').css({
               display:'block'
@@ -158,10 +175,14 @@
           }
         },
         a3(i){
-          console.log(this.data[i])
+          // console.log(this.data2[i]);
+          // alert(this.data2[i].id)
           if(localStorage.login=='true'){
             gwcfr();
-          }else{
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data2[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
+          }else {
             // alert('您还未登录');
             $('.login').css({
               display:'block'
@@ -169,10 +190,13 @@
           }
         },
         a4(i){
-          console.log(this.data[i])
+          // console.log(this.data[i]);
           if(localStorage.login=='true'){
             gwcfr();
-          }else{
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data3[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
+          }else {
             // alert('您还未登录');
             $('.login').css({
               display:'block'

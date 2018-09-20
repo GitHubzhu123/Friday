@@ -1,6 +1,6 @@
 <template>
     <div id="gwc_tit" class="zhong">
-      <img class="logo" src="static/f/logo.png" alt="">
+      <img class="logo" src="static/f/logo.png" alt="" @click="logo()">
       <div class="right">
         <span class="zi" @click="to_gwc">我的购物车</span>
         <span class="tu"></span>
@@ -22,6 +22,9 @@
         }
       },
       methods:{
+        logo(){
+          window.location.href = '/#/top'
+        },
         to_gwc(){
           if (localStorage.huang>0){
           axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {

@@ -220,7 +220,23 @@ console.log(res.data)
           axios.get('/api/vuephp/gwc.php?type=13&spidarr='+this.shanchu_duo).then(res=>{
             console.log(res.data)
           })
-          window.location.reload()
+          this.to_gwc()
+        },
+        to_gwc(){
+          if(localStorage.login=='true'){
+            axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
+              localStorage.huang=0
+              if(res.data==''){
+                window.location.href="/#/kong"
+              }else {
+                window.location.href="/#/gwc_you"
+              }
+            })
+          }else{
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
         //确认订单
         qrdd(){

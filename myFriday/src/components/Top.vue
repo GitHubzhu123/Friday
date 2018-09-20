@@ -12,9 +12,10 @@
           <div class="log_2"><input type="text" placeholder="请输入密码" class="val2">
             <p class="p2"><span>!</span>{{p2}}</p></div>
           <div class="log_4">
-            <input type="text" placeholder="验证码">
-            <canvas id="canvas" width="80" height="30"></canvas>
-            <a href="#" id="changeImg">看不清，换一张</a>
+            <input type="text" id="code_input1" value="" placeholder="验证码"/>
+            <div id="v_container1"></div>
+            <div class="yzm1"><a href="###">看不清换一张</a></div>
+            <!--<p class="p3 log2p4"><span>!</span>验证失败</p>-->
           </div>
           <div class="log_5">
             <input type="checkbox">自动登录
@@ -79,14 +80,14 @@
         </div>
         <div class="topTr">
           <span>您好 ,</span>
-          <a class="phone1" @click="login()">{{userid}}</a>
+          <a class="phone1" @click="login()">{{username}}</a>
           <a @click="tc()">退出</a>
           <span class="span">|</span><a href="#">我的订单</a><span class="span">|</span><a href="#">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
           <span class="span">|</span><span class="phone">400-800-8820</span>
         </div>
       </div>
       <div class="topC">
-        <img src="./../../static/z/主页/logo.png" alt="">
+        <img src="./../../static/z/主页/logo.png" alt="" @click="logo()">
         <div class="topC1">
           <div class="topC1_1"><input type="text" placeholder="请输入关键字进行搜索">
 
@@ -194,7 +195,7 @@
     },
     data(){
       return {
-        userid:'未登录',
+        username:'未登录',
         p1:'手机号码不正确，请重新输入',
         p2:'密码不正确，请重新输入',
         djs:60,
@@ -205,6 +206,9 @@
       }
     },
     methods:{
+      logo(){
+        window.location.href = '/#/top'
+      },
       sou(){
         this.$router.push({name:'Suosou',query:{name: $('.topC1_1>input').val()}})
         location.reload()
@@ -259,9 +263,10 @@
       tc(){
         var bol = confirm('确定要退出登录吗')
         if(bol){
-          localStorage.userid = '未登录';
-          this.userid = localStorage.userid;
+          localStorage.username = '未登录';
+          this.username = localStorage.username;
           localStorage.login = false;
+          localStorage.userid = 0;
           // location.reload()
         }else{
 
@@ -285,8 +290,10 @@
               $('.login').css({
                 display:'none'
               })
-              localStorage.userid = $('.val1').val();
-              this.userid = localStorage.userid
+              localStorage.username = $('.val1').val();
+              localStorage.userid = res.data[0].id;
+              // alert(localStorage.userid)
+              this.username = localStorage.username
               localStorage.login = true;
               // location.reload()
               $('.p2').css({
@@ -303,19 +310,20 @@
         }
       },
       to_gwc(){
-
-        // console.log($(".togwc").offset().left,$(".togwc").offset().top)
-        axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
-          // console.log(res.data)
-          localStorage.huang=0
-          if(res.data==''){
-            window.location.href="/#/kong"
-          }else {
-            window.location.href="/#/gwc_you"
-          }
-          // this.sparr = res.data;
-          // var that = this;
-        })
+        if(localStorage.login=='true'){
+          axios.get('/api/vuephp/gwc.php?type=21&userid='+localStorage.userid).then(res=> {
+            localStorage.huang=0
+            if(res.data.length<1){
+              window.location.href="/#/kong"
+            }else {
+              window.location.href="/#/gwc_you"
+            }
+          })
+        }else{
+          $('.login').css({
+            display:'block'
+          })
+        }
       },
       zc(){
         $('.log2').css({
@@ -360,11 +368,10 @@
     },
     mounted:function () {
       this.local = localStorage.str1+localStorage.str2+localStorage.str3;
-      // this.userid = localStorage.userid;
-      if(localStorage.userid){
-        this.userid = localStorage.userid;
+      if(localStorage.username){
+        this.username = localStorage.username;
       }else{
-        this.userid = '未登录'
+        this.username = '未登录'
       }
       $('.login').css({
         display:'none'
@@ -425,6 +432,15 @@
       $('#verifyCanvas').click();
     })
       var verifyCode = new GVerify("v_container");
+      var verifyCode1 = new GVerify("v_container1");
+      $('#code_input1').blur(function(){
+        var res = verifyCode1.validate(document.getElementById("code_input1").value);
+        if(res==false){
+          alert('验证失败')
+        }else{
+          alert('验证成功')
+        }
+      })
       $('#code_input').blur(function(){
         var res = verifyCode.validate(document.getElementById("code_input").value);
         if(res){
@@ -1117,6 +1133,25 @@
     float: left;
     width: 60px;
     height: 30px;
+  }
+  .log2_3>input{
+    float: left;
+  }
+  #v_container1{
+    position: absolute;
+    top: 220px;
+    right: 160px;
+    width: 60px;
+    height: 30px;
+  }
+  .yzm1>a{
+    font-size: 14px;
+    margin-left: 35px;
+    line-height: 38px;
+    color: #f29322;
+    position: absolute;
+    top: 220px;
+    right: 50px;
   }
   .yzm>a{
     font-size: 14px;

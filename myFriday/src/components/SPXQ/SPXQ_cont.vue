@@ -93,7 +93,7 @@
       data(){
         return{
           num:1,
-          id:10,
+          id:localStorage.spxqid,
           sp:'',
           src:[],
           srci:0,
@@ -177,7 +177,7 @@
 
       },
       mounted(){
-        localStorage.userid=1;
+        // localStorage.userid=1;
         axios.get('/api/vuephp/gwc.php?type=2&id='+this.id).then(res=>{
           // console.log(res.data)
           this.sp=res.data;
@@ -187,7 +187,7 @@
             Vue.set(that.spName,i,that.sp[i].name);
             Vue.set(that.moneyX,i,that.sp[i].money);
             Vue.set(that.moneyY,i,that.sp[i].moneyY);
-            Vue.set(that.jieshao,i,that.sp[i].jieShao);
+            Vue.set(that.jieshao,i,that.sp[i].jj);
             Vue.set(that.shangdian,i,that.sp[i].shangDian);
           }
         });
