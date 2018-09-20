@@ -303,6 +303,7 @@
         }
       },
       to_gwc(){
+
         // console.log($(".togwc").offset().left,$(".togwc").offset().top)
         axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
           // console.log(res.data)

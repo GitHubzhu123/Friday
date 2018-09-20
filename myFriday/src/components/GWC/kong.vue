@@ -3,7 +3,7 @@
     <img src="static/f/bigche.png" alt="">
     <div class="right">
       <p class="zi">您的购物车是空的</p>
-      <p class="btn">去首页看看</p>
+      <p class="btn" @click="tu_shouye">去首页看看</p>
     </div>
 
   </div>
@@ -11,7 +11,12 @@
 
 <script>
     export default {
-        name: "kong"
+        name: "kong",
+      methods:{
+          tu_shouye(){
+            window.location.href="/#/home"
+          }
+      }
     }
 </script>
 
