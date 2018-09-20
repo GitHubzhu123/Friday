@@ -27,44 +27,21 @@
           </div>
         </li>
       </ul>
+
       <!---->
-      <ul class="midCon">
+      <ul class="midCon" v-for="(item,i) in addres">
         <li class="liOne">
-          <div>张三</div>
+          <div >{{item.shouHuoRen}}</div>
+
         </li>
         <li class="liTwo">
-          <div>北京</div>
+          <div>{{item.location}}</div>
         </li>
         <li class="liThr">
-          <div>大兴街56号</div>
+          <div>nihoap</div>
         </li>
         <li class="liFour">
-          <div>18530969636</div>
-        </li>
-        <li class="liFive">
-          <div>哈喽,你好啊</div>
-        </li>
-        <li class="liSix">
-          <div>
-            <span>修改</span>
-            <div class="line"></div>
-            <span>删除</span>
-          </div>
-        </li>
-      </ul>
-      <!---->
-      <ul class="midCon">
-        <li class="liOne">
-          <div>张三</div>
-        </li>
-        <li class="liTwo">
-          <div>北京</div>
-        </li>
-        <li class="liThr">
-          <div>大兴街56号</div>
-        </li>
-        <li class="liFour">
-          <div>18530969636</div>
+          <div>ddd</div>
         </li>
         <li class="liFive">
           <div>哈喽,你好啊</div>
@@ -73,9 +50,9 @@
           <div>
             <span>设为默认地址</span>
             <div class="line1"></div>
-            <span>修改</span>
+            <span @click="changei(i)">修改</span>
             <div class="line2"></div>
-            <span>删除</span>
+            <span @click="del(i)">删除</span>
           </div>
         </li>
       </ul>
@@ -86,8 +63,36 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
     export default {
-        name: "AdressGuanL"
+        name: "AdressGuanL",
+      data(){
+          return {
+            addres:[],
+          }
+      },
+      methods:{
+        changei(i){
+          console.log(i);
+          window.location.href='/#/xiugaiadress'
+
+        },
+          del(i){
+            console.log(i);
+            var aa = this.addres[i].id;
+            axios.get('/api/PHP/Day04/mfriday.php?type=10&id='+aa).then(res=>{
+              console.log(res.data)
+              this.addres=res.data
+            })
+          }
+      },
+      mounted(){
+        axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.usreid).then(res=>{
+          console.log(res.data)
+          this.addres=res.data
+        })
+      }
     }
 </script>
 
@@ -186,10 +191,16 @@
     width: 230px;
   }
   .liSix>div{
+    width: 200px;
+    margin-left: 15px;
     position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
   }
   .liSix>div>span{
-    margin-left: 10px;
+    /*margin-left: 10px;*/
   }
   .line{
     position: absolute;
@@ -200,19 +211,19 @@
     left: 120px;
   }
   .line1{
-    position: absolute;
+    /*position: absolute;*/
     width: 2px;
     height: 16px;
     background: #666666;
-    top: 16px;
-    left: 128px;
+    /*top: 16px;*/
+    /*left: 128px;*/
   }
   .line2{
-    position: absolute;
+    /*position: absolute;*/
     width: 2px;
     height: 16px;
     background: #666666;
-    top: 16px;
-    left: 175px;
+    /*top: 16px;*/
+    /*left: 175px;*/
   }
 </style>

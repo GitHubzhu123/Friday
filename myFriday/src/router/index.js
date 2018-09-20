@@ -28,6 +28,7 @@ import DingDanXq from '@/components/Grzx/DingDanXq'
 import DingdaPingJia from '@/components/Grzx/DingdaPingJia'
 import WdZhangDan from '@/components/Grzx/WdZhangDan'
 import JiFenDingDanXq from '@/components/Grzx/JiFenDingDanXq'
+import XiuGaiAdress from '@/components/Grzx/XiuGaiAdress'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
@@ -66,11 +67,18 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    },
+    // {
+    //   path: '/',
+    //   name: 'GrMenu',
+    //   component: GrMenu,
+    //   children:[
+    //     {
+    //       path: '/',
+    //       name: 'WdZhangH',
+    //       component: WdZhangH,
+    //     },
+    //     ]
+    // },
     {
       path: '/map',
       name: 'Map',
@@ -78,139 +86,7 @@ export default new Router({
     },
 
     // 个人中心
-    {
-      path: '/grmenu',
-      name: 'GrMenu',
-      component: GrMenu,
-      children:[
-        {
-          path: '/',
-          name: 'WdZhangH',
-          component: WdZhangH,
-        },
-        {
-          path: '/duihuan',
-          name: 'DuiHuan',
-          component: DuiHuan
-        },
-        {
-          path: '/adress',
-          name: 'Adress',
-          component: Adress,
-        },
-        {
-          path: '/newadress',
-          name: 'NewAdress',
-          component: NewAdress,
-        },
-        {
-          path: '/adressguanl',
-          name: 'AdressGuanL',
-          component: AdressGuanL,
-        },
-        {
-          path: '/grziliao',
-          name: 'GrZiLiao',
-          component: GrZiLiao,
-        },
-        {
-          path: '/yijianfk',
-          name: 'YiJianFK',
-          component: YiJianFK,
-        },
-        {
-          path: '/bangdiphone',
-          name: 'BangDiPhone',
-          component: BangDiPhone,
-        },
-        {
-          path: '/genghuanphone',
-          name: 'GengHuanPhone',
-          component: GengHuanPhone,
-        },
-        {
-          path: '/genghuanphone2',
-          name: 'GengHuanPhone2',
-          component: GengHuanPhone2,
-        },
-        {
-          path: '/genghuanphone3',
-          name: 'GengHuanPhone3',
-          component: GengHuanPhone3,
-        },
-        {
-          path: '/wdzhangh',
-          name: 'WdZhangH',
-          component: WdZhangH,
-        },
-        {
-          path: '/wddingdan',
-          name: 'WdDingDan',
-          component: WdDingDan,
-        },
-        {
-          path: '/wddingdan2',
-          name: 'WdDingDan2',
-          component: WdDingDan2,
-        },
-        {
-          path: '/wodejifen',
-          name: 'WodeJiFen',
-          component: WodeJiFen,
-        },
-        {
-          path: '/jifendingdan',
-          name: 'JifenDingdan',
-          component: JifenDingdan,
-        },
-        {
-          path: '/wodemoney',
-          name: 'WodeMoney',
-          component: WodeMoney,
-        },
-        {
-          path: '/wodecollect',
-          name: 'WodeCollect',
-          component: WodeCollect,
-        },
-        {
-          path: '/recentlook',
-          name: 'RecentLook',
-          component: RecentLook,
-        },
-        {
-          path: '/gaipassword',
-          name: 'GaiPassword',
-          component: GaiPassword,
-        },
-        {
-          path: '/wodemessage',
-          name: 'WodeMessage',
-          component: WodeMessage,
-        },
-        {
-          path: '/dingdanxq',
-          name: 'DingDanXq',
-          component: DingDanXq,
-        },
-        {
-          path: '/dingdapingjia',
-          name: 'DingdaPingJia',
-          component: DingdaPingJia,
-        },
-        {
-          path: '/wdzhangdan',
-          name: 'WdZhangDan',
-          component: WdZhangDan,
-        },
-        {
-          path: '/jifendingdanxq',
-          name: 'JiFenDingDanXq',
-          component: JiFenDingDanXq,
-        },
 
-      ]
-    },
     //购物车
     {
       path: '/gouwuche',
@@ -275,6 +151,143 @@ export default new Router({
       component: Top,
       redirect:'/home',
       children:[
+        {
+          path: '/grmenu',
+          name: 'GrMenu',
+          component: GrMenu,
+          children:[
+            {
+              path: '/',
+              name: 'WdZhangH',
+              component: WdZhangH,
+            },
+            {
+              path: '/duihuan',
+              name: 'DuiHuan',
+              component: DuiHuan
+            },
+            {
+              path: '/adress',
+              name: 'Adress',
+              component: Adress,
+            },
+            {
+              path: '/newadress',
+              name: 'NewAdress',
+              component: NewAdress,
+            },
+            {
+              path: '/adressguanl',
+              name: 'AdressGuanL',
+              component: AdressGuanL,
+            },
+            {
+              path: '/grziliao',
+              name: 'GrZiLiao',
+              component: GrZiLiao,
+            },
+            {
+              path: '/yijianfk',
+              name: 'YiJianFK',
+              component: YiJianFK,
+            },
+            {
+              path: '/bangdiphone',
+              name: 'BangDiPhone',
+              component: BangDiPhone,
+            },
+            {
+              path: '/genghuanphone',
+              name: 'GengHuanPhone',
+              component: GengHuanPhone,
+            },
+            {
+              path: '/genghuanphone2',
+              name: 'GengHuanPhone2',
+              component: GengHuanPhone2,
+            },
+            {
+              path: '/genghuanphone3',
+              name: 'GengHuanPhone3',
+              component: GengHuanPhone3,
+            },
+            {
+              path: '/wdzhangh',
+              name: 'WdZhangH',
+              component: WdZhangH,
+            },
+            {
+              path: '/wddingdan',
+              name: 'WdDingDan',
+              component: WdDingDan,
+            },
+            {
+              path: '/wddingdan2',
+              name: 'WdDingDan2',
+              component: WdDingDan2,
+            },
+            {
+              path: '/wodejifen',
+              name: 'WodeJiFen',
+              component: WodeJiFen,
+            },
+            {
+              path: '/jifendingdan',
+              name: 'JifenDingdan',
+              component: JifenDingdan,
+            },
+            {
+              path: '/wodemoney',
+              name: 'WodeMoney',
+              component: WodeMoney,
+            },
+            {
+              path: '/wodecollect',
+              name: 'WodeCollect',
+              component: WodeCollect,
+            },
+            {
+              path: '/recentlook',
+              name: 'RecentLook',
+              component: RecentLook,
+            },
+            {
+              path: '/gaipassword',
+              name: 'GaiPassword',
+              component: GaiPassword,
+            },
+            {
+              path: '/wodemessage',
+              name: 'WodeMessage',
+              component: WodeMessage,
+            },
+            {
+              path: '/dingdanxq',
+              name: 'DingDanXq',
+              component: DingDanXq,
+            },
+            {
+              path: '/dingdapingjia',
+              name: 'DingdaPingJia',
+              component: DingdaPingJia,
+            },
+            {
+              path: '/wdzhangdan',
+              name: 'WdZhangDan',
+              component: WdZhangDan,
+            },
+            {
+              path: '/jifendingdanxq',
+              name: 'JiFenDingDanXq',
+              component: JiFenDingDanXq,
+            },
+            {
+              path: '/xiugaiadress',
+              name: 'XiuGaiAdress',
+              component: XiuGaiAdress,
+            },
+          ]
+        },
         //商品详情
         {
           path: '/spxq',

@@ -1,6 +1,6 @@
 <template>
   <div id="box">
-    <top></top>
+
     <div class="fengexian"></div>
     <div id="content">
       <div class="leftMenu">
@@ -51,7 +51,7 @@
         <router-view></router-view>
       </div>
     </div>
-    <btm></btm>
+
   </div>
 </template>
 
@@ -76,7 +76,7 @@
     },
     methods:{
       adress(){
-        axios.get('/api/PHP/Day04/mfriday.php?type=7&id='+localStorage.userid).then(res=>{
+        axios.get('/api/PHP/Day04/mfriday.php?type=7').then(res=>{
           console.log(res.data)
           if(res.data.length){
             window.location.href='/#/adressguanl'

@@ -5,20 +5,22 @@
     </div>
     <div class="mid">
       <ul class="midCon">
-        <li><input type="text" placeholder="请输入手机号"></li>
-        <li><input type="password" placeholder="请输入密码(6-20位号码字符)"></li>
-        <li><input type="password" placeholder="请再次输入密码确认"></li>
+        <li><input type="text" placeholder="请输入手机号" id="onePh"></li>
+        <li><input type="password" placeholder="请输入密码(6-20位号码字符)" id="onePs"></li>
+        <li><input id="twoPs" type="password" placeholder="请再次输入密码确认"></li>
         <li class="fourLi">
           <input type="text" placeholder="验证码">
-          <div class="yzm"><canvas id="canvas" width="80" height="35"></canvas>
-            <span id="changeImg">看不清换一张</span></div>
+          <div class="yzm">
+            <canvas id="canvas" width="80" height="35"></canvas>
+            <span id="changeImg">看不清换一张</span>
+          </div>
         </li>
         <li class="fiveLi">
           <input type="text" placeholder="手机验证码">
           <button>获取验证码</button>
         </li>
       </ul>
-      <div class="bangding" @click="aa">提交修改</div>
+      <div class="bangding" @click="xiugai">提交修改</div>
       <div class="success" v-show="bol">
         <div>
           <img src="../../../static/imgM/绑定成功.png" alt="">
@@ -31,19 +33,49 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   export default {
     name: "GaiPassword",
     data(){
       return {
-        bol:false
+        bol:false,
+        phone:''
       }
     },
     methods:{
-      aa(){
-        this.bol=true
-      }
+      xiugai(){
+        var ph=$('#onePh').val();
+        var ps1=$('#onePs').val();
+        var ps2=$('#twoPs').val();
+        var res= /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,10}$/
+        if (ph!=this.phone){
+          alert('请输入原手机号')
+        }else if(!res.test(ps1) || !res.test(ps2)){
+          alert('请输入正确的密码格式')
+        }else if(ps1!=ps2){
+          alert('两次密码输入不一致,请重新输入')
+        }else{
+          axios.get('/api/PHP/Day04/mfriday.php?type=11&id='+localStorage.userid+'&password='+ps1).then(res=>{
+            console.log(res.data)
+            this.bol=true
+          })
+        }
+
+      },
+
     },
     mounted(){
+      axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
+        console.log(res.data)
+        this.phone=res.data[0].phone
+      })
+
+
+
+
+
+
       function randomNum(min,max){
         return Math.floor( Math.random()*(max-min)+min);
       }
