@@ -27,16 +27,16 @@
         <div class="zujian">
           <div class="old">
             <ul class="oldCon">
-              <li><input type="text" placeholder="请输入原手机号"></li>
+              <li><input type="text" placeholder="请输入新手机号" id="newPhone"></li>
               <li class="twoLi">
                 <input type="text" placeholder="验证码">
                 <div class="yzm"><canvas id="canvas" width="80" height="35"></canvas>
                   <span id="changeImg">看不清换一张</span></div>
               </li>
-              <li><input type="text" placeholder="输入密码验证身份"></li>
+              <li><input type="text" placeholder="输入密码验证身份" id="newPassword"></li>
             </ul>
-            <div class="tijiao">
-              <router-link to="/genghuanphone3"><span>提交验证</span></router-link>
+            <div class="tijiao" @click="succ">
+              <router-link to=""><span>提交验证</span></router-link>
             </div>
           </div>
         </div>
@@ -49,6 +49,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   export default {
     name: "GengHuanPhone",
     data(){
@@ -56,7 +58,24 @@
 
       }
     },
+    methods:{
+      succ(){
+        var ph=$('#newPhone').val()
+        var pw=$('#newPassword').val()
+        var re = /^1\d{10}$/;
+        console.log(pw.trim())
+        if (!re.test(ph) || pw.trim()=='') {
+          alert('请输入正确的手机号或密码')
+        }else{
+          axios.get('/api/PHP/Day04/mfriday.php?type=6&id='+localStorage.userid+'&phone='+ph+'&password='+pw).then(res=>{
+            console.log(res.data)
+            window.location.href='/#/genghuanphone3'
+          })
+        }
+      }
+    },
     mounted(){
+
       function randomNum(min,max){
         return Math.floor( Math.random()*(max-min)+min);
       }

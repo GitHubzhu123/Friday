@@ -8,7 +8,7 @@
         <div class="headImg">
           <span>当前头像:</span>
           <div class="touPho">
-            <img src="../../../static/imgM/头像背景.png" alt="">
+            <!--<img src="../../../static/imgM/头像背景.png" alt="">-->
             <img src="../../../static/imgM/个人资料头像.png" alt="">
           </div>
           <span class="xiugai">修改</span>
@@ -16,23 +16,23 @@
 
         <ul class="inputs">
           <li class="oneLi">
-            昵称: <input id="oneInp" type="text">
+            昵称: <input id="oneInp" type="text" :value="nicheng">
           </li>
           <li class="twoLi">
-            性别: <label><input type="radio" name="sex"> 男</label>
-                  <label ><input type="radio" name="sex"> 女</label>
+            性别: <label><input type="radio" name="sex" id="oneRadio" value="1"> 男</label>
+                  <label ><input type="radio" name="sex" value="2"> 女</label>
           </li>
           <li class="thrLi">
             生日: <select id="thrInp">
-            <option value="1970">1970</option>
+            <option>1990</option>
           </select> 年
           </li>
           <li class="fourLi">
-            手机: <input id="fourInp" type="text">
+            手机: <input id="fourInp" type="text" :value="phone">
             <router-link to="/genghuanphone"><span>更换手机</span></router-link>
           </li>
         </ul>
-        <div class="ack">确认提交</div>
+        <div class="ack" @click="sub()">确认提交</div>
       </div>
     </div>
 
@@ -45,19 +45,59 @@
   import Vue from 'vue'
     export default {
         name: "GrZiLiao",
+      data(){
+          return {
+            nicheng:'',
+            phone:'',
+            sex:'',
+            age:'',
+          }
+      },
       methods:{
+        year(){
 
+        },
+        sub(){
+          // console.log($('#thrInp').val())
+          var one=document.getElementById('oneInp').value;
+          var thr=document.getElementById('thrInp').value;
+          var four=document.getElementById('fourInp').value;
+          var oneRadio = $('.twoLi input:radio:checked').val()
+            // console.log(one,thr,four,oneRadio)
+            axios.get('/api/PHP/Day04/mfriday.php?type=2&id='+localStorage.userid+'&nicheng='+one+'&birthday='+thr+'&sex='+ oneRadio).then(res=>{
+              console.log(res.data)
+            })
+        }
       },
       mounted(){
-        $('.ack').click(function () {
-          var one=document.getElementById('oneInp');
-          var thr=document.getElementById('thrInp');
-          var four=document.getElementById('fourInp');
-          axios.get('/api/PHP/Day04/mfriday.php?type=4&nicheng='+one.value+'&birthday='+thr.value+'&id='+localStorage.userid).then(res=>{
-            console.log(thr.value)
-            console.log(res.data)
+
+          axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
+            // console.log(res.data)
+            this.nicheng=res.data[0].nicheng
+            this.phone=res.data[0].phone
+            this.sex=res.data[0].sex
+            if (this.sex=='1') {
+              // console.log($("input:radio:eq(0)").val())
+              $("input:radio:eq(0)").attr('checked',true)
+            } else{
+              $("input:radio:eq(1)").prop('checked',true)
+            }
           })
+
+
+
+
+          // 出生日期
+        $('#thrInp').on('click',function () {
+          var thr=document.getElementById('thrInp')
+          thr.innerHTML='';
+          for (var i=0;i<10;i++) {
+            var opt=document.createElement('option')
+            opt.innerHTML=1990+i;
+            thr.appendChild(opt)
+          }
         })
+
       }
     }
 </script>

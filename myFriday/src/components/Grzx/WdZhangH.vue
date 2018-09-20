@@ -12,11 +12,11 @@
       <ul class="topRig">
         <li>
           <p>当前积分</p>
-          <router-link to="/wodejifen"><span>124</span></router-link>
+          <router-link to="/wodejifen"><span>{{jifen}}</span></router-link>
         </li>
         <li>
           <p>我的钱包</p>
-          <router-link to="/wodemoney"><span>¥1220.0</span></router-link>
+          <router-link to="/wodemoney"><span>¥{{money}}</span></router-link>
         </li>
         <li class="thrLi">
           <p class="chognzhi" @click="aa">充值有礼>></p>
@@ -46,6 +46,7 @@
         username:'',
         jifen:'',
         money:'',
+        headimg:''
       }
     },
     methods:{
@@ -57,7 +58,10 @@
       localStorage.userid=1
       axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
         console.log(res.data)
-        this.username=res.data[0].userName
+        this.username=res.data[0].userName;
+        this.jifen=res.data[0].jifen;
+        this.money=res.data[0].money;
+        this.headimg=res.data[0].headImg;
       })
     },
   }
