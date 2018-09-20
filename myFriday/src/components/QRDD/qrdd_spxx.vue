@@ -199,7 +199,7 @@
         axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
           // console.log(res.data)
           this.gwc=res.data
-          console.log(this.gwc)
+          // console.log(this.gwc)
 
 
         //获取选中商品id
@@ -227,7 +227,7 @@
               }
             }
           }
-          console.log(that.gwc)
+          // console.log(that.gwc)
           this.zje()
           this.zje2()
           this.zje3()
