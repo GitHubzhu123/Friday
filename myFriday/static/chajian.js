@@ -1,11 +1,10 @@
-var pageNavObj = null;
-        jQuery(document).ready(function($) {
-            pageNavObj = new PageNavCreate("PageNavId",{
-                pageCount:10,//总页数
-                currentPage:1,//当前页
-            });
-            pageNavObj.afterClick(pageNavCallBack);
+function fenPage(){
+        var pageNavObj = new PageNavCreate("PageNavId",{
+            pageCount:10,//总页数
+            currentPage:1,//当前页
         });
+        pageNavObj.afterClick(pageNavCallBack);
+
         //翻页按钮点击后触发的回调函数
         function pageNavCallBack(clickPage){
             pageNavObj = new PageNavCreate("PageNavId",{
@@ -40,3 +39,5 @@ var pageNavObj = null;
             }
             return obj;
         }
+}
+export default { page:fenPage };

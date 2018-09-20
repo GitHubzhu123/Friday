@@ -62,14 +62,20 @@
     </div>
     <div class="local">
       <div class="loc">
-        <p>&times;</p>
+        <p @click="bbc()">&times;</p>
         <span>建议您的收货地址 ：</span><a href="###">河南省郑州市</a>
+        <div class="city">
+          <Map></Map>
+        </div>
+        <div class="bccity">
+          <p @click="bc()">保存</p>
+        </div>
       </div>
     </div>
     <div class="top">
       <div class="topT">
         <div class="topTl">
-          <span @click="local()">所在城市 ：北京朝阳区 </span><img src="./../../static/z/主页/箭头.png" alt="">
+          <span @click="local()">所在城市 ：{{local}} </span><img src="./../../static/z/主页/箭头.png" alt="">
         </div>
         <div class="topTr">
           <span>您好 ,</span>
@@ -92,7 +98,7 @@
     </div>
     <div class="topB">
       <div class="a1">
-        <a href="#">全部分类 <img src="./../../static/z/主页/xia.png" alt=""></a>
+        <a href="/#/qb">全部分类 <img src="./../../static/z/主页/xia.png" alt=""></a>
         <div>
           <ul class="a1_1">
             <li><img src="./../../static/z/主页/li1.png" alt="">新鲜水果
@@ -161,10 +167,12 @@
         </div>
       </div>
       <a href="/#/home" class="a2">
-        首页</a><a href="#" class="a2">同城</a><a href="#" class="a2">礼拜五</a><a href="/#/jfsc" class="a2">积分商城</a><a href="#" class="a2">导航+</a>
+        首页</a><a href="/#/tc" class="a2">同城</a>
+      <a href="/#/zt" class="a2">礼拜五</a><a href="/#/jfsc" class="a2">积分商城</a>
+      <a href="/#/lbw" class="a2">导航+</a>
     </div>
-    <!--<router-view></router-view>-->
-    <!--<Btm></Btm>-->
+    <router-view></router-view>
+    <Btm></Btm>
   </div>
 </template>
 
@@ -172,24 +180,44 @@
   import axios from 'axios'
   import Vue from 'vue'
   import Btm from "./Btm";
+  import Map from "./Map";
 
   export default {
     name: "Top",
     components:{
+      Map,
       Btm,
     },
     data(){
       return {
-        userid:'',
+        userid:'未登录',
         p1:'手机号码不正确，请重新输入',
         p2:'密码不正确，请重新输入',
         djs:60,
         bol:true,
         src1:'./../../static/z/主页/yuan1.png',
-        src2:'./../../static/z/主页/yuan2.png'
+        src2:'./../../static/z/主页/yuan2.png',
+        local:'北京市朝阳区'
       }
     },
     methods:{
+      local(){
+        $('.local').css({
+          display:'block'
+        })
+      },
+      bbc(){
+        $('.local').css({
+          display:'none'
+        })
+      },
+      bc(){
+        this.local = localStorage.str1+localStorage.str2+localStorage.str3;
+        // alert(localStorage.str1+=localStorage.str2+=localStorage.str3)
+        $('.local').css({
+          display:'none'
+        })
+      },
       changeI(){
         this.bol = !this.bol;
       },
@@ -312,11 +340,16 @@
       },
       to_grzx(){
         window.location.href="/#/grmenu";
-
       }
     },
     mounted:function () {
-      this.userid = localStorage.userid;
+      this.local = localStorage.str1+localStorage.str2+localStorage.str3;
+      // this.userid = localStorage.userid;
+      if(localStorage.userid){
+        this.userid = localStorage.userid;
+      }else{
+        this.userid = '未登录'
+      }
       $('.login').css({
         display:'none'
       })
@@ -498,8 +531,6 @@
         });
         $('.u-flyer').delay(800).animate({opacity:0},1)
       }
-
-
       $('.a2').eq(0).css({
         background:'#f08200',
         color: 'white',
@@ -683,11 +714,16 @@
   .a2{
     width: 150px;
     height: 50px;
+    margin-left: 5px;
   }
+  /*:visited 访问过的（已经看过的）链接样式*/
+  /*A:hover*/
+  /*A:active*/
   .a2:hover{
-    background: #f08200;
-    color: white;
+    background:#f08200 !important;
+    color: white !important;
   }
+
   .list1{
     width: 458px;
     height: 500px;
@@ -1056,5 +1092,26 @@
     margin-left: 35px;
     line-height: 38px;
     color: #f29322;
+  }
+  .city{
+    width: 700px;
+    margin-top: 50px;
+    text-align: center;
+  }
+  .bccity{
+    width: 150px;
+    height: 30px;
+    margin: 50px auto;
+  }
+  .bccity p{
+    width: 150px;
+    height: 35px;
+    background: #f08200;
+    text-align: center;
+    color: white;
+    font-weight: 200;
+    line-height: 35px;
+    border-radius: 5px;
+    cursor: pointer;
   }
 </style>

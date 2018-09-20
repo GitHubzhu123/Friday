@@ -7,8 +7,12 @@
             <p>礼拜五</p><span>新鲜美食限量抢</span>
           </div></div>
         </div>
-        <div class="swiper-slide"><img src="./../../static/z/主页/lbt.png" alt=""></div>
-        <div class="swiper-slide"><img src="./../../static/z/主页/lbt.png" alt=""></div>
+        <div class="swiper-slide"><div class="slide1"><div class="slide1C">
+          <p>礼拜五</p><span>新鲜美食限量抢</span>
+        </div></div></div>
+        <div class="swiper-slide"><div class="slide1"><div class="slide1C">
+          <p>礼拜五</p><span>新鲜美食限量抢</span>
+        </div></div></div>
       </div>
       <!-- 如果需要导航按钮 -->
       <div class="swiper-pagination"></div>
@@ -25,12 +29,12 @@
         var mySwiper = new Swiper(div, {
           //竖直 vertical 水平 horizontal
           direction: 'horizontal',
-          // loop: true,
-          // autoplay: true,
-          //  autoplay:{disableOnInteraction:false},
-          //  autoplayDisableOnInteraction : false,
+          loop: true,
+          autoplay: true,
+           autoplay:{disableOnInteraction:false},
+           autoplayDisableOnInteraction : false,
 //              speed: 1000,
-//              effect: 'cube',
+//              effect: 'fade',
 //              on: {
 //                  slideChangeTransitionEnd: function() {
 //                      alert(this.activeIndex); //切换结束时，告诉我现在是第几个slide

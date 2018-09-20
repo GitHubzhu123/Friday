@@ -66,6 +66,7 @@
 <style scoped>
   .btm{
     margin-top: 30px;
+    clear: both;
   }
   .btmT{
     clear: both;

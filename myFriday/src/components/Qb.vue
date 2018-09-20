@@ -8,7 +8,8 @@
         href="###">电影</a>
       </div>
       <div class="topN">
-        <div class="topNl"><span>排序：</span><a href="###">销量</a><a href="###">价格 <img src="./../../static/z/同城/jian.png" alt=""></a><a href="###">评分最高</a></div>
+        <div class="topNl"><span>排序：</span><a href="###">销量</a>
+          <a href="###" @click="money()">价格 <img src="./../../static/z/同城/jian.png" alt=""></a><a href="###">评分最高</a></div>
         <div class="topNr"><span>筛选：</span><a>全国</a><a>次日达</a></div>
       </div>
 
@@ -17,52 +18,63 @@
           <li v-for="(arr,i) in data"  v-if="i>8*(num-1)-1&&i<num*8"><img :src="arr.src" alt="">
             <div class="lisC">
               <p>{{arr.name}}</p>
-              <p>花蜜般的甘甜百吃不厌</p>
-              <a>￥{{arr.money}}</a><span>￥40.00</span>
-              <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="">
+              <p>{{arr.jieShao}}</p>
+              <a>￥{{arr.money}}</a><span>￥{{arr.money}}</span>
+              <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="" @click="hq(i)">
             </div>
           </li>
-          <!--<li v-for="arr in data"><img src="./../../static/z/主页/lis1.jpg" alt="">-->
-            <!--<div class="lisC">-->
-              <!--<p>新西兰佳沛黄金奇异果</p>-->
-              <!--<p>果肉绵密，花蜜般的甘甜百吃不厌</p>-->
-              <!--<a>￥20.80</a><span>￥40.00</span>-->
-              <!--<img src="./../../static/z/主页/gwc1.png" alt="">-->
-            <!--</div>-->
-          <!--</li>-->
         </ul>
-        <div class="nav">
-          <nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId"></nav>
-        </div>
       </div>
+      <nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId"></nav>
     </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import fenPage from "../../static/chajian";
     export default {
         name: "Qb",
       data(){
           return {
             data:'',
-            num:1
+            num:1,
+            bol:true
           }
       },
+      methods:{
+        hq(i){
+          console.log(this.data[i])
+        },
+        money(){
+          this.bol = !this.bol;
+          if (this.bol){
+            axios.get('/api/vuephp/tc.php?type=5').then((response) => {
+              console.log(response.data);
+              this.data = response.data;
+            })
+          }else{
+            axios.get('/api/vuephp/tc.php?type=6').then((response) => {
+              console.log(response.data);
+              this.data = response.data;
+            })
+          }
+        }
+      },
       mounted:function () {
-        window.onload = function(){
+        fenPage.page();
+        // window.onload = function(){
           // PageNavId
           $('#PageNavId').click(function () {
             this.num = $('.active>a').html();
             console.log(this.num);
           }.bind(this))
-        }.bind(this)
+        // }.bind(this)
 
         axios.get('/api/vuephp/tc.php?type=4').then((response) => {
           console.log(response.data);
           this.data = response.data;
-          // Vue.set(aa,0,{});
-          // this.data = aa;
-          // console.log(aa)
+          a = response.data.splice(0,1);
+          this.data = a;
         })
           //表头
         $('.topBar>a').eq(0).css({
@@ -79,7 +91,7 @@
             background: '#458E3D'
           })
         })
-        $('.topNl>a').eq(1).css({
+        $('.topNl>a').eq(0).css({
           color:'#498e3d',
           borderColor:'#498e3d'
         })
@@ -92,6 +104,10 @@
             color:'#498e3d',
             borderColor:'#498e3d'
           })
+        })
+        $('.topNr>a').eq(0).css({
+          color:'#fff',
+          background:'#498e3d'
         })
         $('.topNr>a').click(function () {
           $('.topNr>a').css({
@@ -185,17 +201,16 @@
 }
 
 
-
-
 .lisB{
   width: 1280px;
-  height: 430px;
+  /*height: 430px;*/
   margin: 0 auto;
 }
 .lisB>ul{
   display: flex;
   /*justify-content: space-between;*/
   flex-wrap: wrap;
+  clear: both;
 }
 .lisB>ul>li{
   width: 305px;
@@ -215,20 +230,22 @@
   width: 220px;
   height: 220px;
 }
-
+  .lisC{
+    clear: both;
+  }
 .lisC>p:nth-of-type(1){
   font-size: 18px;
   color: #333;
-  margin: 40px 0 10px 20px;
+  margin: 40px 0 10px 30px;
 }
 .lisC>p:nth-of-type(2){
   font-size: 14px;
-  color: #666;margin-left: 20px;
+  color: #666;margin-left: 30px;
   margin-bottom: 15px;
 }
 .lisC>a{
   font-size: 24px;
-  color: #ff5757;margin-left: 20px;
+  color: #ff5757;margin-left: 30px;
 }
 .lisC>span{
   color: #666;
