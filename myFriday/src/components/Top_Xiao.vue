@@ -21,8 +21,11 @@
         name: "Top_Xiao",
       data(){
           return {
-            userid:localStorage.userid
+            userid:localStorage.username
           }
+      },
+      mounted:function () {
+        // alert(localStorage.userid)
       }
     }
 </script>

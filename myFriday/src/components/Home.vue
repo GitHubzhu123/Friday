@@ -40,35 +40,14 @@
       </div>
       <div class="lisB">
         <ul>
-          <li><img src="./../../static/z/主页/lis1.jpg" alt="">
+          <li v-for="(arr,i) in data" v-if="i<4"><img :src="arr.src" alt="" @click="toXiang1(i)">
             <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
+              <p>{{arr.name}}</p>
+              <p>{{arr.jj}}</p>
+              <a>￥{{arr.money}}</a><span>￥{{arr.moneyY}}</span>
+              <img src="./../../static/z/主页/gwc1.png" alt="" @click="a1(i)">
             </div>
           </li>
-          <li><img src="./../../static/z/主页/lis2.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis3.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis4.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
         </ul>
       </div>
 
@@ -82,35 +61,14 @@
       </div>
       <div class="lisB">
         <ul>
-          <li><img src="./../../static/z/主页/lis1.jpg" alt="">
+          <li v-for=" (arr1,i) in data1" v-if="i<4"><img :src="arr1.src" alt="" @click="toXiang2(i)">
             <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
+              <p>{{arr1.name}}</p>
+              <p>{{arr1.jj}}</p>
+              <a>￥{{arr1.money}}</a><span>￥{{arr1.moneyY}}</span>
+              <img src="./../../static/z/主页/gwc1.png" alt="" @click="a2(i)">
             </div>
           </li>
-          <li><img src="./../../static/z/主页/lis2.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis3.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis4.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
         </ul>
       </div>
       <div class="lisT">
@@ -123,78 +81,36 @@
       </div>
       <div class="lisB">
         <ul>
-          <li><img src="./../../static/z/主页/lis1.jpg" alt="">
+          <li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="" @click="toXiang3(i)">
             <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
+              <p>{{arr2.name}}</p>
+              <p>{{arr2.jj}}</p>
+              <a>￥{{arr2.money}}</a><span>￥{{arr2.moneyY}}</span>
+              <img src="./../../static/z/主页/gwc1.png" alt="" @click="a3(i)">
             </div>
           </li>
-          <li><img src="./../../static/z/主页/lis2.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis3.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis4.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
         </ul>
       </div>
-      <div class="lisT">
-        <div class="lisT_l">
-          <img src="./../../static/z/主页/c5.png" alt="">
-          <span>蛋奶速食</span><a>采自新疆优质水果生产基地 ，品质一流</a>
+      <!--<div class="lisT">-->
+        <!--<div class="lisT_l">-->
+          <!--<img src="./../../static/z/主页/c5.png" alt="">-->
+          <!--<span>蛋奶速食</span><a>采自新疆优质水果生产基地 ，品质一流</a>-->
 
-          <div class="lisT_r"><a href="#">更多&gt;</a></div>
-        </div>
-      </div>
-      <div class="lisB">
-        <ul>
-          <li><img src="./../../static/z/主页/lis1.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div>
-          </li>
-          <li><img src="./../../static/z/主页/lis2.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis3.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-          <li><img src="./../../static/z/主页/lis4.jpg" alt="">
-            <div class="lisC">
-              <p>新西兰佳沛黄金奇异果</p>
-              <p>果肉绵密，花蜜般的甘甜百吃不厌</p>
-              <a>￥20.80</a><span>￥40.00</span>
-              <img src="./../../static/z/主页/gwc1.png" alt="">
-            </div></li>
-        </ul>
-      </div>
+          <!--<div class="lisT_r"><a href="#">更多&gt;</a></div>-->
+        <!--</div>-->
+      <!--</div>-->
+      <!--<div class="lisB">-->
+        <!--<ul>-->
+          <!--<li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="">-->
+            <!--<div class="lisC">-->
+              <!--<p>{{arr2.name}}</p>-->
+              <!--<p>{{arr2.jj}}</p>-->
+              <!--<a>￥{{arr2.money}}</a><span>￥{{arr2.moneyY}}</span>-->
+              <!--<img src="./../../static/z/主页/gwc1.png" alt="" @click="a4(i)">-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
     </div>
     <!--<Btm></Btm>-->
   </div>
@@ -205,26 +121,113 @@
     import Btm from "./Btm";
     import Lbt from "./Lbt";
     import Flbt from "./Flbt";
+    import axios from 'axios'
     export default {
         name: "Home",
       components: {Flbt, Lbt, Btm, Top},
-      mounted:function () {
-          $('.lisC>img').mouseover(function () {
-            $(this).css({
-              // 'animation-iteration-count': 'infinite',
-              'animation-duration': '1s',
-              'animation-name': 'swing',
+      data(){
+        return {
+          data:[],
+          data1:[],
+          data2:[],
+          login:''
+        }
+      },
+      methods:{
+          toXiang1(i){
+            localStorage.spxqid = this.data[i].id;
+            window.location.href = '/#/spxq'
+          },
+        toXiang2(i){
+          localStorage.spxqid = this.data1[i].id;
+          window.location.href = '/#/spxq'
+        },
+        toXiang3(i){
+          localStorage.spxqid = this.data2[i].id;
+          window.location.href = '/#/spxq'
+        },
+        a1(i){
+          console.log(this.data[i]);
+          if(localStorage.login=='true'){
+            gwcfr();
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
             })
-          });
-        // animation-iteration-count: infinite;
-        // animation-duration: 2s;
-        // animation-name: bounce;
+          }else {
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
+        },
+        a2(i){
+          console.log(this.data1[i]);
+          if(localStorage.login=='true'){
+            gwcfr();
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data1[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
+          }else {
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
+        },
+        a3(i){
+          // console.log(this.data2[i]);
+          // alert(this.data2[i].id)
+          if(localStorage.login=='true'){
+            gwcfr();
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data2[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
+          }else {
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
+        },
+        a4(i){
+          // console.log(this.data[i]);
+          if(localStorage.login=='true'){
+            gwcfr();
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data3[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
+          }else {
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
+        },
+      },
+      mounted:function () {
+        var params = new URLSearchParams();
+        params.append('type',1);
+        axios.post('/api/vuephp/home.php',params).then((response) => {
+          console.log(response.data);
+          this.data = response.data;
+        })
+        axios.get('/api/vuephp/home.php',{params:{type:2}}).then((response) => {
+          console.log(response.data);
+          this.data1 = response.data;
+        })
+        axios.get('/api/vuephp/home.php?type=3').then((response) => {
+          console.log(response.data);
+          this.data2 = response.data;
+        })
       }
     }
 </script>
 
 <style scoped>
-
+  .lisC>img:hover{
+    animation-duration: 1s;
+    animation-name: swing
+  }
   .re{
     width: 1280px;
     margin: 0 auto;
@@ -343,7 +346,7 @@
   .lisT_l span{
     font-size: 30px;
     color: #498e3d;
-    margin-left: 25px;
+    margin-left: 20px;
   }
   .lisT_l a{
     font-size: 24px;
@@ -384,6 +387,8 @@
   .lisB>ul>li>img{
     margin-top: 40px;
     margin-left: 42.5px;
+    width: 220px;
+    height: 220px;
   }
 
   .lisC>p:nth-of-type(1){

@@ -36,16 +36,16 @@
             </div>
           </div>
 
-          <span class="zi3">￥{{jj.money*num[i][j]}}</span>
-          <span class="shan" @click="gwc_sc">删除</span>
+          <span class="zi3">￥{{spzje[i][j]}}</span>
+          <span class="shan" @click="shanchu_sp(i,j)">删除</span>
         </div>
-        <p class="je_p">商品金额<span class="je_span">￥108.0</span></p>
+        <p class="je_p">商品金额<span class="je_span">￥{{sdzje[i]}}</span></p>
       </div>
       <div class="foot">
-        <span class="left">全选</span>
-        <span class="left">批量删除</span>
+        <span class="left" @click="quanxuan()">全选</span>
+        <span class="left" @click="shanchu_quan()">批量删除</span>
         <span>商品总计:</span>
-        <span class="zongjia">￥2977</span>
+        <span class="zongjia">￥{{zongjine}}</span>
         <span class="ljgm" @click="qrdd">立即购买</span>
       </div>
 
@@ -55,6 +55,7 @@
 <script>
   import axios from 'axios'
   import Vue from 'vue'
+  import bus from '../../assets/bus.js'
     export default {
         name: "GWC_you",
       data(){
@@ -67,8 +68,18 @@
           spARR:[[],[]],
           gwc:[],
           num:[[],[]],
+          //对勾
           goubol:[],
-          zongjine:[{sdzong:100,spzong:[]}],
+          shan_spid:0,
+          // 金额
+          spzje:[[],[]],
+          sdzje:[],
+          zongjine:0,
+          // 删除
+          shanchu:[],
+          shanchu_duo:[],
+          //选中商品id
+          xuanzhong:[],
         }
       },
       methods:{
@@ -80,81 +91,178 @@
             for(var a=0;a<this.goubol[i].spgou.length;a++){
               this.$set(this.goubol[i].spgou,a,true)
             }
+            this.zje2()
+            this.zje3()
           }else {
             for(var a=0;a<this.goubol[i].spgou.length;a++){
               this.$set(this.goubol[i].spgou,a,false)
             }
+            this.zje2()
+            this.zje3()
           }
+
         },
         //商品的勾
         spgouchange(i,j){
           this.$set(this.goubol[i].spgou,j,!this.goubol[i].spgou[j])
+          this.zje2()
+          this.zje3()
+        },
+        //全选
+        quanxuan(){
+          for(var i=0;i<this.sdarr.length;i++){
+            for(var j=0;j<this.spARR[i].length;j++){
+              this.goubol[i].sdgou=true
+              this.$set(this.goubol[i].spgou,j,true)
+              this.zje2()
+
+            }
+          }
+          this.zje3()
         },
         // 减号
         jian(i,j){
           this.$set(this.num[i],j,this.num[i][j]*1-1)
-          console.log(this.spARR[i][j].id)
+          // console.log(this.spARR[i][j].id)
           axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
-console.log(res.data)
+// console.log(res.data)
           })
-          // if(this.num[i][j]==0){
-          //   alert("该商品将被删除")
-          // }
+          if(this.num[i][j]==0){
+            alert("该商品将被删除")
+            this.shanchu_sp(i,j)
 
+          }
+          this.zje()
+          this.zje2()
+          this.zje3()
         },
         // 加号
         jia(i,j){
           this.$set(this.num[i],j,this.num[i][j]*1+1)
 
           axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
           })
-
+          this.zje()
+          this.zje2()
+          this.zje3()
         },
         //输入框改变数量
         inputnum(i,j,$event){
             this.num[i][j]=$event.target.value
 
           axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+            // console.log(res.data)
+          })
+          this.zje()
+          this.zje2()
+          this.zje3()
+        },
+
+        gwc_sc(){
+
+        },
+        //商品总金额
+        zje(){
+          for(var i=0;i<this.sdarr.length;i++){
+            for(var j=0;j<this.spARR[i].length;j++){
+              this.$set(this.spzje[i],j,this.spARR[i][j].money*this.num[i][j])
+            }
+          }
+        },
+        //商店总金额
+        zje2(){
+
+          for(var i=0;i<this.sdarr.length;i++){
+            var sdz=0;
+            for(var j=0;j<this.spARR[i].length;j++){
+              if(this.goubol[i].spgou[j]){
+                sdz+=this.spzje[i][j]
+                this.$set(this.sdzje,i,sdz)
+              }else {
+                sdz+=0
+                this.$set(this.sdzje,i,sdz)
+              }
+
+
+            }
+          }
+        },
+        // 总金额
+        zje3(){
+          this.zongjine=0;
+          // console.log(this.sdzje)
+          for (var i=0;i<this.sdzje.length;i++){
+            this.zongjine+=this.sdzje[i]
+
+          }
+        },
+        //删除
+        shanchu_sp(i,j){
+          // console.log(this.spARR[i][j].id)
+          this.shan_spid=this.spARR[i][j].id;
+          axios.get('/api/vuephp/gwc.php?type=12&spid='+this.shan_spid).then(res=>{
+console.log(res.data)
+          })
+          window.location.reload()
+        },
+        //批量删除
+        shanchu_quan(){
+          for(var i=0;i<this.sdarr.length;i++){
+            for(var j=0;j<this.spARR[i].length;j++){
+              if(this.goubol[i].spgou[j]){
+                this.shanchu_duo.push(this.spARR[i][j].id)
+                // console.log(this.spARR[i][j].id)
+              }
+            }
+          }
+          // console.log(this.shanchu_duo)
+          axios.get('/api/vuephp/gwc.php?type=13&spidarr='+this.shanchu_duo).then(res=>{
             console.log(res.data)
           })
+          this.to_gwc()
+        },
+        to_gwc(){
+          if(localStorage.login=='true'){
+            axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
+              localStorage.huang=0
+              if(res.data==''){
+                window.location.href="/#/kong"
+              }else {
+                window.location.href="/#/gwc_you"
+              }
+            })
+          }else{
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
         //确认订单
         qrdd(){
-            localStorage.huang=1;
-            window.location.href="/#/querendingdan"
+          for(var i=0;i<this.sdarr.length;i++){
+            for(var j=0;j<this.spARR[i].length;j++){
+              if(this.goubol[i].spgou[j]){
+                this.xuanzhong.push(this.spARR[i][j])
+                // console.log(this.spARR[i][j].id)
+              }
+            }
+          }
+          // console.log(this.xuanzhong)
+          localStorage.huang=1;
+          // var bus = new Vue()
+          localStorage.xuanzhong=JSON.stringify(this.xuanzhong)
+          console.log(localStorage.xuanzhong)
+          window.location.href="/#/QueRendingdan"
+
 
         },
-        gwc_sc(){
-
-        }
       },
       mounted(){
         for(var i=0;i<this.sparr.length;i++){
           this.splength.push(false)
         };
         var usid=Number(localStorage.userid)
-        // 购买商品
-        // axios.get('/api/vuephp/gwc.php?type=22&userid='+usid).then(res=>{
-        //   console.log(res.data)
-        // })
-
-        // axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
-        //   console.log(res.data)
-        //   var that = this;
-        //   //分类商店
-        //   for(var i=0;i<res.data.length;i++){
-        //     Vue.set(that.shangdian,i,res.data[i].shangDian);
-        //     // Vue.set(that.num,i,res.data[i].num);
-        //   }
-        //   for (var i = 0; i < that.shangdian.length; i++) {
-        //     if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
-        //       that.sdarr.push(that.shangdian[i]);
-        //     }
-        //   }
-        //   // console.log(that.sdarr,that.num)
-        // })
-
         axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
           // console.log(res.data)
           this.gwc=res.data
@@ -179,11 +287,13 @@ console.log(res.data)
             that.goubol.push({sdgou:true,spgou:[]})
             that.goubol[i].sdgou=false;
             //总价
-            // that.zongjine.push({sdgou:true,spgou:[]})
+            // that.zongjine.push({sdzong:true,spzong:[]})
+
             for(var j=0;j<that.sp.length;j++){
               if(that.sp[j].shangDian==that.sdarr[i]){
                 that.spARR[i].push(that.sp[j])//将商品加入对应商店
                 that.goubol[i].spgou.push(false)//给商品绑定勾的状态
+                // that.spzje[i][j]=that.spARR[i][j].money*that.num[i][j]
                 for (var n=0;n<that.gwc.length;n++){
                   if(that.gwc[n].spID==that.sp[j].id){
                     that.num[i].push(that.gwc[n].num)//给商品对应数量
@@ -192,10 +302,11 @@ console.log(res.data)
               }
             }
           }
-          // console.log(that.goubol)
 
+          this.zje()
+          this.zje2()
+          // this.zje3()
         })
-
 
 
       }

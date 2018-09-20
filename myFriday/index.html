@@ -25,12 +25,18 @@
     <link rel="stylesheet" href="static/swiper-4.3.3.min.css">
     <link rel="stylesheet" href="static/animate.min.css">
     <script src="static/swiper-4.3.3.min.js"></script>
-    <script src="static/pageNav.js"></script>
+
     <link rel="stylesheet" href="static/pageNav.css">
+
+    <script src="static/gVerify.js"></script>
+
+    <script src="static/pageNav.js"></script>
+
     <script src="static/chajian.js"></script>
     <script src="static/gVerify.js"></script>
     <!--<script type="text/javascript" src="static/city.min.js"></script>-->
     <!--<script type="text/javascript" src="static/jquery.cityselect.js"></script>-->
+
 
   </head>
   <body>
@@ -50,6 +56,7 @@
         borderRadius: '50%',
         background: 'rgb(240,130,0)',
         position: 'absolute',
+        zIndex:20,
         top: 0,
         left: 0,
         left:even.clientX,
@@ -66,7 +73,7 @@
       $(".gwcfeiru").animate({
         left:$(".togwc").offset().left,
         top:$(".togwc").offset().top-50,
-      },1000)
+      },1500)
       $(".gwcfeiru").animate({
         width:"40px",
         height:"40px",
@@ -75,7 +82,7 @@
       },500)
       setTimeout(function () {
         $(".gwcfeiru").css("display","none")
-      },1500)
+      },2000)
       //计数div
     }
   </script>

@@ -15,6 +15,7 @@
 <script>
     export default {
         name: "qrdd_sdsj",
+
       methods:{
           tj(){
             localStorage.huang=2;

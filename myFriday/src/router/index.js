@@ -46,7 +46,7 @@ import QueRendingdan from '@/components/QueRendingdan'
 import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
 import qrdd_dizi_you from '@/components/QRDD/qrdd_dizi_you'
 import qrdd_spxx from '@/components/QRDD/qrdd_spxx'
-import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
+// import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
 //提交订单完成
 import DingDanTiJiao from '@/components/DingDanTiJiao'
 //主页
@@ -61,6 +61,8 @@ import Tc from '@/components/Tc'
 import Zt from '@/components/Zt'
 import Lbw from '@/components/Lbw'
 import Qb from '@/components/Qb'
+import Map from '@/components/Map'
+import Suosou from '@/components/Suosou'
 Vue.use(Router)
 
 export default new Router({
@@ -76,6 +78,11 @@ export default new Router({
           component: WdZhangH,
         },
         ]
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
     },
 
     // 个人中心
@@ -258,51 +265,63 @@ export default new Router({
       name: 'qrdd_spxx',
       component: qrdd_spxx
     },
-    {
-      path: '/qrdd_sdsj',
-      name: 'qrdd_sdsj',
-      component: qrdd_sdsj
-    },
+    // {
+    //   path: '/qrdd_sdsj',
+    //   name: 'qrdd_sdsj',
+    //   component: qrdd_sdsj
+    // },
     //提交订单成功
     {
       path: '/dingdantijiao',
       name: 'DingDanTiJiao',
       component: DingDanTiJiao
     },
-    //商品详情
-    {
-      path: '/spxq',
-      name: 'SPXQ',
-      component: SPXQ,
-      children:[
-        {
-          path: '/spxq_cont',
-          name: 'SPXQ_cont',
-          component: SPXQ_cont,
-          children:[
-            {
-              path: '/spxq_dh',
-              name: 'spxq_dh',
-              component: spxq_dh
-            },
-            {
-              path: '/spxq_pj',
-              name: 'spxq_pj',
-              component: spxq_pj
-            },
-          ]
-        },
-      ]
-    },
+
 
 
     //主页
+
     {
       path: '/top',
       name: 'Top',
       component: Top,
       redirect:'/home',
       children:[
+        //商品详情
+        {
+          path: '/spxq',
+          name: 'SPXQ',
+          component: SPXQ,
+          children:[
+            {
+              path: '/spxq_cont',
+              name: 'SPXQ_cont',
+              component: SPXQ_cont,
+              children:[
+                {
+                  path: '/spxq_dh',
+                  name: 'spxq_dh',
+                  component: spxq_dh
+                },
+                {
+                  path: '/spxq_pj',
+                  name: 'spxq_pj',
+                  component: spxq_pj
+                },
+              ]
+            },
+          ]
+        },
+        // {
+        //   path: '/spxq',
+        //   name: 'Spxq',
+        //   component: Suosou,
+        // },
+        {
+          path: '/sou',
+          name: 'Suosou',
+          component: Suosou,
+        },
         {
           path: '/home',
           name: 'Home',
@@ -318,6 +337,21 @@ export default new Router({
           name: 'Tc',
           component: Tc
         },
+        {
+          path: '/zt',
+          name: 'Zt',
+          component: Zt
+        },
+        {
+          path: '/qb',
+          name: 'Qb',
+          component: Qb
+        },
+        {
+          path: '/lbw',
+          name: 'Lbw',
+          component: Lbw
+        }
       ]
     },
     {
@@ -330,17 +364,9 @@ export default new Router({
       name: 'Tc',
       component: Tc
     },
-    {
-      path: '/qb',
-      name: 'Qb',
-      component: Qb
-    },
 
-    {
-      path: '/zt',
-      name: 'Zt',
-      component: Zt
-    },
+
+
     //轮播图
     {
       path: '/lbt',
@@ -353,10 +379,6 @@ export default new Router({
       name: 'Login',
       component: Login
     },
-    {
-      path: '/lbw',
-      name: 'Lbw',
-      component: Lbw
-    }
+
   ]
 })
