@@ -1,12 +1,12 @@
 <template>
   <div class="duihuan">
     <div class="toP">
-      <span>添加新地址</span>
+      <span>修改地址</span>
     </div>
     <div class="mid">
       <ul class="midCon">
         <li class="oneLi">
-          <span>*</span>收货人姓名: <input type="text">
+          <span>*</span>收货人姓名: <input type="text" :value="adress[0].shouHuoRen">
         </li>
         <!---->
         <li class="twoLi">
@@ -18,12 +18,12 @@
           </div>
         </li>        <!---->
         <li class="thrLi">
-          <span>*</span>详细地址: <input type="text">
+          <span>*</span>详细地址: <input type="text" :value="adress[0].location">
         </li>
         <!---->
         <li class="fourLi">
-          <span>*</span>联系电话: <input type="text" class="oneInp">
-         <span style="font-size: 16px;color: black">或固定电话:</span> <input type="text" class="twoInp"> — <input class="thrInp" type="text"><br>
+          <span>*</span>联系电话: <input type="text" class="oneInp" :value="adress[0].tel">
+          <span style="font-size: 16px;color: black">或固定电话:</span> <input type="text" class="twoInp" :value="adress[0].quhao"> — <input class="thrInp" type="text" :value="adress[0].guHua"><br>
         </li>
         <!---->
         <li class="fiveLi">
@@ -38,37 +38,44 @@
 <script>
   import axios from 'axios'
   import Vue from 'vue'
-    export default {
-        name: "NewAdress",
-      data(){
-          return {
-            defaul:''
-          }
-      },
-      methods:{
-        save(){
-          var one=$('.oneLi>input').val()
-          var thr=$('.thrLi>input').val()
-          var five=$('.oneInp').val()
-          var six =$('.twoInp').val()
-          var seven=$('.thrInp').val()
-          var ack=document.querySelector('.fourInp')
-          if (ack.checked){
-            this.defaul=1
-          }else{
-            this.defaul=0
-          }
-
-          axios.get('/api/PHP/Day04/mfriday.php?type=8&user='+one+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
-            console.log(res.data)
-          })
-          window.location.href='/#/adressguanl'
-        }
-      },
-      mounted(){
+  export default {
+    name: "XiuGaiAdress",
+    data(){
+      return {
+        defaul:'',
+        adress:[]
 
       }
+    },
+    methods:{
+      save(){
+        var one=$('.oneLi>input').val()
+        var thr=$('.thrLi>input').val()
+        var five=$('.oneInp').val()
+        var six =$('.twoInp').val()
+        var seven=$('.thrInp').val()
+        var ack=document.querySelector('.fourInp')
+        if (ack.checked){
+          this.defaul=1
+        }else{
+          this.defaul=0
+        }
+
+        axios.get('/api/PHP/Day04/mfriday.php?type=12&id='+localStorage.userid+'&user='+one+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
+          console.log(res.data)
+          window.location.href='/#/adressguanl'
+        })
+
+      }
+    },
+    mounted(){
+      axios.get('/api/PHP/Day04/mfriday.php?type=13&id='+localStorage.userid).then(res=>{
+        console.log(res.data)
+        this.adress=res.data
+
+      })
     }
+  }
 </script>
 
 <style scoped>

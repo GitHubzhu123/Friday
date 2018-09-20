@@ -28,6 +28,7 @@ import DingDanXq from '@/components/Grzx/DingDanXq'
 import DingdaPingJia from '@/components/Grzx/DingdaPingJia'
 import WdZhangDan from '@/components/Grzx/WdZhangDan'
 import JiFenDingDanXq from '@/components/Grzx/JiFenDingDanXq'
+import XiuGaiAdress from '@/components/Grzx/XiuGaiAdress'
 
 //购物车
 import GouWuChe from '@/components/GouWuChe'
@@ -65,14 +66,21 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/grmenu',
+      name: 'GrMenu',
+      component: GrMenu,
+      children:[
+        {
+          path: '/',
+          name: 'WdZhangH',
+          component: WdZhangH,
+        },
+        ]
     },
 
     // 个人中心
     {
-      path: '/grmenu',
+      path: '/',
       name: 'GrMenu',
       component: GrMenu,
       children:[
@@ -201,7 +209,11 @@ export default new Router({
           name: 'JiFenDingDanXq',
           component: JiFenDingDanXq,
         },
-
+        {
+          path: '/xiugaiadress',
+          name: 'XiuGaiAdress',
+          component: XiuGaiAdress,
+        },
       ]
     },
     //购物车
