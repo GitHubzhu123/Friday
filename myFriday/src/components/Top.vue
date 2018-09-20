@@ -12,9 +12,10 @@
           <div class="log_2"><input type="text" placeholder="请输入密码" class="val2">
             <p class="p2"><span>!</span>{{p2}}</p></div>
           <div class="log_4">
-            <input type="text" placeholder="验证码">
-            <canvas id="canvas" width="80" height="30"></canvas>
-            <a href="#" id="changeImg">看不清，换一张</a>
+            <input type="text" id="code_input1" value="" placeholder="验证码"/>
+            <div id="v_container1"></div>
+            <div class="yzm1"><a href="###">看不清换一张</a></div>
+            <!--<p class="p3 log2p4"><span>!</span>验证失败</p>-->
           </div>
           <div class="log_5">
             <input type="checkbox">自动登录
@@ -63,7 +64,7 @@
     <div class="local">
       <div class="loc">
         <p @click="bbc()">&times;</p>
-        <span>建议您的收货地址 ：</span><a href="###">河南省郑州市</a>
+        <span>建议您的收货地址 ：</span><a class="zz" href="###" @click="bc1()">河南省郑州市</a>
         <div class="city">
           <Map></Map>
         </div>
@@ -75,20 +76,24 @@
     <div class="top">
       <div class="topT">
         <div class="topTl">
-          <span @click="local()">所在城市 ：{{local}} </span><img src="./../../static/z/主页/箭头.png" alt="">
+          <span @click="city()">所在城市 ：{{local}} </span><img src="./../../static/z/主页/箭头.png" alt="">
         </div>
         <div class="topTr">
           <span>您好 ,</span>
-          <a class="phone1" @click="login()">{{userid}}</a>
+          <a class="phone1" @click="login()">{{username}}</a>
           <a @click="tc()">退出</a>
           <span class="span">|</span><a href="#">我的订单</a><span class="span">|</span><a href="#">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
           <span class="span">|</span><span class="phone">400-800-8820</span>
         </div>
       </div>
       <div class="topC">
-        <img src="./../../static/z/主页/logo.png" alt="">
+        <img src="./../../static/z/主页/logo.png" alt="" @click="logo()">
         <div class="topC1">
-          <div class="topC1_1"><input type="text" placeholder="请输入关键字进行搜索"></div>
+          <div class="topC1_1"><input type="text" placeholder="请输入关键字进行搜索">
+
+            <a @click="sou()">
+              <img src="./../../static/z/主页/sou.png" alt=""></a>
+          </div>
           <div class="topC1_2"><a>热门:</a><a href="#">奇异果</a><a href="#">牛排</a><a href="#">山竹</a><a href="#">牛油果</a></div>
         </div>
         <div class="topC2">
@@ -190,7 +195,7 @@
     },
     data(){
       return {
-        userid:'未登录',
+        username:'未登录',
         p1:'手机号码不正确，请重新输入',
         p2:'密码不正确，请重新输入',
         djs:60,
@@ -201,7 +206,21 @@
       }
     },
     methods:{
-      local(){
+      logo(){
+        window.location.href = '/#/top'
+      },
+      sou(){
+        this.$router.push({name:'Suosou',query:{name: $('.topC1_1>input').val()}})
+        location.reload()
+      },
+      bc1(){
+        console.log($('.zz').html())
+        this.local = $('.zz').html();
+        $('.local').css({
+          display:'none'
+        })
+      },
+      city(){
         $('.local').css({
           display:'block'
         })
@@ -213,7 +232,6 @@
       },
       bc(){
         this.local = localStorage.str1+localStorage.str2+localStorage.str3;
-        // alert(localStorage.str1+=localStorage.str2+=localStorage.str3)
         $('.local').css({
           display:'none'
         })
@@ -245,9 +263,10 @@
       tc(){
         var bol = confirm('确定要退出登录吗')
         if(bol){
-          localStorage.userid = '未登录';
-          this.userid = localStorage.userid;
+          localStorage.username = '未登录';
+          this.username = localStorage.username;
           localStorage.login = false;
+          localStorage.userid = 0;
           // location.reload()
         }else{
 
@@ -271,9 +290,10 @@
               $('.login').css({
                 display:'none'
               })
-
-              localStorage.userid = $('.val1').val();
-              this.userid = localStorage.userid
+              localStorage.username = $('.val1').val();
+              localStorage.userid = res.data[0].id;
+              // alert(localStorage.userid)
+              this.username = localStorage.username
               localStorage.login = true;
               // location.reload()
               $('.p2').css({
@@ -290,19 +310,20 @@
         }
       },
       to_gwc(){
-
-        // console.log($(".togwc").offset().left,$(".togwc").offset().top)
-        axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
-          // console.log(res.data)
-          localStorage.huang=0
-          if(res.data==''){
-            window.location.href="/#/kong"
-          }else {
-            window.location.href="/#/gwc_you"
-          }
-          // this.sparr = res.data;
-          // var that = this;
-        })
+        if(localStorage.login=='true'){
+          axios.get('/api/vuephp/gwc.php?type=21&userid='+localStorage.userid).then(res=> {
+            localStorage.huang=0
+            if(res.data.length<1){
+              window.location.href="/#/kong"
+            }else {
+              window.location.href="/#/gwc_you"
+            }
+          })
+        }else{
+          $('.login').css({
+            display:'block'
+          })
+        }
       },
       zc(){
         $('.log2').css({
@@ -328,15 +349,17 @@
       zcc(){
         var a1 = $('.log2_1>input').val();
         var b1 = $('.log2_2>input').val();
-        if (a1.length>=0&&b1.length>=0){
+        if (a1.length>0&&b1.length>0){
           axios.get('/api/vuephp/user.php?type=1&phone='+a1+'&password='+b1).then((response) => {
             console.log(response.data);
             if (response.data == 0) {
               alert('注册成功');
-            } else {
+            } else if(response.data == 1){
               alert('该账号已存在');
             }
           })
+        }else{
+          alert('信息请填写完整');
         }
       },
       to_grzx(){
@@ -345,11 +368,10 @@
     },
     mounted:function () {
       this.local = localStorage.str1+localStorage.str2+localStorage.str3;
-      // this.userid = localStorage.userid;
-      if(localStorage.userid){
-        this.userid = localStorage.userid;
+      if(localStorage.username){
+        this.username = localStorage.username;
       }else{
-        this.userid = '未登录'
+        this.username = '未登录'
       }
       $('.login').css({
         display:'none'
@@ -410,6 +432,15 @@
       $('#verifyCanvas').click();
     })
       var verifyCode = new GVerify("v_container");
+      var verifyCode1 = new GVerify("v_container1");
+      $('#code_input1').blur(function(){
+        var res = verifyCode1.validate(document.getElementById("code_input1").value);
+        if(res==false){
+          alert('验证失败')
+        }else{
+          alert('验证成功')
+        }
+      })
       $('#code_input').blur(function(){
         var res = verifyCode.validate(document.getElementById("code_input").value);
         if(res){
@@ -614,15 +645,30 @@
     margin-left: 1px;
     border: 0;
     outline-style:none;
+    float: left;
+    /*line-height: 45px;*/
+  }
+  .topC1_1>a{
+    float: left;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #4b943d;
+    text-align: center;
+  }
+  .topC1_1>a img{
+    position: relative;
+    top: 5px;
   }
   .topC1_1 input::placeholder{
     color: #a0a0a0;
   }
   .topC1_1{
-    width: 500px;
-    height: 42px;
-    line-height: 42px;
-    background: #4b943d url("./../../static/z/主页/sou.png") no-repeat 97.5% 10px;
+    width: 496px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #4b943d;
+    /*background: #4b943d url("./../../static/z/主页/sou.png") no-repeat 97.5% 10px;*/
     margin-top: 50px;
   }
   .topC1_2{
@@ -1087,6 +1133,25 @@
     float: left;
     width: 60px;
     height: 30px;
+  }
+  .log2_3>input{
+    float: left;
+  }
+  #v_container1{
+    position: absolute;
+    top: 220px;
+    right: 160px;
+    width: 60px;
+    height: 30px;
+  }
+  .yzm1>a{
+    font-size: 14px;
+    margin-left: 35px;
+    line-height: 38px;
+    color: #f29322;
+    position: absolute;
+    top: 220px;
+    right: 50px;
   }
   .yzm>a{
     font-size: 14px;

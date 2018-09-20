@@ -61,6 +61,7 @@ import Zt from '@/components/Zt'
 import Lbw from '@/components/Lbw'
 import Qb from '@/components/Qb'
 import Map from '@/components/Map'
+import Suosou from '@/components/Suosou'
 Vue.use(Router)
 
 export default new Router({
@@ -263,40 +264,52 @@ export default new Router({
       name: 'DingDanTiJiao',
       component: DingDanTiJiao
     },
-    //商品详情
-    {
-      path: '/spxq',
-      name: 'SPXQ',
-      component: SPXQ,
-      children:[
-        {
-          path: '/spxq_cont',
-          name: 'SPXQ_cont',
-          component: SPXQ_cont,
-          children:[
-            {
-              path: '/spxq_dh',
-              name: 'spxq_dh',
-              component: spxq_dh
-            },
-            {
-              path: '/spxq_pj',
-              name: 'spxq_pj',
-              component: spxq_pj
-            },
-          ]
-        },
-      ]
-    },
+
 
 
     //主页
+
     {
       path: '/top',
       name: 'Top',
       component: Top,
       redirect:'/home',
       children:[
+        //商品详情
+        {
+          path: '/spxq',
+          name: 'SPXQ',
+          component: SPXQ,
+          children:[
+            {
+              path: '/spxq_cont',
+              name: 'SPXQ_cont',
+              component: SPXQ_cont,
+              children:[
+                {
+                  path: '/spxq_dh',
+                  name: 'spxq_dh',
+                  component: spxq_dh
+                },
+                {
+                  path: '/spxq_pj',
+                  name: 'spxq_pj',
+                  component: spxq_pj
+                },
+              ]
+            },
+          ]
+        },
+        // {
+        //   path: '/spxq',
+        //   name: 'Spxq',
+        //   component: Suosou,
+        // },
+        {
+          path: '/sou',
+          name: 'Suosou',
+          component: Suosou,
+        },
         {
           path: '/home',
           name: 'Home',
