@@ -40,4 +40,4 @@ function fenPage(){
             return obj;
         }
 }
-export default { page:fenPage };
+export default {page:fenPage};

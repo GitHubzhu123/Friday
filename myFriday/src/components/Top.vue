@@ -63,7 +63,7 @@
     <div class="local">
       <div class="loc">
         <p @click="bbc()">&times;</p>
-        <span>建议您的收货地址 ：</span><a href="###">河南省郑州市</a>
+        <span>建议您的收货地址 ：</span><a class="zz" href="###" @click="bc1()">河南省郑州市</a>
         <div class="city">
           <Map></Map>
         </div>
@@ -75,7 +75,7 @@
     <div class="top">
       <div class="topT">
         <div class="topTl">
-          <span @click="local()">所在城市 ：{{local}} </span><img src="./../../static/z/主页/箭头.png" alt="">
+          <span @click="city()">所在城市 ：{{local}} </span><img src="./../../static/z/主页/箭头.png" alt="">
         </div>
         <div class="topTr">
           <span>您好 ,</span>
@@ -88,7 +88,11 @@
       <div class="topC">
         <img src="./../../static/z/主页/logo.png" alt="">
         <div class="topC1">
-          <div class="topC1_1"><input type="text" placeholder="请输入关键字进行搜索"></div>
+          <div class="topC1_1"><input type="text" placeholder="请输入关键字进行搜索">
+
+            <a @click="sou()">
+              <img src="./../../static/z/主页/sou.png" alt=""></a>
+          </div>
           <div class="topC1_2"><a>热门:</a><a href="#">奇异果</a><a href="#">牛排</a><a href="#">山竹</a><a href="#">牛油果</a></div>
         </div>
         <div class="topC2">
@@ -201,7 +205,18 @@
       }
     },
     methods:{
-      local(){
+      sou(){
+        this.$router.push({name:'Suosou',query:{name: $('.topC1_1>input').val()}})
+        location.reload()
+      },
+      bc1(){
+        console.log($('.zz').html())
+        this.local = $('.zz').html();
+        $('.local').css({
+          display:'none'
+        })
+      },
+      city(){
         $('.local').css({
           display:'block'
         })
@@ -213,7 +228,6 @@
       },
       bc(){
         this.local = localStorage.str1+localStorage.str2+localStorage.str3;
-        // alert(localStorage.str1+=localStorage.str2+=localStorage.str3)
         $('.local').css({
           display:'none'
         })
@@ -271,7 +285,6 @@
               $('.login').css({
                 display:'none'
               })
-
               localStorage.userid = $('.val1').val();
               this.userid = localStorage.userid
               localStorage.login = true;
@@ -327,15 +340,17 @@
       zcc(){
         var a1 = $('.log2_1>input').val();
         var b1 = $('.log2_2>input').val();
-        if (a1.length>=0&&b1.length>=0){
+        if (a1.length>0&&b1.length>0){
           axios.get('/api/vuephp/user.php?type=1&phone='+a1+'&password='+b1).then((response) => {
             console.log(response.data);
             if (response.data == 0) {
               alert('注册成功');
-            } else {
+            } else if(response.data == 1){
               alert('该账号已存在');
             }
           })
+        }else{
+          alert('信息请填写完整');
         }
       },
       to_grzx(){
@@ -613,15 +628,30 @@
     margin-left: 1px;
     border: 0;
     outline-style:none;
+    float: left;
+    /*line-height: 45px;*/
+  }
+  .topC1_1>a{
+    float: left;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #4b943d;
+    text-align: center;
+  }
+  .topC1_1>a img{
+    position: relative;
+    top: 5px;
   }
   .topC1_1 input::placeholder{
     color: #a0a0a0;
   }
   .topC1_1{
-    width: 500px;
-    height: 42px;
-    line-height: 42px;
-    background: #4b943d url("./../../static/z/主页/sou.png") no-repeat 97.5% 10px;
+    width: 496px;
+    height: 40px;
+    line-height: 40px;
+    border: 1px solid #4b943d;
+    /*background: #4b943d url("./../../static/z/主页/sou.png") no-repeat 97.5% 10px;*/
     margin-top: 50px;
   }
   .topC1_2{

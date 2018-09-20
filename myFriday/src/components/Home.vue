@@ -43,7 +43,7 @@
           <li v-for="(arr,i) in data" v-if="i<4"><img :src="arr.src" alt="">
             <div class="lisC">
               <p>{{arr.name}}</p>
-              <p>{{arr.jieShao}}</p>
+              <p>{{arr.jj}}</p>
               <a>￥{{arr.money}}</a><span>￥{{arr.moneyY}}</span>
               <img src="./../../static/z/主页/gwc1.png" alt="" @click="a1(i)">
             </div>
@@ -64,7 +64,7 @@
           <li v-for=" (arr1,i) in data1" v-if="i<4"><img :src="arr1.src" alt="">
             <div class="lisC">
               <p>{{arr1.name}}</p>
-              <p>{{arr1.jieShao}}</p>
+              <p>{{arr1.jj}}</p>
               <a>￥{{arr1.money}}</a><span>￥{{arr1.moneyY}}</span>
               <img src="./../../static/z/主页/gwc1.png" alt="" @click="a2(i)">
             </div>
@@ -84,7 +84,7 @@
           <li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="">
             <div class="lisC">
               <p>{{arr2.name}}</p>
-              <p>{{arr2.jieShao}}</p>
+              <p>{{arr2.jj}}</p>
               <a>￥{{arr2.money}}</a><span>￥{{arr2.moneyY}}</span>
               <img src="./../../static/z/主页/gwc1.png" alt="" @click="a3(i)">
             </div>
@@ -104,7 +104,7 @@
           <li v-for="(arr2,i) in data2"><img :src="arr2.src" alt="">
             <div class="lisC">
               <p>{{arr2.name}}</p>
-              <p>{{arr2.jieShao}}</p>
+              <p>{{arr2.jj}}</p>
               <a>￥{{arr2.money}}</a><span>￥{{arr2.moneyY}}</span>
               <img src="./../../static/z/主页/gwc1.png" alt="" @click="a4(i)">
             </div>
@@ -129,21 +129,55 @@
         return {
           data:[],
           data1:[],
-          data2:[]
+          data2:[],
+          login:''
         }
       },
       methods:{
         a1(i){
-          console.log(this.data[i])
+          // alert(localStorage.login);
+          // console.log(this.data[i]);
+          if(localStorage.login=='true'){
+            gwcfr();
+          }else {
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
         a2(i){
           console.log(this.data[i])
+          if(localStorage.login=='true'){
+            gwcfr();
+          }else{
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
         a3(i){
           console.log(this.data[i])
+          if(localStorage.login=='true'){
+            gwcfr();
+          }else{
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
         a4(i){
           console.log(this.data[i])
+          if(localStorage.login=='true'){
+            gwcfr();
+          }else{
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
       },
       mounted:function () {

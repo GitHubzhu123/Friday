@@ -52,8 +52,10 @@
       </ul>
     </div>
   </div>
+  <div>
     <p class="p1">版权所有 @ 礼拜五 保留所有权利|沪ICP12042163</p>
     <p class="p2">礼拜五 纵享品质</p>
+  </div>
 </div>
 </template>
 
@@ -148,10 +150,10 @@
     color: #b3b3b3;
     font-size: 14px;
     margin-top: 25px;
-    margin-right: 30px;
+    margin-right: 35px;
   }
   .ul:nth-of-type(1){
-    margin-left: 30px;
+    margin-left: 40px;
   }
   .ul>li{
     margin: 6px 0;

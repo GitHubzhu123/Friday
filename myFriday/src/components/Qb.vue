@@ -18,7 +18,7 @@
           <li v-for="(arr,i) in data"  v-if="i>8*(num-1)-1&&i<num*8"><img :src="arr.src" alt="">
             <div class="lisC">
               <p>{{arr.name}}</p>
-              <p>{{arr.jieShao}}</p>
+              <p>{{arr.jj}}</p>
               <a>￥{{arr.money}}</a><span>￥{{arr.money}}</span>
               <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="" @click="hq(i)">
             </div>
@@ -44,6 +44,14 @@
       methods:{
         hq(i){
           console.log(this.data[i])
+          if(localStorage.login=='true'){
+            gwcfr();
+          }else{
+            // alert('您还未登录');
+            $('.login').css({
+              display:'block'
+            })
+          }
         },
         money(){
           this.bol = !this.bol;
@@ -72,9 +80,10 @@
 
         axios.get('/api/vuephp/tc.php?type=4').then((response) => {
           console.log(response.data);
+          // this.data = response.data;
+          // var aa = response.data;
+          // response.data.splice(0,1);
           this.data = response.data;
-          a = response.data.splice(0,1);
-          this.data = a;
         })
           //表头
         $('.topBar>a').eq(0).css({

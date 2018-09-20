@@ -61,6 +61,7 @@ import Zt from '@/components/Zt'
 import Lbw from '@/components/Lbw'
 import Qb from '@/components/Qb'
 import Map from '@/components/Map'
+import Suosou from '@/components/Suosou'
 Vue.use(Router)
 
 export default new Router({
@@ -291,12 +292,18 @@ export default new Router({
 
 
     //主页
+
     {
       path: '/top',
       name: 'Top',
       component: Top,
       redirect:'/home',
       children:[
+        {
+          path: '/sou',
+          name: 'Suosou',
+          component: Suosou,
+        },
         {
           path: '/home',
           name: 'Home',

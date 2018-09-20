@@ -31,7 +31,7 @@
             <li class="li"  v-for="(a,i) in data" v-if="i>12*(num-1)-1&&i<num*12"><img :src='a.src' alt="">
             <p>{{a.name}}</p>
               <div><img v-for="b in 5" :src="b<=a.guiGe?src1:src2" alt=""><span>￥{{a.money}}/人</span></div>
-            <p>{{a.jieShao}}</p>
+            <p>{{a.jj}}</p>
             </li>
           </ul>
         </div>
