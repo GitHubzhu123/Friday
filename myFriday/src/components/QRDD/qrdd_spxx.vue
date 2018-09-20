@@ -1,40 +1,43 @@
 <template>
     <div class="spxx">
       <p class="st">商品信息</p>
-      <div class="sd_kp" v-for="item in [0,1]">
-
+      <div class="sd_kp" v-for="(item,i) in sdarr">
       <div class="shangdian">
         <div class="sd_tit">
-          <span class="gou gou1" ></span>
-          <span class="zi1">爱果果水果店</span>
+          <!--<span class="gou" :class="goubol[i].sdgou?'gou1':'gou2'" @click="sdgouchange(i)"></span>-->
+          <span class="zi1">{{item}}</span>
           <span class="zi2">规格</span>
           <span class="zi2">单价</span>
           <span class="zi2">数量</span>
           <span class="zi2">金额</span>
         </div>
-        <div class="sp" v-for="(item,j) in sparr">
-          <span class="gou" :class="splength[j]?'gou1':'gou2'" @click="gou(j)"></span>
+        <div class="sp" v-for="(jj,j) in spARR[i]">
+          <!--<span class="gou" :class="goubol[i].spgou[j]?'gou1':'gou2'" @click="spgouchange(i,j)"></span>-->
           <div class="sp_div">
-            <img :src="src[j]" alt="" class="sp_img">
-            <span>{{spname[j]}}</span>
+            <img :src="jj.src" alt="" class="sp_img">
+            <span>{{jj.name}}</span>
           </div>
-          <span class="zi3 hui">{{guige[j]}}</span>
-          <span class="zi3 hui">{{money[j]}}</span>
-          <div class="num_box">
-            <div class="jian_box" @click="jian">
-              <img src="static/f/jian.png" alt="">
-            </div>
-            <span >{{num[j]}}</span>
-            <div class="jia_box" @click="jia">
-              <img src="static/f/jia.png" alt="">
+          <span class="zi3 hui">{{jj.guiGe}}</span>
+          <span class="zi3 hui">{{jj.money}}</span>
+          <!--数量-->
+          <div class="numdiv">
+            <div class="num_box">
+              <div class="jian_box" @click="jian(i,j)">
+                <img src="static/f/jian.png" alt="">
+              </div>
+              <!--<span >{{num[i][j]}}</span>-->
+              <input type="text" :value="num[i][j]" class="inp" @blur="inputnum(i,j,$event)">
+              <div class="jia_box" @click="jia(i,j)">
+                <img src="static/f/jia.png" alt="">
+              </div>
             </div>
           </div>
-          <span class="zi3">￥{{money[j]*num[j]}}</span>
+          <span class="zi3">￥{{spzje[i][j]}}</span>
         </div>
         <p class="je_p">
-          <span class="hei">运费</span><span class="hong">￥5.0</span>
-          <span class="hei">商品金额</span><span class="hong">￥108.0</span>
-          <span class="hei">商家合计</span><span class="hong">￥113.0</span>
+          <span class="hei">运费</span><span class="hong">￥{{yunfei}}</span>
+          <span class="hei">商品金额</span><span class="hong">￥{{sdzje[i]}}</span>
+          <span class="hei">商家合计</span><span class="hong">￥{{yunfei+sdzje[i]}}</span>
         </p>
       </div>
         <hr>
@@ -51,70 +54,185 @@
         <input type="text" class="bz" placeholder="限45个字，请填写有关商品、支付、发票等信息">
         <hr>
       </div>
+      <div class="sj">
+        <p class="cirida lv" >次日达·礼拜五专享</p>
+        <p class="time">
+          <span>选择送达时间：   2016年9月18日12:00~3:00  </span>
+          <span class="rili"></span><span class="lv">点击修改</span>
+        </p>
+        <hr>
+        <p class="zhifu">实付金额：<span class="red">￥{{zongjine}}</span></p>
+        <p class="zhifu">订单完成后可获得积分：<span class="huang">300积分</span></p>
+        <p class="zhifu"><span class="btn" @click="tj">提交订单</span></p>
+      </div>
     </div>
 </template>
 
 <script>
   import axios from 'axios'
   import Vue from 'vue'
+  import bus from '../../assets/bus.js'
     export default {
         name: "qrdd_spxx",
       data(){
         return{
+          //选中商品id
+          xuanzhong:[],
+          // str:0,
           sp:[],
-          src:[],
-          spname:[],
-          guige:[],
-          money:[],
-          num:[],
-          sdarr:[0],
+          shangdian:[],
+          sdarr:[],
           sparr:[],
-          splength:[]
+          // splength:[],
+          spARR:[[],[]],
+          gwc:[],
+          num:[[],[]],
+          //对勾
+          // goubol:[],
+          // shan_spid:0,
+          // 金额
+          yunfei:5.0,
+          spzje:[[],[]],
+          sdzje:[],
+          zongjine:0,
+          // 删除
+          shanchu:[],
+          shanchu_duo:[],
         }
       },
       methods:{
-        gou(j){
-          // if (this.splength[j]){
-          //
-          this.$set(this.splength,j,!this.splength[j])
 
+        // 减号
+        jian(i,j){
+          this.$set(this.num[i],j,this.num[i][j]*1-1)
+          // console.log(this.spARR[i][j].id)
+          axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+// console.log(res.data)
+          })
+          // if(this.num[i][j]==0){
+          //   alert("该商品将被删除")
+          // }
+          this.zje()
+          this.zje2()
+          this.zje3()
         },
-        jian(){
+        // 加号
+        jia(i,j){
+          this.$set(this.num[i],j,this.num[i][j]*1+1)
 
+          axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+            // console.log(res.data)
+          })
+          this.zje()
+          this.zje2()
+          this.zje3()
         },
-        jia(){
+        //输入框改变数量
+        inputnum(i,j,$event){
+          this.num[i][j]=$event.target.value
 
+          axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
+            // console.log(res.data)
+          })
+          this.zje()
+          this.zje2()
+          this.zje3()
         },
+        //确认订单
         qrdd(){
           localStorage.huang=1;
           window.location.href="/#/querendingdan"
 
+        },
+        gwc_sc(){
+
+        },
+        //商品总金额
+        zje(){
+          for(var i=0;i<this.sdarr.length;i++){
+            for(var j=0;j<this.spARR[i].length;j++){
+              this.$set(this.spzje[i],j,this.spARR[i][j].money*this.num[i][j])
+            }
+          }
+        },
+        //商店总金额
+        zje2(){
+
+          for(var i=0;i<this.sdarr.length;i++){
+            var sdz=0;
+            for(var j=0;j<this.spARR[i].length;j++){
+                sdz+=this.spzje[i][j]
+                this.$set(this.sdzje,i,sdz)
+            }
+          }
+        },
+        // 总金额
+        zje3(){
+          this.zongjine=0;
+          for (var i=0;i<this.sdzje.length;i++){
+            this.zongjine+=this.sdzje[i]+this.yunfei
+
+          }
+        },
+        //删除
+        shanchu_sp(i,j){
+          this.shan_spid=this.spARR[i][j].id;
+          axios.get('/api/vuephp/gwc.php?type=12&spid='+this.shan_spid).then(res=>{
+            console.log(res.data)
+          })
+          window.location.reload()
+        },
+        // qrdd(){
+        //   localStorage.huang=1;
+        //   window.location.href="/#/querendingdan"
+        //
+        // },
+        tj(){
+          localStorage.huang=2;
+          window.location.href="/#/dingdantijiao"
         }
       },
       mounted(){
-        // var a=[1,2,3]
-        // this.sparr=a;
-        for(var i=0;i<this.sparr.length;i++){
-          this.splength.push(false)
-        };
+        this.xuanzhong = JSON.parse(localStorage.xuanzhong);
+        console.log()
         var usid=Number(localStorage.userid)
-        axios.get('/api/vuephp/gwc.php?type=21&userid=1').then(res=>{
-          this.sparr=res.data;
-          var that = this;
+        axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+          // console.log(res.data)
+          this.gwc=res.data
+          console.log(this.gwc)
 
-          for (var i=0;i<this.sparr.length;i++){
-            Vue.set(that.num,i,that.sparr[i].num);
-            (function(i,that){
-              axios.get('/api/vuephp/gwc.php?type=2&id='+that.sparr[i].spID).then(res=>{
-                that.sp[i]=res.data[0];
-                Vue.set(that.src,i,that.sp[i].src);
-                Vue.set(that.spname,i,that.sp[i].name);
-                Vue.set(that.guige,i,that.sp[i].guiGe);
-                Vue.set(that.money,i,that.sp[i].money);
-              })
-            })(i,that);
+
+        //获取选中商品id
+        this.sp=this.xuanzhong
+
+          var that = this;
+          for(var i=0;i<this.sp.length;i++){
+            Vue.set(that.shangdian,i,this.sp[i].shangDian);
+            // Vue.set(that.num,i,res.data[i].num);
           }
+          for (var i = 0; i < that.shangdian.length; i++) {
+            if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
+              that.sdarr.push(that.shangdian[i]);
+            }
+          }
+          for(var i=0;i<that.sdarr.length;i++){
+            for(var j=0;j<that.sp.length;j++){
+              if(that.sp[j].shangDian==that.sdarr[i]){
+                that.spARR[i].push(that.sp[j])//将商品加入对应商店
+                for (var n=0;n<that.gwc.length;n++){
+                  if(that.gwc[n].spID==that.sp[j].id){
+                    that.num[i].push(that.gwc[n].num)//给商品对应数量
+                  }
+                }
+              }
+            }
+          }
+          console.log(that.gwc)
+          this.zje()
+          this.zje2()
+          this.zje3()
         })
+
       }
     }
 </script>
@@ -137,10 +255,14 @@
     line-height: 50px;
   }
   .zi1{
-    margin-right: 295px;
+    margin-left: 60px;
+    display: inline-block;
+    width: 400px;
   }
   .zi2{
-    margin-right: 145px;
+    display: inline-block;
+    text-align: center;
+    width: 185px;
   }
   .gou{
     display: inline-block;
@@ -163,8 +285,9 @@
     border-bottom:1px solid rgb(211,211,211);
   }
   .sp_div{
-    width: 360px;
+    width: 400px;
     display: inline-block;
+    margin-left: 60px;
     /*background: #666666;*/
   }
   .sp_img{
@@ -173,16 +296,28 @@
     vertical-align:middle;
     margin-right: 20px;
   }
-  .num_box{
+  .numdiv{
     display: inline-block;
+    width: 155px;
+    text-align: center;
+    margin: 0 15px;
+  }
+  .num_box{
+
     vertical-align:middle;
-    width: 100px;
+    /*width: 130px;*/
     height: 30px;
     border: 1px solid rgb(211,211,211);
     margin-left: -0px;
-    margin-right: 70px;
     line-height: 30px;
+
+  }
+  .num_box input{
+    height: 28px;
+    width: 80px;
     text-align: center;
+    font-size: 15px;
+    border: 0 solid;
   }
   .jian_box,.jia_box{
     width: 30px;
@@ -193,10 +328,12 @@
   .jian_box{
     float: left;
     border-right: 1px solid rgb(211,211,211);
+    /*margin-right: 10px;*/
   }
   .jia_box{
     float: right;
     border-left: 1px solid rgb(211,211,211);
+    /*margin-left: 10px;*/
   }
   .num_box img{
     position: absolute;
@@ -208,9 +345,8 @@
   }
   .zi3{
     display: inline-block;
-    width: 100px;
+    width: 185px;
     text-align: center;
-    margin-right: 80px;
   }
   .hui{
     color: rgb(150,150,150);
@@ -264,5 +400,54 @@
     height: 35px;
     font-size: 15px;
     margin-top: 20px;
+  }
+  hr{
+    margin-top: 20px;
+    height: 1px;
+    background: rgb(211,211,211);
+    border: none;
+  }
+  .lv{
+    color: rgb(107,165,97);
+  }
+  .red{
+    color: rgb(255,87,87);
+    font-size: 25px;
+  }
+  .huang{
+    color: rgb(240,130,0);
+  }
+  .zhifu{
+    font-size: 15px;
+    margin-top: 20px;
+    text-align: right;
+  }
+  .btn{
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background: rgb(240,130,0);
+  }
+  .cirida{
+    line-height: 60px;
+  }
+  .time{
+    line-height: 40px;;
+  }
+  .rili{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background: url('/../static/f/JingLing.png') -440px 0px;
+    position: relative;
+    top: 5px;
+    margin-left:30px ;
+    margin-right: 10px;
   }
 </style>

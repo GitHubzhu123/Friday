@@ -45,7 +45,7 @@ import QueRendingdan from '@/components/QueRendingdan'
 import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
 import qrdd_dizi_you from '@/components/QRDD/qrdd_dizi_you'
 import qrdd_spxx from '@/components/QRDD/qrdd_spxx'
-import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
+// import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
 //提交订单完成
 import DingDanTiJiao from '@/components/DingDanTiJiao'
 //主页
@@ -252,11 +252,11 @@ export default new Router({
       name: 'qrdd_spxx',
       component: qrdd_spxx
     },
-    {
-      path: '/qrdd_sdsj',
-      name: 'qrdd_sdsj',
-      component: qrdd_sdsj
-    },
+    // {
+    //   path: '/qrdd_sdsj',
+    //   name: 'qrdd_sdsj',
+    //   component: qrdd_sdsj
+    // },
     //提交订单成功
     {
       path: '/dingdantijiao',

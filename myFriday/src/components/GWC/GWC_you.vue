@@ -55,6 +55,7 @@
 <script>
   import axios from 'axios'
   import Vue from 'vue'
+  import bus from '../../assets/bus.js'
     export default {
         name: "GWC_you",
       data(){
@@ -77,6 +78,8 @@
           // 删除
           shanchu:[],
           shanchu_duo:[],
+          //选中商品id
+          xuanzhong:[],
         }
       },
       methods:{
@@ -124,9 +127,11 @@
           axios.get('/api/vuephp/gwc.php?type=11&userid='+Number(localStorage.userid)+'&num='+this.num[i][j]+'&spid='+this.spARR[i][j].id).then(res=>{
 // console.log(res.data)
           })
-          // if(this.num[i][j]==0){
-          //   alert("该商品将被删除")
-          // }
+          if(this.num[i][j]==0){
+            alert("该商品将被删除")
+            this.shanchu_sp(i,j)
+
+          }
           this.zje()
           this.zje2()
           this.zje3()
@@ -153,12 +158,7 @@
           this.zje2()
           this.zje3()
         },
-        //确认订单
-        qrdd(){
-            localStorage.huang=1;
-            window.location.href="/#/querendingdan"
 
-        },
         gwc_sc(){
 
         },
@@ -213,8 +213,6 @@ console.log(res.data)
               if(this.goubol[i].spgou[j]){
                 this.shanchu_duo.push(this.spARR[i][j].id)
                 // console.log(this.spARR[i][j].id)
-              }else {
-
               }
             }
           }
@@ -222,7 +220,26 @@ console.log(res.data)
           axios.get('/api/vuephp/gwc.php?type=13&spidarr='+this.shanchu_duo).then(res=>{
             console.log(res.data)
           })
-          // window.location.reload()
+          window.location.reload()
+        },
+        //确认订单
+        qrdd(){
+          for(var i=0;i<this.sdarr.length;i++){
+            for(var j=0;j<this.spARR[i].length;j++){
+              if(this.goubol[i].spgou[j]){
+                this.xuanzhong.push(this.spARR[i][j])
+                // console.log(this.spARR[i][j].id)
+              }
+            }
+          }
+          // console.log(this.xuanzhong)
+          localStorage.huang=1;
+          // var bus = new Vue()
+          localStorage.xuanzhong=JSON.stringify(this.xuanzhong)
+          console.log(localStorage.xuanzhong)
+          window.location.href="/#/QueRendingdan"
+
+
         },
       },
       mounted(){
@@ -230,27 +247,6 @@ console.log(res.data)
           this.splength.push(false)
         };
         var usid=Number(localStorage.userid)
-        // 购买商品
-        // axios.get('/api/vuephp/gwc.php?type=22&userid='+usid).then(res=>{
-        //   console.log(res.data)
-        // })
-
-        // axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
-        //   console.log(res.data)
-        //   var that = this;
-        //   //分类商店
-        //   for(var i=0;i<res.data.length;i++){
-        //     Vue.set(that.shangdian,i,res.data[i].shangDian);
-        //     // Vue.set(that.num,i,res.data[i].num);
-        //   }
-        //   for (var i = 0; i < that.shangdian.length; i++) {
-        //     if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
-        //       that.sdarr.push(that.shangdian[i]);
-        //     }
-        //   }
-        //   // console.log(that.sdarr,that.num)
-        // })
-
         axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
           // console.log(res.data)
           this.gwc=res.data

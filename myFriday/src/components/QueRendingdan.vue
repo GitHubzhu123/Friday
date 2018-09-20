@@ -8,7 +8,7 @@
       <qrdd_dizi_you></qrdd_dizi_you>
       <hr>
       <qrdd_spxx></qrdd_spxx>
-      <qrdd_sdsj></qrdd_sdsj>
+      <!--<qrdd_sdsj></qrdd_sdsj>-->
     </div>
     <btm></btm>
   </div>
@@ -21,7 +21,7 @@
   import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
   import qrdd_dizi_you from '@/components/QRDD/qrdd_dizi_you'
   import qrdd_spxx from '@/components/QRDD/qrdd_spxx'
-  import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
+  // import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'
     export default {
         name: "QueRendingdan",
       components:{
@@ -31,7 +31,7 @@
         qrdd_diziwu:qrdd_diziwu,
         qrdd_dizi_you:qrdd_dizi_you,
         qrdd_spxx:qrdd_spxx,
-        qrdd_sdsj:qrdd_sdsj,
+        // qrdd_sdsj:qrdd_sdsj,
       }
     }
 </script>
