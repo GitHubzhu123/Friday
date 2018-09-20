@@ -16,7 +16,7 @@
     </div>
 
     <div class="lis">
-      <ul v-for=" arr in data">
+      <ul v-for=" arr in 3">
         <li v-for=" arr in data">
           <img :src="arr.src" alt="">
           <p>{{arr.name}}</p>

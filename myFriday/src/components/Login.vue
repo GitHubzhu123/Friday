@@ -546,8 +546,6 @@
   .log22{
     width: 310px;
     height: 500px;
-    /*border: 1px solid red;*/
-    /*background-color: lemonchiffon;*/
     margin: 0 auto;
   }
   .log2_1>span{
