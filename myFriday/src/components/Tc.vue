@@ -27,18 +27,18 @@
           <span>销量</span><span @click="money()">价格 <img id="money" src="./../../static/z/同城/jian.png" alt=""></span><span @click="fen()">评分最高</span>
         </div>
         <div class="shopC">
-          <ul v-for="i in 3">
-            <li class="li"  v-for="a in data"><img :src='a.src' alt="">
+          <ul>
+            <li class="li"  v-for="(a,i) in data" v-if="i>12*(num-1)-1&&i<num*12"><img :src='a.src' alt="">
             <p>{{a.name}}</p>
-              <div><img v-for="i in 5" :src="i<=a.guiGe?src1:src2" alt=""><span>￥{{a.money}}/人</span></div>
+              <div><img v-for="b in 5" :src="b<=a.guiGe?src1:src2" alt=""><span>￥{{a.money}}/人</span></div>
             <p>{{a.jieShao}}</p>
             </li>
           </ul>
         </div>
       </div>
-      <div class="nav">
+      <!--<div class="nav">-->
         <nav aria-label="Page navigation" class="page-nav-outer" id="PageNavId"></nav>
-      </div>
+      <!--</div>-->
 
     </div>
 </template>
@@ -46,6 +46,7 @@
 <script>
   import axios from 'axios'
   import Flbt from "./Flbt";
+  import fenPage from "../../static/chajian";
     export default {
         name: "Tc",
       components:{
@@ -56,7 +57,8 @@
             src1:'./../../static/z/同城/xing1.png',
             src2:'./../../static/z/同城/xing2.png',
             data:[],
-            bol:true
+            bol:true,
+            num:1
           }
       },
       methods:{
@@ -89,6 +91,13 @@
           }
       },
       mounted: function () {
+          // console.log(PageNavCreate);
+          fenPage.page();
+
+        $('.shopCt>span').eq(0).css({
+          borderColor:'#498e3d',
+          color:'#498e3d'
+        })
           $('.shopCt>span').click(function () {
             $('.shopCt>span').css({
               color:'#333',
@@ -100,9 +109,17 @@
             })
           });
         axios.get('/api/vuephp/tc.php?type=0').then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.data = response.data;
         })
+        // window.onload = function(){
+          $('#PageNavId').click(function () {
+            // alert('123')
+            // console.log($('#PageNavId').html())
+            this.num = $('.active>a').html();
+            console.log(this.num)
+          }.bind(this))
+        // }.bind(this)
           //分类点击
         $('.aa').eq(0).css({
           color:'#5a9750'
@@ -121,6 +138,9 @@
 </script>
 
 <style scoped>
+  /*.nav>nav>div{*/
+    /*height: 50px;*/
+  /*}*/
   .re{
     width: 1280px;
     margin: 0 auto;
@@ -202,11 +222,17 @@
     color: white;
   }
   .shopC>ul{
+    width: 1280px;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    flex-wrap: wrap;
+    /*justify-content: space-between;*/
+  }
+  .shopC>ul>li:nth-of-type(4n){
+    margin-right: 0;
   }
 .shopC>ul>li{
+  margin-right: 20px;
+  margin-bottom: 20px;
   width: 305px;
   height: 300px;
   background: #f8f6f7;
@@ -259,6 +285,6 @@
   .li:hover{
     transition: 0.5s;
     transform: translateY(-2px);
-    box-shadow: 3px 3px 10px #adadad;
+    box-shadow: 2px 2px 10px #adadad;
   }
 </style>

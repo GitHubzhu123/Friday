@@ -27,7 +27,7 @@
             </div>
             <ul v-show="bol2">
               <li><router-link to="/grziliao">个人资料</router-link></li>
-              <li><router-link to="/adressguanl">地址管理</router-link></li>
+              <li @click="adress"><router-link to="">地址管理</router-link></li>
               <li><router-link to="/wodecollect">我的收藏</router-link></li>
               <li><router-link to="/recentlook">最近浏览</router-link></li>
               <li><router-link to="/gaipassword">修改密码</router-link></li>
@@ -57,6 +57,8 @@
 
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   import Top from '@/components/Top'
   import Btm from '@/components/Btm'
   export default {
@@ -73,6 +75,17 @@
       btm:Btm
     },
     methods:{
+      adress(){
+        axios.get('/api/PHP/Day04/mfriday.php?type=7&id='+localStorage.userid).then(res=>{
+          console.log(res.data)
+          if(res.data.length){
+            window.location.href='/#/adressguanl'
+          }else{
+            window.location.href='/#/adress'
+          }
+
+        })
+      },
       aa(){
         this.bol1=!this.bol1
       },
@@ -103,6 +116,7 @@
     margin: 40px auto;
     border: 0;
   }
+
   .leftMenu{
     /*float: left;*/
     display: inline-block;

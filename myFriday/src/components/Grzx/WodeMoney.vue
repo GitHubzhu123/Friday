@@ -2,7 +2,7 @@
   <div class="duihuan">
     <div class="toP">
       <span>账户余额 : </span>
-      <span>¥20.00</span>
+      <span>¥{{money}}</span>
     </div>
     <div class="bottom">
       <div class="botCon">
@@ -47,17 +47,24 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   export default {
     name: "WodeMoney",
     data(){
       return {
-
+        money:''
       }
     },
     mounted(){
       $('.money>div').click(function () {
         $('.money>div').css('background','#fff');
         $(this).css('background','#66995d');
+      });
+      localStorage.userid=1
+      axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
+        console.log(res.data)
+        this.money=res.data[0].money;
       })
     }
   }
@@ -93,6 +100,7 @@
     font-size: 20px;
     /*background: lightcyan;*/
   }
+
   .liwu>li{
     width: 360px;
     height: 190px;
@@ -118,6 +126,7 @@
     margin-right: 40px;
 
   }
+
   .money:after{
     content: '';
     display: block;

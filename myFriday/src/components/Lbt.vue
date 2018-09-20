@@ -61,9 +61,11 @@
         var mySwiper = new Swiper(div, {
           //竖直 vertical 水平 horizontal
           direction: 'horizontal',
-          // loop: true,
-          // autoplay: true,
-          //  autoplay:{disableOnInteraction:false},
+          effect: "fade",
+          loop: true,
+          // speed:2000,
+          autoplay: true,
+           autoplay:{disableOnInteraction:false},
           //  autoplayDisableOnInteraction : false,
           pagination: {
             el: '.swiper-pagination',
@@ -87,9 +89,11 @@
   }
   .swiper-slide>ul{
     display: flex;
+    width: 100%;
     justify-content: space-between;
   }
   .swiper-slide>ul>li{
+    display: block;
     width: 305px;
     height: 403px;
     border: 1px solid #ececec;
@@ -99,9 +103,10 @@
     overflow: hidden;
     text-align: center;
     transition: 0.5s;
+    font-weight: 200;
   }
   .swiper-slide>ul>li:hover{
-    transform: translateY(-2px);
+    /*transform: translateY(-2px);*/
     box-shadow: 5px 5px 10px #ddd;
   }
   .swiper-slide>ul>li>img{

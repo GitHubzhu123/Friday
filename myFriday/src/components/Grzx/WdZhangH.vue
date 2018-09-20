@@ -7,16 +7,16 @@
           <img src="../../../static/imgM/头像大图.png" alt="">
         </div>
         <span class="redSpan">您好,</span>
-        <router-link to="/grziliao"><span>1853呃呃呃呃呃呃06</span></router-link>
+        <router-link to="/grziliao"><span>{{username}}</span></router-link>
       </div>
       <ul class="topRig">
         <li>
           <p>当前积分</p>
-          <router-link to="/wodejifen"><span>124</span></router-link>
+          <router-link to="/wodejifen"><span>{{jifen}}</span></router-link>
         </li>
         <li>
           <p>我的钱包</p>
-          <router-link to="/wodemoney"><span>¥1220.0</span></router-link>
+          <router-link to="/wodemoney"><span>¥{{money}}</span></router-link>
         </li>
         <li class="thrLi">
           <p class="chognzhi" @click="aa">充值有礼>></p>
@@ -37,13 +37,33 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   export default {
     name: "WdZhangH",
+    data(){
+      return{
+        username:'',
+        jifen:'',
+        money:'',
+        headimg:''
+      }
+    },
     methods:{
       aa(){
         window.location.href='/#/wodemoney'
       }
-    }
+    },
+    mounted(){
+      localStorage.userid=1
+      axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
+        console.log(res.data)
+        this.username=res.data[0].userName;
+        this.jifen=res.data[0].jifen;
+        this.money=res.data[0].money;
+        this.headimg=res.data[0].headImg;
+      })
+    },
   }
 </script>
 

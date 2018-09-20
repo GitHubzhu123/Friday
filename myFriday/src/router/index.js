@@ -58,6 +58,9 @@ import Jfsc from '@/components/Jfsc'
 //同城
 import Tc from '@/components/Tc'
 import Zt from '@/components/Zt'
+import Lbw from '@/components/Lbw'
+import Qb from '@/components/Qb'
+import Map from '@/components/Map'
 Vue.use(Router)
 
 export default new Router({
@@ -66,6 +69,11 @@ export default new Router({
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
     },
 
     // 个人中心
@@ -304,18 +312,36 @@ export default new Router({
           name: 'Tc',
           component: Tc
         },
+        {
+          path: '/zt',
+          name: 'Zt',
+          component: Zt
+        },
+        {
+          path: '/qb',
+          name: 'Qb',
+          component: Qb
+        },
+        {
+          path: '/lbw',
+          name: 'Lbw',
+          component: Lbw
+        }
       ]
+    },
+    {
+      path: '/jfsc1',
+      name: 'Jfsc',
+      component: Jfsc
     },
     {
       path: '/tcc',
       name: 'Tc',
       component: Tc
     },
-    {
-      path: '/zt',
-      name: 'Zt',
-      component: Zt
-    },
+
+
+
     //轮播图
     {
       path: '/lbt',
@@ -327,6 +353,7 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
-    }
+    },
+
   ]
 })
