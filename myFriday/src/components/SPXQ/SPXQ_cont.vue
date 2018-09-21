@@ -146,7 +146,17 @@
           axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.sp[0].id+'&num='+this.num+'&shangdian='+this.shangdian).then(res=> {
 // console.log(res.data)
           })
-          gwcfr()
+          gwcfr();
+          setTimeout(function () {
+            var usid=Number(localStorage.userid)
+            axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+              // console.log(res.data)
+              this.gwc=res.data
+              this.jsq=this.gwc.length
+              console.log(this.jsq)
+              $(".gwcjishu").html(this.jsq)
+            })
+          },1500)
         },
         sc(){
           if(this.scbol==true){

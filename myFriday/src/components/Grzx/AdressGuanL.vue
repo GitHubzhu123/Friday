@@ -35,13 +35,13 @@
 
         </li>
         <li class="liTwo">
-          <div>{{item.location}}</div>
+          <div>{{item.dizhi}}</div>
         </li>
         <li class="liThr">
-          <div>nihoap</div>
+          <div>{{item.dizhi}}</div>
         </li>
         <li class="liFour">
-          <div>ddd</div>
+          <div>{{item.tel}}</div>
         </li>
         <li class="liFive">
           <div>哈喽,你好啊</div>
@@ -75,20 +75,22 @@
       methods:{
         changei(i){
           console.log(i);
-          window.location.href='/#/xiugaiadress'
-
+          localStorage.xiugai = i;
+          window.location.href='/#/xiugaiadress';
         },
           del(i){
             console.log(i);
             var aa = this.addres[i].id;
-            axios.get('/api/PHP/Day04/mfriday.php?type=10&id='+aa).then(res=>{
+            axios.get('/api/PHP/Day04/mfriday.php?type=10&id='+aa+'&userid='+localStorage.userid).then(res=>{
               console.log(res.data)
               this.addres=res.data
+              // location.reload()
             })
           }
       },
       mounted(){
-        axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.usreid).then(res=>{
+          console.log(localStorage.userid)
+        axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.userid).then(res=>{
           console.log(res.data)
           this.addres=res.data
         })
@@ -98,7 +100,7 @@
 
 <style scoped>
   .duihuan{
-    height: 625px;
+    /*height: 625px;*/
   }
   .toP{
     width: 1090px;
@@ -163,7 +165,7 @@
     display: block;
     clear: both;
   }
-  .midCon>li>p,.midNav>li>p{
+  .midNav>li>p{
     height: 45px;
     background: #f2f2f2;
     line-height: 45px;
@@ -171,6 +173,11 @@
   }
   a{
     color: #ffffff;
+  }
+  .midCon>li>div{
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
   }
   .liOne{
     width: 105px;

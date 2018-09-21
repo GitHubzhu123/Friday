@@ -14,7 +14,7 @@
       </p>
       <p class="jin">
         <span>应付金额：</span>
-        <span class="hong">165.90</span>
+        <span class="hong">{{zongjine}}</span>
         <span>（在线支付）</span>
         <span class="bianhao">订单编号：425954156947</span>
       </p>
@@ -75,7 +75,13 @@
         gwc_tit:GWC_tit,
         top_xiao:Top_Xiao,
         btm:Btm,
-      }
+      },
+      data(){
+          return{
+            zongjine:localStorage.zongjine,
+          }
+
+      },
     }
 </script>
 
