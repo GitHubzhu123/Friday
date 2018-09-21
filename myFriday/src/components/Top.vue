@@ -436,9 +436,9 @@
       $('#code_input1').blur(function(){
         var res = verifyCode1.validate(document.getElementById("code_input1").value);
         if(res==false){
-          alert('验证失败')
+          // alert('验证失败')
         }else{
-          alert('验证成功')
+          // alert('验证成功')
         }
       })
       $('#code_input').blur(function(){
