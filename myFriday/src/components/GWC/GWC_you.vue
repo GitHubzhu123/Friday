@@ -194,6 +194,7 @@
           // console.log(this.sdzje)
           for (var i=0;i<this.sdzje.length;i++){
             this.zongjine+=this.sdzje[i]
+            this.zongjine=Math.round(this.zongjine*100)/100
 
           }
         },

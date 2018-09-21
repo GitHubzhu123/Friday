@@ -84,15 +84,15 @@
           sdarr:[],
           sparr:[],
           // splength:[],
-          spARR:[[],[]],
+          spARR:[],
           gwc:[],
-          num:[[],[]],
+          num:[],
           //对勾
           // goubol:[],
           // shan_spid:0,
           // 金额
           yunfei:5.0,
-          spzje:[[],[]],
+          spzje:[],
           sdzje:[],
           zongjine:0,
           // 删除
@@ -171,8 +171,9 @@
           this.zongjine=0;
           for (var i=0;i<this.sdzje.length;i++){
             this.zongjine+=this.sdzje[i]+this.yunfei
-
+            this.zongjine=Math.round(this.zongjine*100)/100
           }
+          localStorage.zongjine=this.zongjine
         },
         //删除
         shanchu_sp(i,j){
@@ -213,6 +214,9 @@
           for (var i = 0; i < that.shangdian.length; i++) {
             if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
               that.sdarr.push(that.shangdian[i]);
+              that.spARR.push([])
+              that.num.push([])
+              that.spzje.push([])
             }
           }
           for(var i=0;i<that.sdarr.length;i++){
