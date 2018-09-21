@@ -147,9 +147,19 @@
           window.location.href = '/#/spxq'
         },
         a1(i){
-          console.log(this.data[i]);
+
           if(localStorage.login=='true'){
             gwcfr();
+            setTimeout(function () {
+              var usid=Number(localStorage.userid)
+              axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+                // console.log(res.data)
+                this.gwc=res.data
+                this.jsq=this.gwc.length
+                console.log(this.jsq)
+                $(".gwcjishu").html(this.jsq)
+              })
+            },1500)
             axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
 // console.log(res.data)
             })
@@ -164,6 +174,16 @@
           console.log(this.data1[i]);
           if(localStorage.login=='true'){
             gwcfr();
+            setTimeout(function () {
+              var usid=Number(localStorage.userid)
+              axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+                // console.log(res.data)
+                this.gwc=res.data
+                this.jsq=this.gwc.length
+                console.log(this.jsq)
+                $(".gwcjishu").html(this.jsq)
+              })
+            },1500)
             axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data1[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
 // console.log(res.data)
             })
@@ -178,7 +198,19 @@
           // console.log(this.data2[i]);
           // alert(this.data2[i].id)
           if(localStorage.login=='true'){
+
             gwcfr();
+            setTimeout(function () {
+              var usid=Number(localStorage.userid)
+              axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+                // console.log(res.data)
+                this.gwc=res.data
+                this.jsq=this.gwc.length
+                console.log(this.jsq)
+                $(".gwcjishu").html(this.jsq)
+              })
+            },1500)
+
             axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data2[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
 // console.log(res.data)
             })
@@ -193,6 +225,16 @@
           // console.log(this.data[i]);
           if(localStorage.login=='true'){
             gwcfr();
+            setTimeout(function () {
+              var usid=Number(localStorage.userid)
+              axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+                // console.log(res.data)
+                this.gwc=res.data
+                this.jsq=this.gwc.length
+                console.log(this.jsq)
+                $(".gwcjishu").html(this.jsq)
+              })
+            },1500)
             axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data3[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
 // console.log(res.data)
             })
@@ -208,15 +250,15 @@
         var params = new URLSearchParams();
         params.append('type',1);
         axios.post('/api/vuephp/home.php',params).then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.data = response.data;
         })
         axios.get('/api/vuephp/home.php',{params:{type:2}}).then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.data1 = response.data;
         })
         axios.get('/api/vuephp/home.php?type=3').then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           this.data2 = response.data;
         })
       }

@@ -96,7 +96,15 @@
           <div class="topC1_2"><a>热门:</a><a href="#">奇异果</a><a href="#">牛排</a><a href="#">山竹</a><a href="#">牛油果</a></div>
         </div>
         <div class="topC2">
-          <a @click="to_grzx"><img src="./../../static/z/主页/user.png" alt="">个人中心</a><a class="togwc" @click="to_gwc"><img src="./../../static/z/主页/gwc.png" alt="">购物车</a>
+          <a @click="to_grzx"><img  class="topC2_img" src="./../../static/z/主页/user.png" alt="">个人中心</a>
+          <a class="togwc" @click="to_gwc">
+            <img class="topC2_img" src="./../../static/z/主页/gwc.png" alt="">
+            购物车
+            <div class="jishuimg" >
+              <img src="./../../static/f/rec bubble.png" alt="">
+              <span class="gwcjishu">{{jsq}}</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -201,7 +209,9 @@
         bol:true,
         src1:'./../../static/z/主页/yuan1.png',
         src2:'./../../static/z/主页/yuan2.png',
-        local:'北京市朝阳区'
+        local:'北京市朝阳区',
+        //计数器
+        jsq:0,
       }
     },
     methods:{
@@ -371,6 +381,7 @@
       }
     },
     mounted:function () {
+
       this.local = localStorage.str1+localStorage.str2+localStorage.str3;
       if(localStorage.username){
         this.username = localStorage.username;
@@ -522,7 +533,13 @@
             color: 'white',
         })
       })
-
+      //计数器
+      var usid=Number(localStorage.userid)
+      axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+        // console.log(res.data)
+        this.gwc=res.data
+        this.jsq=this.gwc.length
+      })
     }
   }
 </script>
@@ -641,7 +658,7 @@
   .topC2>a:nth-child(2){
     margin-left: 15px;
   }
-  .topC2>a>img{
+  .topC2_img{
     margin-right: 8px;
     position: relative;
     top: 3px;
@@ -1124,5 +1141,26 @@
     line-height: 35px;
     border-radius: 5px;
     cursor: pointer;
+  }
+  .togwc{
+    position: relative;
+  }
+  .jishuimg{
+    width: 30px;
+    height: 25px;
+    text-align: center;
+    position: absolute;
+    top: -15px;
+    left: 40px;
+  }
+  .gwcjishu{
+    color: white;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 25px;
   }
 </style>

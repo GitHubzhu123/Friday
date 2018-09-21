@@ -152,6 +152,7 @@
           for(var i=0;i<this.sdarr.length;i++){
             for(var j=0;j<this.spARR[i].length;j++){
               this.$set(this.spzje[i],j,this.spARR[i][j].money*this.num[i][j])
+              this.$set(this.spzje[i],j,Math.round(this.spARR[i][j].money*this.num[i][j]*100)/100)//取小数点后两位
             }
           }
         },
