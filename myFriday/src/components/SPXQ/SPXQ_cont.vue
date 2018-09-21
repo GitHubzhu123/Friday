@@ -52,11 +52,19 @@
           <span class="tubiao tb1" @click="sc"></span>
           <span>收藏此商品 </span>
           <span class="fx">分享到：</span>
-          <span class="tubiao tb2"></span>
-          <span class="tubiao tb3"></span>
-          <span class="tubiao tb4"></span>
-          <span class="tubiao tb5"></span>
-          <span class="tubiao tb6"></span>
+          <div id="fenXiang">
+            <div class="bshare-custom icon-medium">
+              <!--<a title="分享到" href="http://www.bShare.cn/" id="bshare-shareto" class="bshare-more">分享到</a>-->
+              <a title="分享到QQ空间" class="bshare-qzone"></a>
+              <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+              <a title="分享到人人网" class="bshare-renren"></a>
+              <a title="分享到腾讯微博" class="bshare-qqmb"></a>
+              <a title="分享到网易微博" class="bshare-neteasemb"></a>
+              <a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a>
+              <!--<span class="BSHARE_COUNT bshare-share-count">0</span>-->
+            </div>
+            <!--<a class="bshareDiv" onclick="javascript:return false;"></a>-->
+          </div>
         </div>
       </div>
     </div>
@@ -466,6 +474,11 @@
   }
   .fx{
     margin-left: 40px;
+  }
+  #fenXiang{
+    position: relative;
+    left: 245px;
+    bottom: 32px;
   }
   .tb2{
     background: url('/../static/f/JingLing.png') -180px -0px;

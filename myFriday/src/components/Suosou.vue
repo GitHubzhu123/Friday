@@ -65,7 +65,7 @@
           this.bol = !this.bol;
           // alert(this.bol)
           if (this.bol==true){
-            axios.get('/api/vuephp/tc.php?type=8&name='+this.$route.query.name).then(res=> {
+            axios.get('/api/vuephp/tc.php?type=9&name='+this.$route.query.name).then(res=> {
             this.data = res.data;
             console.log(this.data)
           })
@@ -73,7 +73,7 @@
             transform:'rotate(180deg)'
           })
           } else{
-            axios.get('/api/vuephp/tc.php?type=8&name='+this.$route.query.name).then(res=> {
+            axios.get('/api/vuephp/tc.php?type=10&name='+this.$route.query.name).then(res=> {
             this.data = res.data;
             console.log(this.data)
           })

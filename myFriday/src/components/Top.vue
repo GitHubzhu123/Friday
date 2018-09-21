@@ -363,7 +363,12 @@
         }
       },
       to_grzx(){
-        window.location.href="/#/grmenu";
+        if(localStorage.login=='true'){
+          window.location.href="/#/grmenu";
+        }else{
+          window.location.href="/#/login";
+        }
+
       }
     },
     mounted:function () {
