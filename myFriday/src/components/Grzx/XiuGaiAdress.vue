@@ -6,7 +6,7 @@
     <div class="mid">
       <ul class="midCon">
         <li class="oneLi">
-          <span>*</span>收货人姓名: <input type="text" :value="adress[0].shouHuoRen">
+          <span>*</span>收货人姓名: <input type="text" :value="adress.shouHuoRen">
         </li>
         <!---->
         <li class="twoLi">
@@ -18,12 +18,12 @@
           </div>
         </li>
         <li class="thrLi">
-          <span>*</span>详细地址: <input type="text" :value="adress[0].location">
+          <span>*</span>详细地址: <input type="text" :value="adress.dizhi">
         </li>
         <!---->
         <li class="fourLi">
-          <span>*</span>联系电话: <input type="text" class="oneInp" :value="adress[0].tel">
-          <span style="font-size: 16px;color: black">或固定电话:</span> <input type="text" class="twoInp" :value="adress[0].quhao"> — <input class="thrInp" type="text" :value="adress[0].guHua"><br>
+          <span>*</span>联系电话: <input type="text" class="oneInp" :value="adress.tel">
+          <span style="font-size: 16px;color: black">或固定电话:</span> <input type="text" class="twoInp" :value="adress.quhao"> — <input class="thrInp" type="text" :value="adress.guHua"><br>
         </li>
         <!---->
         <li class="fiveLi">
@@ -43,7 +43,8 @@
     data(){
       return {
         defaul:'',
-        id:''
+        id:'',
+        adress:[]
 
       }
     },
@@ -63,6 +64,7 @@
 
         axios.get('/api/PHP/Day04/mfriday.php?type=12&id='+this.id+'&user='+one+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
           console.log(res.data)
+          console.log(this.id,one,thr,five,seven)
           setTimeout(function () {
             window.location.href='/#/adressguanl'
           },1000)
@@ -74,7 +76,10 @@
     mounted(){
       axios.get('/api/PHP/Day04/mfriday.php?type=13&id='+localStorage.userid).then(res=>{
         console.log(res.data)
+        console.log(localStorage.xiugai)
         // this.id=res.data[0].id
+        this.adress=res.data[localStorage.xiugai]
+        this.id=res.data[localStorage.xiugai].id
 
       })
     }
