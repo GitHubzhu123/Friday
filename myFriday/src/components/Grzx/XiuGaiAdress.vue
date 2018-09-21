@@ -16,7 +16,7 @@
             <select class="city" disabled="disabled"></select>
             <select class="dist" disabled="disabled"></select>
           </div>
-        </li>        <!---->
+        </li>
         <li class="thrLi">
           <span>*</span>详细地址: <input type="text" :value="adress[0].location">
         </li>
@@ -43,7 +43,7 @@
     data(){
       return {
         defaul:'',
-        adress:[]
+        id:''
 
       }
     },
@@ -61,9 +61,12 @@
           this.defaul=0
         }
 
-        axios.get('/api/PHP/Day04/mfriday.php?type=12&id='+localStorage.userid+'&user='+one+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
+        axios.get('/api/PHP/Day04/mfriday.php?type=12&id='+this.id+'&user='+one+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
           console.log(res.data)
-          window.location.href='/#/adressguanl'
+          setTimeout(function () {
+            window.location.href='/#/adressguanl'
+          },1000)
+
         })
 
       }
@@ -71,7 +74,7 @@
     mounted(){
       axios.get('/api/PHP/Day04/mfriday.php?type=13&id='+localStorage.userid).then(res=>{
         console.log(res.data)
-        this.adress=res.data
+        // this.id=res.data[0].id
 
       })
     }
@@ -84,7 +87,6 @@
   .toP{
     width: 1035px;
     height: 58px;
-    /*border-bottom: 1px solid #e2e2e2;*/
     position: relative;
     line-height: 58px;
     font-size: 20px;

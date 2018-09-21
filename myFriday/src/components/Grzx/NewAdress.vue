@@ -58,8 +58,8 @@
           }else{
             this.defaul=0
           }
-
-          axios.get('/api/PHP/Day04/mfriday.php?type=8&user='+one+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
+          console.log(localStorage.userid)
+          axios.get('/api/PHP/Day04/mfriday.php?type=8&user='+one+'&userid='+localStorage.userid+'&local='+thr+'&moren='+ this.defaul+'&phone='+five+'&quhao='+six+'&guhua='+seven).then(res=>{
             console.log(res.data)
           })
           window.location.href='/#/adressguanl'
