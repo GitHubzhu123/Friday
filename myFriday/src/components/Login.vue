@@ -24,7 +24,8 @@
             <canvas id="canvas" width="80" height="30"></canvas>
             <a href="#" id="changeImg">看不清，换一张</a>
             <p class="p4" style="clear: both;padding: 5px 0"><span>!</span>验证码输入错误</p>
-            <input type="text" class="inp1 val5" placeholder="手机验证码"  :value="aa"><button @click="hq()" class="btn1">{{str}}</button>
+            <input type="text" class="inp1 val5" placeholder="手机验证码"  :value="aa">
+            <button @click="hq()" class="btn1">{{str}}</button>
             <br/>
             <div class="read">
               <img @click="changeI()" :src="bol?src1:src2" alt="">
@@ -542,7 +543,7 @@
 
 <style scoped>
   .log2{
-    display: none;
+    /*display: none;*/
   }
   .log22{
     width: 310px;
@@ -750,7 +751,7 @@
     height: 500px;
     text-align: center;
     position: relative;
-    /*display: none;*/
+    display: none;
   }
   .log1>input:nth-of-type(1){
     margin-top: 30px;
@@ -810,8 +811,8 @@
     background: #498e3d;
     color: white;
     font-weight: 200;
-    right: 50px;
-    top: 327px;
+    right: 53px;
+    top: 323px;
     outline: none;
   }
   .read{
