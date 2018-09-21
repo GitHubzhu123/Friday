@@ -25,8 +25,12 @@
         <a>Firiday</a>
       </div>
       <div class="friR"><a>距离开始</a>
-        <span class="sp">5天</span><span>:</span><span class="sp">15</span><span>:</span><span class="sp">35</span><span>:</span><span class="sp">20</span><a
-          href="#">更多&gt;</a></div>
+        <span class="sp">{{timestamp.day}}天</span><span>:</span>
+        <span class="sp">{{timestamp.hour}}</span><span>:</span>
+
+        <span class="sp">{{timestamp.min}}</span><span>:</span>
+        <span class="sp">{{timestamp.sec}}</span>
+        <a href="#">更多&gt;</a></div>
     </div>
     <Lbt></Lbt>
     <div class="lis">
@@ -122,6 +126,7 @@
     import Lbt from "./Lbt";
     import Flbt from "./Flbt";
     import axios from 'axios'
+    import time from '../../static/times'
     export default {
         name: "Home",
       components: {Flbt, Lbt, Btm, Top},
@@ -130,10 +135,12 @@
           data:[],
           data1:[],
           data2:[],
-          login:''
+          login:'',
+          timestamp:{day:'',hour:'',min:'',sec:''}
         }
       },
       methods:{
+
           toXiang1(i){
             localStorage.spxqid = this.data[i].id;
             window.location.href = '/#/spxq'
@@ -231,7 +238,6 @@
                 // console.log(res.data)
                 this.gwc=res.data
                 this.jsq=this.gwc.length
-                console.log(this.jsq)
                 $(".gwcjishu").html(this.jsq)
               })
             },1500)
@@ -245,8 +251,15 @@
             })
           }
         },
+        time(){
+          setInterval(()=>{
+            this.timestamp = time.times(1538323200)
+            // console.log(this.data);
+          },1000)
+        }
       },
       mounted:function () {
+        this.time();
         var params = new URLSearchParams();
         params.append('type',1);
         axios.post('/api/vuephp/home.php',params).then((response) => {
