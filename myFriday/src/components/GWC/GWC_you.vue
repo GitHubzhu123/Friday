@@ -219,18 +219,20 @@ console.log(res.data)
           }
           // console.log(this.shanchu_duo)
           axios.get('/api/vuephp/gwc.php?type=13&spidarr='+this.shanchu_duo).then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
           })
           this.to_gwc()
         },
         to_gwc(){
           if(localStorage.login=='true'){
-            axios.get('/api/vuephp/gwc.php?type=21&userid='+this.userid).then(res=> {
+            axios.get('/api/vuephp/gwc.php?type=21&userid='+localStorage.userid).then(res=> {
               localStorage.huang=0
-              if(res.data==''){
-                window.location.href="/#/kong"
-              }else {
+              // console.log(res.data)
+              if(res.data.length>0){
+
                 window.location.href="/#/gwc_you"
+              }else {
+                window.location.href="/#/kong"
               }
             })
           }else{
@@ -285,7 +287,7 @@ console.log(res.data)
               that.spzje.push([])
             }
           }
-          console.log(that.spARR,that.num)
+
           for(var i=0;i<that.sdarr.length;i++){
             //打钩
             that.goubol.push({sdgou:true,spgou:[]})
