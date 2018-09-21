@@ -63,10 +63,23 @@ import Lbw from '@/components/Lbw'
 import Qb from '@/components/Qb'
 import Map from '@/components/Map'
 import Suosou from '@/components/Suosou'
+
+import Times from '@/components/Times'
+import Manage from '@/components/Manage'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/manage',
+      name: 'Manage',
+      component:Manage
+    },
+    {
+      path: '/times',
+      name: 'Times',
+      component:Times
+    },
     // {
     //   path: '/',
     //   name: 'GrMenu',
