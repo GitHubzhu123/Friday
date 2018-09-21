@@ -55,10 +55,15 @@
       }
     },
     mounted(){
-      localStorage.userid=1
+      // localStorage.userid=1
       axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
-        console.log(res.data)
-        this.username=res.data[0].userName;
+        console.log(localStorage.userid)
+        if(res.data[0].userName==''){
+          this.username=res.data[0].phone;
+        }else {
+          this.username=res.data[0].userName;
+        }
+
         this.jifen=res.data[0].jifen;
         this.money=res.data[0].money;
         this.headimg=res.data[0].headImg;

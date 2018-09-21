@@ -35,13 +35,13 @@
 
         </li>
         <li class="liTwo">
-          <div>{{item.location}}</div>
+          <div>{{item.dizhi}}</div>
         </li>
         <li class="liThr">
-          <div>nihoap</div>
+          <div>{{item.dizhi}}</div>
         </li>
         <li class="liFour">
-          <div>ddd</div>
+          <div>{{item.tel}}</div>
         </li>
         <li class="liFive">
           <div>哈喽,你好啊</div>
@@ -75,6 +75,7 @@
       methods:{
         changei(i){
           console.log(i);
+          localStorage.xiugai = i;
           window.location.href='/#/xiugaiadress';
         },
           del(i){
