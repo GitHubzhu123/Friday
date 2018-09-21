@@ -15,12 +15,12 @@
 
       <div class="lisB">
         <ul>
-          <li @click="toXiang1(i)" v-for="(arr,i) in data"  v-if="i>8*(num-1)-1&&i<num*8"><img :src="arr.src" alt="">
+          <li @click="toXiang(i)" v-for="(arr,i) in data"  v-if="i>8*(num-1)-1&&i<num*8"><img :src="arr.src" alt="">
             <div class="lisC">
               <p>{{arr.name}}</p>
               <p>{{arr.jj}}</p>
               <a>￥{{arr.money}}</a><span>￥{{arr.money}}</span>
-              <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="" @click="hq(i)">
+              <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="" @click="hq(i,$event)">
             </div>
           </li>
         </ul>
@@ -42,14 +42,19 @@
           }
       },
       methods:{
-        toXiang1(i){
+        toXiang(i,event){
+          // event.preventDefault()
           localStorage.spxqid = this.data[i].id;
           window.location.href = '/#/spxq'
         },
-        hq(i){
+        hq(i,event){
+          event.stopPropagation()
           console.log(this.data[i])
           if(localStorage.login=='true'){
             gwcfr();
+            axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
+// console.log(res.data)
+            })
           }else{
             // alert('您还未登录');
             $('.login').css({

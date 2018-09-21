@@ -15,7 +15,6 @@
             <input type="text" id="code_input1" value="" placeholder="验证码"/>
             <div id="v_container1"></div>
             <div class="yzm1"><a href="###">看不清换一张</a></div>
-            <!--<p class="p3 log2p4"><span>!</span>验证失败</p>-->
           </div>
           <div class="log_5">
             <input type="checkbox">自动登录
@@ -363,7 +362,12 @@
         }
       },
       to_grzx(){
-        window.location.href="/#/grmenu";
+        if(localStorage.login=='true'){
+          window.location.href="/#/grmenu";
+        }else{
+          window.location.href="/#/login";
+        }
+
       }
     },
     mounted:function () {
