@@ -2,7 +2,8 @@
   <div>
     <top_-xiao></top_-xiao>
     <div class="top">
-      <img src="./../../static/z/主页/logo.png" alt="">
+      <router-link to="/top">
+      <img src="./../../static/z/主页/logo.png" alt=""></router-link>
       <span>{{login}}</span>
     </div>
     <div class="content">
@@ -64,7 +65,7 @@
               </div>
               <div class="log2_6">
                 <p>提示 ：未注册用户将直接注册成为礼拜五用户</p>
-                <span>-------------------用合作网站登录------------------</span>
+                <span>----------用合作网站登录----------</span>
               </div>
               <div class="log2_7">
                 <img src="./../../static/z/login/wei.png" alt="">
@@ -687,7 +688,7 @@
     /*background-color: lemonchiffon;*/
     line-height: 150px;
   }
-  .top>img{
+  .top img{
     position: relative;
     top: 17px;
   }

@@ -16,7 +16,7 @@
         <div class="lis">
           <ul>
             <!--v-for="(arr,i) in data"  -->
-            <li v-for="(arr,i) in data" v-if="i>8*(num-1)-1&&i<num*8"><img :src="arr.src" alt="">
+            <li @click="toXiang(i)" v-for="(arr,i) in data" v-if="i>8*(num-1)-1&&i<num*8"><img :src="arr.src" alt="">
               <div class="lisC">
                 <p>{{arr.name}}</p>
                 <p>{{arr.jj}}</p>
@@ -45,6 +45,10 @@
           }
       },
       methods:{
+        toXiang(i){
+          localStorage.spxqid = this.data[i].id;
+          window.location.href = '/#/spxq'
+        },
           hq(i){
             console.log(this.data[i])
             // alert(localStorage.login)
@@ -59,16 +63,19 @@
           },
         money(){
           this.bol = !this.bol;
+          // alert(this.bol)
           if (this.bol==true){
-          axios.get('/api/vuephp/tc.php?type=9&name='+localStorage.sou).then((response) => {
-            this.data = response.data;
+            axios.get('/api/vuephp/tc.php?type=9&name='+this.$route.query.name).then(res=> {
+            this.data = res.data;
+            console.log(this.data)
           })
           $('#money').css({
             transform:'rotate(180deg)'
           })
           } else{
-          axios.get('/api/vuephp/tc.php?type=10&name='+localStorage.sou).then((response) => {
-            this.data = response.data;
+            axios.get('/api/vuephp/tc.php?type=10&name='+this.$route.query.name).then(res=> {
+            this.data = res.data;
+            console.log(this.data)
           })
           $('#money').css({
             transform:'rotate(360deg)'

@@ -65,14 +65,14 @@
           sdarr:[],
           sparr:[],
           splength:[],
-          spARR:[[],[]],
+          spARR:[],
           gwc:[],
-          num:[[],[]],
+          num:[],
           //对勾
           goubol:[],
           shan_spid:0,
           // 金额
-          spzje:[[],[]],
+          spzje:[],
           sdzje:[],
           zongjine:0,
           // 删除
@@ -166,7 +166,7 @@
         zje(){
           for(var i=0;i<this.sdarr.length;i++){
             for(var j=0;j<this.spARR[i].length;j++){
-              this.$set(this.spzje[i],j,this.spARR[i][j].money*this.num[i][j])
+              this.$set(this.spzje[i],j,Math.round(this.spARR[i][j].money*this.num[i][j]*100)/100)//取小数点后两位
             }
           }
         },
@@ -277,11 +277,14 @@ console.log(res.data)
             // Vue.set(that.num,i,res.data[i].num);
            }
           for (var i = 0; i < that.shangdian.length; i++) {
-            if (that.sdarr.indexOf(that.shangdian[i]) < 0) {
+            if (that.sdarr.indexOf(that.shangdian[i]) < 0) {//数组去重
               that.sdarr.push(that.shangdian[i]);
-
+              that.spARR.push([])
+              that.num.push([])
+              that.spzje.push([])
             }
           }
+          console.log(that.spARR,that.num)
           for(var i=0;i<that.sdarr.length;i++){
             //打钩
             that.goubol.push({sdgou:true,spgou:[]})
