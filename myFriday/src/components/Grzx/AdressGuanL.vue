@@ -47,8 +47,8 @@
           <div>哈喽,你好啊</div>
         </li>
         <li class="liSix">
-          <div>
-            <span>设为默认地址</span>
+          <div class="xg">
+            <span @click="moren(i)" class="morenSp">设为默认地址</span>
             <div class="line1"></div>
             <span @click="changei(i)">修改</span>
             <div class="line2"></div>
@@ -73,17 +73,31 @@
           }
       },
       methods:{
+          moren(i){
+            // var aa = this.addres[i].id;
+            // axios.get('/api/PHP/Day04/mfriday.php?type=15&id='+aa+'&userid='+localStorage.userid).then(res=>{
+            //   console.log(res.data)
+            //   console.log(localStorage.userid)
+            //   if(!res.data.length){
+            //     window.location.href='/#/adress'
+            //   }
+            //   // location.reload()
+            // })
+          },
         changei(i){
           console.log(i);
           localStorage.xiugai = i;
           window.location.href='/#/xiugaiadress';
         },
           del(i){
-            console.log(i);
+            // console.log(i);
             var aa = this.addres[i].id;
             axios.get('/api/PHP/Day04/mfriday.php?type=10&id='+aa+'&userid='+localStorage.userid).then(res=>{
               console.log(res.data)
-              this.addres=res.data
+              console.log(localStorage.userid)
+              if(!res.data.length){
+                window.location.href='/#/adress'
+              }
               // location.reload()
             })
           }
@@ -91,8 +105,24 @@
       mounted(){
           console.log(localStorage.userid)
         axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.userid).then(res=>{
-          console.log(res.data)
           this.addres=res.data
+          console.log($('.morenSp'));
+          // setTimeout(function () {
+            for (var i=0;i<res.data.length;i++){
+              // console.log($('.morenSp1'))
+              if(res.data[i].moRen==1){
+                console.log($('.morenSp'));
+                // $('.morenSp1')[i].style.display='none';
+                // $('.xg')[i].style.width=120+"px"
+                // $('.xg')[i].style.marginLeft=62+'px'
+                // $('.line1')[i].style.display='none'
+              }else{
+                // $('.morenSp2').css('display','block')
+              }
+            }
+          // },1000)
+
+
         })
       }
     }
@@ -140,8 +170,9 @@
     position: relative;
     text-align: center;
     overflow: hidden;
-    margin: 25px 0 0 25px;
+    margin: 25px 0 25px 25px;
     border-bottom: 0px;
+
   }
   .midCon{
     width: 1040px;
@@ -199,7 +230,7 @@
   }
   .liSix>div{
     width: 200px;
-    margin-left: 15px;
+    margin: auto;
     position: relative;
     display: flex;
     justify-content: space-around;

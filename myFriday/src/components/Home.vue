@@ -238,7 +238,6 @@
                 // console.log(res.data)
                 this.gwc=res.data
                 this.jsq=this.gwc.length
-                console.log(this.jsq)
                 $(".gwcjishu").html(this.jsq)
               })
             },1500)
