@@ -24,7 +24,7 @@
           </li>
           <li class="thrLi">
             生日: <select id="thrInp">
-            <option>1990</option>
+            <option>{{age}}</option>
           </select> 年
           </li>
           <li class="fourLi">
@@ -64,6 +64,7 @@
           var four=document.getElementById('fourInp').value;
           var oneRadio = $('.twoLi input:radio:checked').val()
             // console.log(one,thr,four,oneRadio)
+          console.log(localStorage.userid)
             axios.get('/api/PHP/Day04/mfriday.php?type=2&id='+localStorage.userid+'&nicheng='+one+'&birthday='+thr+'&sex='+ oneRadio).then(res=>{
               console.log(res.data)
             })
@@ -76,6 +77,7 @@
             this.nicheng=res.data[0].nicheng
             this.phone=res.data[0].phone
             this.sex=res.data[0].sex
+            this.age=res.data[0].birthday
             if (this.sex=='1') {
               // console.log($("input:radio:eq(0)").val())
               $("input:radio:eq(0)").attr('checked',true)

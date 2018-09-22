@@ -48,8 +48,8 @@
         </li>
         <li class="liSix">
           <div class="xg">
-            <span @click="moren(i)" class="morenSp1">设为默认地址</span>
-            <div class="line1 morenSp2"></div>
+            <span @click="moren(i)" class="morenSp">设为默认地址</span>
+            <div class="line1"></div>
             <span @click="changei(i)">修改</span>
             <div class="line2"></div>
             <span @click="del(i)">删除</span>
@@ -106,15 +106,16 @@
           console.log(localStorage.userid)
         axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.userid).then(res=>{
           this.addres=res.data
+          console.log($('.morenSp'));
           // setTimeout(function () {
             for (var i=0;i<res.data.length;i++){
               // console.log($('.morenSp1'))
               if(res.data[i].moRen==1){
-                console.log($('.morenSp1')[i],i)
-                $('.morenSp1')[i].style.display='none'
-                $('.xg')[i].style.width=120+"px"
-                $('.xg')[i].style.marginLeft=62+'px'
-                $('.morenSp2')[i].style.display='none'
+                console.log($('.morenSp'));
+                // $('.morenSp1')[i].style.display='none';
+                // $('.xg')[i].style.width=120+"px"
+                // $('.xg')[i].style.marginLeft=62+'px'
+                // $('.line1')[i].style.display='none'
               }else{
                 // $('.morenSp2').css('display','block')
               }
