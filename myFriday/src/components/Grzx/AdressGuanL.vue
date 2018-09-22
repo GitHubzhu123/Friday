@@ -28,11 +28,10 @@
         </li>
       </ul>
 
-      <!---->
+
       <ul class="midCon" v-for="(item,i) in addres">
         <li class="liOne">
           <div >{{item.shouHuoRen}}</div>
-
         </li>
         <li class="liTwo">
           <div>{{item.dizhi}}</div>
@@ -47,12 +46,12 @@
           <div>哈喽,你好啊</div>
         </li>
         <li class="liSix">
-          <div class="xg">
-            <span @click="moren(i)" class="morenSp">设为默认地址</span>
-            <div class="line1"></div>
-            <span @click="changei(i)">修改</span>
-            <div class="line2"></div>
-            <span @click="del(i)">删除</span>
+          <div class="cz">
+            <span @click="moren(i)" class="mr">设为默认地址</span>
+            <span class="line1 mr2">|</span>
+            <span @click="changei(i)" class="xg">修改</span>
+            <span class="line2">|</span>
+            <span @click="del(i)" class="sc">删除</span>
           </div>
         </li>
       </ul>
@@ -74,6 +73,11 @@
       },
       methods:{
           moren(i){
+            console.log(this.addres[i])
+            $(".mr").eq(i).css({
+              display:'none'
+            })
+            // console.log($(".mr").eq(0))
             // var aa = this.addres[i].id;
             // axios.get('/api/PHP/Day04/mfriday.php?type=15&id='+aa+'&userid='+localStorage.userid).then(res=>{
             //   console.log(res.data)
@@ -103,27 +107,29 @@
           }
       },
       mounted(){
-          console.log(localStorage.userid)
+          // console.log(localStorage.userid)
+
         axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.userid).then(res=>{
           this.addres=res.data
-          console.log($('.morenSp'));
-          // setTimeout(function () {
-            for (var i=0;i<res.data.length;i++){
-              // console.log($('.morenSp1'))
+          window.onload = function(){
+            for(var i=0;i<res.data.length;i++){
+              console.log(res.data[i].moRen)
               if(res.data[i].moRen==1){
-                console.log($('.morenSp'));
-                // $('.morenSp1')[i].style.display='none';
-                // $('.xg')[i].style.width=120+"px"
-                // $('.xg')[i].style.marginLeft=62+'px'
-                // $('.line1')[i].style.display='none'
-              }else{
-                // $('.morenSp2').css('display','block')
+                console.log($(".mr").eq(i))
+                $(".mr").eq(i).css({
+                  display:'none'
+                })
+                $(".mr2").eq(i).css({
+                  display:'none'
+                })
               }
             }
-          // },1000)
 
-
+          }
         })
+        // window.onload = function() {
+        //   console.log(this.addres)
+        // }
       }
     }
 </script>
@@ -159,109 +165,78 @@
   }
   .toP a{
     font-size: 14px;
+    color: white;
   }
-
-
-
   .mid{
     width: 1040px;
-    /*height: 565px;*/
     border: 1px solid #e2e2e2;
     position: relative;
-    text-align: center;
-    overflow: hidden;
+    /*text-align: center;*/
+    line-height: 45px;
     margin: 25px 0 25px 25px;
     border-bottom: 0px;
 
   }
-  .midCon{
-    width: 1040px;
-    /*margin: 0 0 0 20px;*/
-    height: 50px;
-    border-bottom: 1px solid #e2e2e2;
-    line-height: 50px;
-    border-top: 0;
-  }
   .midNav{
-    width: 1040px;
-    background: aqua;
-    border-bottom: 1px solid #e2e2e2;
-    /*height: 100px;*/
+    background: rgb(242,242,242);
+    height: 45px;
   }
-  .midCon>li,.midNav>li{
+  .midNav>li{
+    height: 45px;
     float: left;
-  }
-  .midCon::after,.midNav::after{
-    content: '';
-    display: block;
-    clear: both;
-  }
-  .midNav>li>p{
-    height: 45px;
-    background: #f2f2f2;
-    line-height: 45px;
     text-align: center;
-  }
-  a{
-    color: #ffffff;
-  }
-  .midCon>li>div{
-    height: 45px;
-    line-height: 45px;
-    text-align: center;
+    /*background: red;*/
   }
   .liOne{
-    width: 105px;
+    width: 100px;
+    margin-left: 15px;
+    /*background: red;*/
   }
   .liTwo{
-    width: 120px;
+    width: 150px;
   }
   .liThr{
-    width: 320px;
+    width: 300px;
   }
   .liFour{
-    width: 125px;
+    width: 120px;
   }
   .liFive{
-    width: 140px;
+    width: 150px;
   }
   .liSix{
-    width: 230px;
+    width: 190px;
+    /*background: red;*/
   }
-  .liSix>div{
-    width: 200px;
-    margin: auto;
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  .midCon{
+    /*background: red;*/
+    height: 50px;
+    border-bottom: 1px solid rgb(200,200,200);
+  }
+  .midCon>li{
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    text-align: center;
 
+    /*background: red;*/
   }
-  .liSix>div>span{
-    /*margin-left: 10px;*/
+  .midCon>li>div{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .line{
-    position: absolute;
-    width: 2px;
-    height: 16px;
-    background: #666666;
-    top: 16px;
-    left: 120px;
+  .cz{
+    /*background: red;*/
   }
-  .line1{
-    /*position: absolute;*/
-    width: 2px;
-    height: 16px;
-    background: #666666;
-    /*top: 16px;*/
-    /*left: 128px;*/
+  .mr{
+    /*display: none;*/
+    color: rgb(240,130,0);
   }
-  .line2{
-    /*position: absolute;*/
-    width: 2px;
-    height: 16px;
-    background: #666666;
-    /*top: 16px;*/
-    /*left: 175px;*/
+  .xg,.sc{
+    color: rgb(73,142,61);
+  }
+  .line1,.line2{
+    color: rgb(100,100,100);
   }
 </style>
