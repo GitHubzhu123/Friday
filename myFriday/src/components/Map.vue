@@ -119,6 +119,7 @@
               localStorage.str3=this.qu
               console.log(this.str1)
               localStorage.str1 = this.str1
+              localStorage.strs = localStorage.str1+localStorage.str2+localStorage.str3;
             }
           }
         },
@@ -135,6 +136,7 @@
               localStorage.str3=this.qu
               console.log(this.str2)
               localStorage.str2 = this.str2
+              localStorage.strs = localStorage.str1+localStorage.str2+localStorage.str3;
             }
           }
         },
@@ -146,11 +148,9 @@
             }
           }
           this.E=e;
-          // console.log(this.E)
-          //市
-          // this.str2=this.city[index3].value
           console.log(this.str3)
           localStorage.str3 = this.str3
+          localStorage.strs = localStorage.str1+localStorage.str2+localStorage.str3;
         },
       },
       created:function(){
