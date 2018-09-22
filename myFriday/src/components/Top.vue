@@ -75,7 +75,7 @@
     <div class="top">
       <div class="topT">
         <div class="topTl">
-          <span @click="city()">所在城市 ：{{local}} </span><img src="./../../static/z/主页/箭头.png" alt="">
+          <span @click="city()">所在城市 ：{{dizhi}} </span><img src="./../../static/z/主页/箭头.png" alt="">
         </div>
         <div class="topTr">
           <span>您好 ,</span>
@@ -209,14 +209,14 @@
         bol:true,
         src1:'./../../static/z/主页/yuan1.png',
         src2:'./../../static/z/主页/yuan2.png',
-        local:'北京市朝阳区',
+        dizhi:'北京市朝阳区',
         //计数器
         jsq:0,
       }
     },
     methods:{
       logo(){
-        window.location.href = '/#/top'
+        window.location.href = '/'
       },
       sou(){
         this.$router.push({name:'Suosou',query:{name: $('.topC1_1>input').val()}})
@@ -224,7 +224,7 @@
       },
       bc1(){
         console.log($('.zz').html())
-        this.local = $('.zz').html();
+        this.dizhi = $('.zz').html();
         $('.local').css({
           display:'none'
         })
@@ -240,7 +240,7 @@
         })
       },
       bc(){
-        this.local = localStorage.str1+localStorage.str2+localStorage.str3;
+        this.dizhi = localStorage.str1+localStorage.str2+localStorage.str3;
         $('.local').css({
           display:'none'
         })
@@ -381,8 +381,8 @@
       }
     },
     mounted:function () {
-
-      this.local = localStorage.str1+localStorage.str2+localStorage.str3;
+      this.dizhi = localStorage.str1+localStorage.str2+localStorage.str3;
+      // console.log(this.local)
       if(localStorage.username){
         this.username = localStorage.username;
       }else{

@@ -21,7 +21,7 @@
                 <p>{{arr.name}}</p>
                 <p>{{arr.jj}}</p>
                 <a>￥{{arr.money}}</a><span>￥{{arr.moneyY}}</span>
-                <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="" @click="hq(i)">
+                <img class="gwc" src="./../../static/z/主页/gwc1.png" alt="" @click="hq(i,$event)">
               </div>
             </li>
           </ul>
@@ -49,11 +49,22 @@
           localStorage.spxqid = this.data[i].id;
           window.location.href = '/#/spxq'
         },
-          hq(i){
+          hq(i,$event){
+          $event.stopPropagation()
             console.log(this.data[i])
             // alert(localStorage.login)
             if(localStorage.login=='true'){
               gwcfr();
+              setTimeout(function () {
+                var usid=Number(localStorage.userid)
+                axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+                  // console.log(res.data)
+                  this.gwc=res.data
+                  this.jsq=this.gwc.length
+                  console.log(this.jsq)
+                  $(".gwcjishu").html(this.jsq)
+                })
+              },1500)
             }else{
               // alert('您还未登录');
               $('.login').css({

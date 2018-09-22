@@ -51,7 +51,18 @@
           event.stopPropagation()
           console.log(this.data[i])
           if(localStorage.login=='true'){
+
             gwcfr();
+            setTimeout(function () {
+              var usid=Number(localStorage.userid)
+              axios.get('/api/vuephp/gwc.php?type=21&userid='+usid).then(res=>{
+                // console.log(res.data)
+                this.gwc=res.data
+                this.jsq=this.gwc.length
+                console.log(this.jsq)
+                $(".gwcjishu").html(this.jsq)
+              })
+            },1500)
             axios.get('/api/vuephp/gwc.php?type=1&userid='+localStorage.userid+'&spid='+this.data[i].id+'&num=1&shangdian='+this.data[i].shangDian).then(res=> {
 // console.log(res.data)
             })

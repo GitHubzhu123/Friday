@@ -80,18 +80,6 @@ export default new Router({
       name: 'Times',
       component:Times
     },
-    // {
-    //   path: '/',
-    //   name: 'GrMenu',
-    //   component: GrMenu,
-    //   children:[
-    //     {
-    //       path: '/',
-    //       name: 'WdZhangH',
-    //       component: WdZhangH,
-    //     },
-    //     ]
-    // },
     {
       path: '/map',
       name: 'Map',
@@ -159,7 +147,7 @@ export default new Router({
     //主页
 
     {
-      path: '/top',
+      path: '/',
       name: 'Top',
       component: Top,
       redirect:'/home',

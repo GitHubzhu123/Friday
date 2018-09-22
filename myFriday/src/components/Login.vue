@@ -2,7 +2,7 @@
   <div>
     <top_-xiao></top_-xiao>
     <div class="top">
-      <router-link to="/top">
+      <router-link to="/">
       <img src="./../../static/z/主页/logo.png" alt=""></router-link>
       <span>{{login}}</span>
     </div>

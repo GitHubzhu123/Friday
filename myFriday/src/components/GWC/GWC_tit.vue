@@ -23,7 +23,7 @@
       },
       methods:{
         logo(){
-          window.location.href = '/#/top'
+          window.location.href = '/'
         },
         to_gwc(){
           if (localStorage.huang>0){
