@@ -50,7 +50,13 @@
     }
 </script>
 
-<style scoped>
+<style lang="less">
+  .swiper-pagination-bullet-active{
+    background-color: #4b943d !important;
+  }
+  .swiper-pagination-bullet{
+    background-color:gray;
+  }
   .lbt{
     width: 100%;
     height: 500px;

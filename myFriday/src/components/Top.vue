@@ -63,7 +63,7 @@
     <div class="local">
       <div class="loc">
         <p @click="bbc()">&times;</p>
-        <span>建议您的收货地址 ：</span><a class="zz" href="###" @click="bc1()">河南省郑州市</a>
+        <span>建议您的收货地址 ：</span><a class="zz" @click="bc1()">河南省郑州市</a>
         <div class="city">
           <Map></Map>
         </div>
@@ -110,7 +110,7 @@
     </div>
     <div class="topB">
       <div class="a1">
-        <a href="/#/qb">全部分类 <img src="./../../static/z/主页/xia.png" alt=""></a>
+        <a href="/#/qb">全部分类<img src="./../../static/z/主页/xia.png" alt=""></a>
         <div>
           <ul class="a1_1">
             <li><img src="./../../static/z/主页/li1.png" alt="">新鲜水果
@@ -240,7 +240,7 @@
         })
       },
       bc(){
-        this.dizhi = localStorage.str1+localStorage.str2+localStorage.str3;
+        this.dizhi = localStorage.strs;
         $('.local').css({
           display:'none'
         })
@@ -377,12 +377,15 @@
         }else{
           window.location.href="/#/login";
         }
-
       }
     },
     mounted:function () {
-      this.dizhi = localStorage.str1+localStorage.str2+localStorage.str3;
-      // console.log(this.local)
+      // console.log(localStorage.strs)
+      if(typeof(localStorage.strs)=="string"){
+        this.dizhi = localStorage.strs;
+      }else{
+        this.dizhi = '北京市朝阳区'
+      }
       if(localStorage.username){
         this.username = localStorage.username;
       }else{
