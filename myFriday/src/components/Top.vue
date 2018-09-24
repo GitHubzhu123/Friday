@@ -88,8 +88,11 @@
       <div class="topC">
         <img src="./../../static/z/主页/logo.png" alt="" @click="logo()">
         <div class="topC1">
-          <div class="topC1_1"><input type="text" placeholder="请输入关键字进行搜索">
-
+          <div class="topC1_1">
+            <input type="text" placeholder="请输入关键字进行搜索" @focus="ssk" class="ssinput">
+            <div class="ls">历史记录
+              <div class="ls_s" v-for="(item,i) in ssls" @click="lsclick(i)">{{item}}</div>
+            </div>
             <a @click="sou()">
               <img src="./../../static/z/主页/sou.png" alt=""></a>
           </div>
@@ -212,6 +215,8 @@
         dizhi:'北京市朝阳区',
         //计数器
         jsq:0,
+        //搜索历史
+        ssls:[],
       }
     },
     methods:{
@@ -222,7 +227,28 @@
         this.$router.push({name:'Suosou',query:{name: '水果'}})
         location.reload()
       },
+      ssk(){
+        $(".ls").css({
+          display:'block',
+        })
+        $(".ls").mouseleave(function () {
+          $(".ls").css({
+            display: 'none',
+          })
+        })
+        // console.log(this.ssls,localStorage.lishi)
+      },
+      lsclick(i){
+        $(".ssinput").val($(".ls_s").eq(i).html())
+        $(".ls").css({
+          display:'none',
+        })
+      },
       sou(){
+        // this.ssls=JSON.parse(localStorage.lishi)
+        this.ssls.push($(".ssinput").val());
+        localStorage.lishi = JSON.stringify(this.ssls);
+        console.log(this.ssls,localStorage.lishi)
         this.$router.push({name:'Suosou',query:{name: $('.topC1_1>input').val()}})
         location.reload()
       },
@@ -389,6 +415,7 @@
       }
     },
     mounted:function () {
+      this.ssls=JSON.parse(localStorage.lishi)
       // console.log(localStorage.strs)
       if(typeof(localStorage.strs)=="string"){
         this.dizhi = localStorage.strs;
@@ -396,6 +423,7 @@
         this.dizhi = '北京市朝阳区'
       }
       if(localStorage.username){
+
         this.username = localStorage.username;
       }else{
         this.username = '未登录'
@@ -644,6 +672,22 @@
     border: 1px solid #4b943d;
     /*background: #4b943d url("./../../static/z/主页/sou.png") no-repeat 97.5% 10px;*/
     margin-top: 50px;
+    position: relative;
+  }
+  .ls{
+    width: 456px;
+    background: white;
+    border: 1px solid;
+    position: absolute;
+    top: 40px;
+    left: -1px;
+    display: none;
+    z-index: 99;
+  }
+  .ls_s{
+    background: rgb(240,240,240);
+    border-top: 1px solid white;
+    padding-left: 20px;
   }
   .topC1_2{
     font-size: 14px;
@@ -1179,4 +1223,5 @@
     bottom: 0;
     line-height: 25px;
   }
+
 </style>

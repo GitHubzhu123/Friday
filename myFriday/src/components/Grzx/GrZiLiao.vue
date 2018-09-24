@@ -57,18 +57,16 @@
 
         },
         sub(){
-          // console.log($('#thrInp').val())
           var one=document.getElementById('oneInp').value;
           var thr=document.getElementById('thrInp').value;
           var four=document.getElementById('fourInp').value;
           var oneRadio = $('.twoLi input:radio:checked').val()
-            // console.log(one,thr,four,oneRadio)
-          console.log(localStorage.userid)
             axios.get('/api/PHP/Day04/mfriday.php?type=2&id='+localStorage.userid+'&nicheng='+one+'&birthday='+thr+'&sex='+ oneRadio).then(res=>{
-              console.log(res.data)
+              // console.log(res.data)
             })
-          // console.log(one)
-          $(".phone1").html(this.nicheng)
+          $(".phone1").html(one)
+          localStorage.username=one
+          // console.log(localStorage.username,this.nicheng)
         }
       },
       mounted(){
