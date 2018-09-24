@@ -141,7 +141,7 @@
     height: 35px;
     padding-left: 10px;
   }
-  
+
   select{
     width: 130px;
     height: 35px;
