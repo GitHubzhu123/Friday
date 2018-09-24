@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top_-xiao></top_-xiao>
+    <top_Xiao></top_Xiao>
     <div class="top">
       <router-link to="/">
       <img src="./../../static/z/主页/logo.png" alt=""></router-link>
@@ -254,7 +254,7 @@
                 })
               } else if (b1 == response.data[0].passWord) {
                 localStorage.login = true;
-                localStorage.userid = a1;
+                localStorage.username = a1;
                 alert('登录成功');
                 window.location.href = '#/top'
               } else if (a1.length > 0 && b1.length > 0) {
