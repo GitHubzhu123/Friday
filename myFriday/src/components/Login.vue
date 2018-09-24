@@ -1,6 +1,6 @@
 <template>
   <div>
-    <top_-xiao></top_-xiao>
+    <top_Xiao></top_Xiao>
     <div class="top">
       <router-link to="/">
       <img src="./../../static/z/主页/logo.png" alt=""></router-link>
