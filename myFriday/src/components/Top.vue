@@ -81,7 +81,7 @@
           <span>您好 ,</span>
           <a class="phone1" @click="login()">{{username}}</a>
           <a @click="tc()">退出</a>
-          <span class="span">|</span><a href="#">我的订单</a><span class="span">|</span><a href="#">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
+          <span class="span">|</span><a href="/#/wddingdan2">我的订单</a><span class="span">|</span><a href="/#/wodemessage">我的消息</a><span class="span">|</span><a href="#">我是商家</a>
           <span class="span">|</span><span class="phone">400-800-8820</span>
         </div>
       </div>
@@ -299,7 +299,12 @@
               $('.login').css({
                 display:'none'
               })
-              localStorage.username = $('.val1').val();
+              if(res.data[0].nicheng==''){
+                localStorage.username = $('.val1').val();
+              }else {
+                localStorage.username=res.data[0].nicheng
+              }
+
               localStorage.userid = res.data[0].id;
               // alert(localStorage.userid)
               this.username = localStorage.username

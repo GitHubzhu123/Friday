@@ -68,6 +68,8 @@ padding-left: 10px;
             axios.get('/api/PHP/Day04/mfriday.php?type=2&id='+localStorage.userid+'&nicheng='+one+'&birthday='+thr+'&sex='+ oneRadio).then(res=>{
               console.log(res.data)
             })
+          // console.log(one)
+          $(".phone1").html(this.nicheng)
         }
       },
       mounted(){
