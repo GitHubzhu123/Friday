@@ -13,11 +13,11 @@
           <span>*</span>所在地区:
           <select class="sheng">
             <option value="">请选择省区</option>
-            <option>河南</option>
-            <option>北京</option>
+            <option value="河南">河南</option>
+            <option value="河北">河北</option>
           </select>
-          <select class="city">
-            <option value="">请选择市</option>
+          <select class="shi">
+            <option value="">请选择城市</option>
           </select>
           <select class="xian">
             <option value="">请选择县区</option>
@@ -74,8 +74,44 @@
         }
       },
       mounted(){
+        var sheng=document.querySelector('.sheng')
+        var shi=document.querySelector('.shi')
+        var xian=document.querySelector('.xian')
+
+        var HNCitys = ["郑州", "开封", "洛阳", "平顶山", "安阳", "鹤壁", "新乡", "焦作", "濮阳", "许昌", "漯河", "三门峡", "商丘", "周口", "驻马店", "南阳", "信阳", "济源"];
+        var HBCitys = ["石家庄", "唐山", "秦皇岛", "邯郸", "邢台", "保定", "张家口", "承德", "沧州", "廊坊", "衡水"];
+        sheng.onchange=function () {
+          shi.innerHTML='<option>--请选择市--</option>'
+          if(sheng.value=='河南'){
+            for(var i=0;i<HNCitys.length;i++){
+              var opt1=document.createElement('option')
+              opt1.innerHTML=HNCitys[i];
+              opt1.value=HNCitys[i];
+              console.log(shi.value)
+              shi.appendChild(opt1)
+              if(shi.value==''){
+
+              }
+            }
+
+          }
+          if(sheng.value=='河北'){
+            for(var i=0;i<HBCitys.length;i++){
+              var opt2=document.createElement('option')
+              opt2.innerHTML=HBCitys[i];
+              opt2.value=HBCitys[i];
+              shi.appendChild(opt2)
+            }
+          }
+
+
+
+        }
+
+
 
       }
+
     }
 </script>
 
