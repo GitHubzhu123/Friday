@@ -254,7 +254,7 @@
                 })
               } else if (b1 == response.data[0].passWord) {
                 localStorage.login = true;
-                localStorage.userid = a1;
+                localStorage.username = a1;
                 alert('登录成功');
                 window.location.href = '#/top'
               } else if (a1.length > 0 && b1.length > 0) {
