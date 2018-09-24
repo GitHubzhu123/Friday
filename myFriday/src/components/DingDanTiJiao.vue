@@ -10,7 +10,7 @@
       </div>
       <p class="dizi">
         <span class="dw"></span><span>送货至：  </span>
-        <span>但小兵 北京 北京市 昌平区 天通苑明天第一城4号楼101 固定电话010-21541589</span>
+        <span>{{name}} {{dizhi}} {{dizhi}} 电话{{tel}}</span>
       </p>
       <p class="jin">
         <span>应付金额：</span>
@@ -66,6 +66,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import Vue from 'vue'
   import Top_Xiao from '@/components/Top_Xiao'
   import GWC_tit from '@/components/GWC/GWC_tit'
   import Btm from '@/components/Btm'
@@ -79,9 +81,22 @@
       data(){
           return{
             zongjine:localStorage.zongjine,
+            dz:[],
+            name:'',
+            dizhi:'',
+            tel:'',
           }
-
       },
+      mounted(){
+        axios.get('/api/vuephp/gwc.php?type=15&id='+Number(localStorage.qrdd_dzid)).then(res=>{
+
+          this.dz=res.data
+          this.name=this.dz[0].shouHuoRen
+          this.dizhi=this.dz[0].dizhi
+          this.tel=this.dz[0].tel
+          console.log(this.dz[0].shouHuoRen)
+        })
+      }
     }
 </script>
 
