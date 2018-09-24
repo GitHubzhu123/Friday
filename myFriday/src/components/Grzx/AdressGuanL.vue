@@ -72,29 +72,29 @@
           }
       },
       methods:{
-          moren(i){
-            console.log(this.addres[i])
+          moren(i){//设为默认
+            $(".mr").css({
+              display:'inline-block'
+            })
+            $(".mr2").css({
+              display:'inline-block'
+            })
             $(".mr").eq(i).css({
               display:'none'
             })
-            // console.log($(".mr").eq(0))
-            // var aa = this.addres[i].id;
-            // axios.get('/api/PHP/Day04/mfriday.php?type=15&id='+aa+'&userid='+localStorage.userid).then(res=>{
-            //   console.log(res.data)
-            //   console.log(localStorage.userid)
-            //   if(!res.data.length){
-            //     window.location.href='/#/adress'
-            //   }
-            //   // location.reload()
-            // })
+            $(".mr2").eq(i).css({
+              display:'none'
+            })
+            axios.get('/api/PHP/Day04/mfriday.php?type=15&id='+this.addres[i].id+'&userid='+localStorage.userid).then(res=>{
+              console.log(res.data)
+            })
           },
-        changei(i){
+        changei(i){//修改
           console.log(i);
           localStorage.xiugai = i;
           window.location.href='/#/xiugaiadress';
         },
-          del(i){
-            // console.log(i);
+          del(i){//删除
             var aa = this.addres[i].id;
             axios.get('/api/PHP/Day04/mfriday.php?type=10&id='+aa+'&userid='+localStorage.userid).then(res=>{
               console.log(res.data)
@@ -102,18 +102,15 @@
               if(!res.data.length){
                 window.location.href='/#/adress'
               }
-              // location.reload()
             })
           }
       },
       mounted(){
-          // console.log(localStorage.userid)
-
         axios.get('/api/PHP/Day04/mfriday.php?type=9&id='+localStorage.userid).then(res=>{
           this.addres=res.data
           window.onload = function(){
             for(var i=0;i<res.data.length;i++){
-              console.log(res.data[i].moRen)
+              // console.log(res.data[i].moRen)
               if(res.data[i].moRen==1){
                 console.log($(".mr").eq(i))
                 $(".mr").eq(i).css({
@@ -124,12 +121,8 @@
                 })
               }
             }
-
           }
         })
-        // window.onload = function() {
-        //   console.log(this.addres)
-        // }
       }
     }
 </script>

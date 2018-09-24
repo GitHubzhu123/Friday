@@ -270,7 +270,6 @@ console.log(res.data)
           // console.log(res.data)
           this.gwc=res.data
         })
-
         axios.get('/api/vuephp/gwc.php?type=22&userid='+usid).then(res=>{
           // console.log(res.data)
           this.sp=res.data;

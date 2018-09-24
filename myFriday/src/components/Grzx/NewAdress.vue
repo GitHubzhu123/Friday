@@ -11,11 +11,17 @@
         <!---->
         <li class="twoLi">
           <span>*</span>所在地区:
-          <div id="city">
-            <select class="prov"></select>
-            <select class="city" disabled="disabled"></select>
-            <select class="dist" disabled="disabled"></select>
-          </div>
+          <select class="sheng">
+            <option value="">请选择省区</option>
+            <option>河南</option>
+            <option>北京</option>
+          </select>
+          <select class="city">
+            <option value="">请选择市</option>
+          </select>
+          <select class="xian">
+            <option value="">请选择县区</option>
+          </select>
         </li>        <!---->
         <li class="thrLi">
           <span>*</span>详细地址: <input type="text">
@@ -38,6 +44,7 @@
 <script>
   import axios from 'axios'
   import Vue from 'vue'
+
     export default {
         name: "NewAdress",
       data(){
@@ -111,35 +118,42 @@
   .midCon>li>span{
     color: #f00;
   }
+  .midCon>li>input{
+    font-size: 16px;
+  }
   .thrInp{
-    width: 125px;
+    width: 115px;
     height: 35px;
+    padding-left: 10px;
   }
   .oneInp{
-    width: 150px;
+    width: 140px;
     height: 35px;
+    padding-left: 10px;
   }
   .twoInp{
-    width: 47px;
+    width: 42px;
     height: 35px;
+    padding-left: 5px;
   }
   .thrLi>input{
-    width: 458px;
+    width: 448px;
     height: 35px;
+    padding-left: 10px;
   }
-  #city{
-    display: inline-block;
-  }
-  .twoLi select{
-    width: 140px;
+
+  select{
+    width: 130px;
     height: 35px;
     font-size: 16px;
     text-align: center;
     margin-right: 15px;
+    padding-left: 10px;
   }
   .oneLi>input{
-    width: 330px;
+    width: 320px;
     height: 35px;
+    padding-left: 10px;
   }
 
 

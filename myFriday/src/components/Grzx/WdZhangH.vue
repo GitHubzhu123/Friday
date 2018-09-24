@@ -6,8 +6,8 @@
           <img src="../../../static/imgM/头像大图背景.png" alt="">
           <img src="../../../static/imgM/头像大图.png" alt="">
         </div>
-        <span class="redSpan">您好,</span>
-        <router-link to="/grziliao"><span>{{username}}</span></router-link>
+        <span class="redSpan">您好 , &nbsp;</span>
+        <router-link to="/grziliao"><span>{{nicheng}}</span></router-link>
       </div>
       <ul class="topRig">
         <li>
@@ -43,7 +43,7 @@
     name: "WdZhangH",
     data(){
       return{
-        username:'',
+        nicheng:'',
         jifen:'',
         money:'',
         headimg:''
@@ -58,10 +58,11 @@
       // localStorage.userid=1
       axios.get('/api/PHP/Day04/mfriday.php?type=3&id='+localStorage.userid).then(res=>{
         console.log(localStorage.userid)
-        if(res.data[0].userName==''){
-          this.username=res.data[0].phone;
+        console.log(res.data[0].nicheng)
+        if(res.data[0].nicheng==""){
+          this.nicheng=res.data[0].phone;
         }else {
-          this.username=res.data[0].userName;
+          this.nicheng=res.data[0].nicheng;
         }
 
         this.jifen=res.data[0].jifen;

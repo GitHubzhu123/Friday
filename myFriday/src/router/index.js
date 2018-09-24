@@ -44,6 +44,7 @@ import spxq_pj from '@/components/SPXQ/spxq_pj'
 //确认订单
 import QueRendingdan from '@/components/QueRendingdan'
 import qrdd_diziwu from '@/components/QRDD/qrdd_diziwu'
+import qrdd_dizhi from '@/components/QRDD/qrdd_dizhi'
 import qrdd_dizi_you from '@/components/QRDD/qrdd_dizi_you'
 import qrdd_spxx from '@/components/QRDD/qrdd_spxx'
 // import qrdd_sdsj from '@/components/QRDD/qrdd_sdsj'

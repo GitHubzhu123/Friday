@@ -13,7 +13,6 @@
           </div>
           <span class="xiugai">修改</span>
         </div>
-
         <ul class="inputs">
           <li class="oneLi">
             昵称: <input id="oneInp" type="text" :value="nicheng">
