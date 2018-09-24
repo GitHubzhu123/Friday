@@ -110,13 +110,13 @@
     </div>
     <div class="topB">
       <div class="a1">
-        <a href="/#/qb">全部分类<img src="./../../static/z/主页/xia.png" alt=""></a>
+        <a href="/#/qb">全部分类<img src="./../../static/z/主页/xia.png" alt="" style="margin-left: 5px"></a>
         <div>
           <ul class="a1_1">
             <li><img src="./../../static/z/主页/li1.png" alt="">新鲜水果
               <div class="list1">
                 <ul>
-                  <li><a href="###">应季鲜果</a></li>
+                  <li><a @click="shuiguo()">应季鲜果</a></li>
                   <li><a href="###">应季鲜果</a></li>
                   <li><a href="###">应季鲜果</a></li>
                   <li><a href="###">应季鲜果</a></li>
@@ -217,6 +217,10 @@
     methods:{
       logo(){
         window.location.href = '/'
+      },
+      shuiguo(){
+        this.$router.push({name:'Suosou',query:{name: '水果'}})
+        location.reload()
       },
       sou(){
         this.$router.push({name:'Suosou',query:{name: $('.topC1_1>input').val()}})
@@ -783,12 +787,15 @@
     position: fixed;
     top: 0;
     z-index: 10;
+
   }
   .loc{
     width: 700px;
     height: 350px;
     background: white url("./../../static/z/主页/localbg.png");
     margin: 180px auto;
+    animation-duration: 1s;
+    animation-name: fadeInDown
   }
   .loc>p{
     text-align: right;
@@ -830,6 +837,8 @@
     margin: 200px auto 0 auto;
     border: 5px solid #e2e2e2;
     position: relative;
+    animation-duration: 1.5s;
+    animation-name: fadeIn
   }
   .log1{
     width: 100%;
@@ -972,7 +981,6 @@
     width: 305px;
     height: 500px;
     margin: 0 auto;
-    /*background: lemonchiffon;*/
   }
   .log2 p{
     opacity: 0;
