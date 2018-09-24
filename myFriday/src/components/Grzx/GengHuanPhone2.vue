@@ -207,15 +207,17 @@
     /*overflow: hidden;*/
   }
   li>input{
-    width: 310px;
+    width: 300px;
     height: 45px;
+    padding-left: 10px;
     font-size: 16px;
     margin-bottom: 30px;
     background: #f9f9f9;
     outline: none;
   }
   .twoLi>input{
-    width: 110px;
+    width: 100px;
+    padding-left: 10px;
   }
   .twoLi{
     position: relative;

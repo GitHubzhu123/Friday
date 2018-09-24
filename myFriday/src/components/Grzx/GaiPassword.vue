@@ -191,15 +191,16 @@
     font-size: 20px;
   }
   li>input{
-    width: 310px;
+    width: 300px;
     height: 45px;
+    padding-left: 10px;
     font-size: 16px;
     margin-bottom: 30px;
     background: #f9f9f9;
     outline: none;
   }
   .fourLi>input{
-    width: 110px;
+    width: 100px;
   }
   .fourLi>img{
     width: 80px;
